@@ -1,0 +1,8 @@
+package be.bastien.POJO;
+
+import java.io.Serializable;
+
+public class POJOTresorier implements Serializable {
+	private static final long serialVersionUID = 303556501633655016L;
+
+}

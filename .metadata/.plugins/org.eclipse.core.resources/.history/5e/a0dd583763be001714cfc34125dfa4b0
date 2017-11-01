@@ -1,0 +1,5 @@
+package be.bastien.metier;
+
+public class Membre {
+
+}

@@ -1,0 +1,9 @@
+package be.bastien.metier;
+
+public class Vehicule {
+	POJOVehicule pojoVehicule;
+	
+	public Vehicule(POJOVehicule pojoVehicule) {
+		this.pojoVehicule = pojoVehicule;
+	}
+}

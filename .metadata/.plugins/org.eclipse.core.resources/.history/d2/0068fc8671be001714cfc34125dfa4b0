@@ -1,0 +1,9 @@
+package be.bastien.metier;
+
+public class Categorie {
+	POJOCategorie pojoCategorie;
+	
+	public Categorie(POJOCategorie pojoCategorie) {
+		this.pojoCategorie = pojoCategorie;
+	}
+}

@@ -1,0 +1,6 @@
+package be.bastien.metier;
+
+public class Personne {
+	//Référant à la POJO
+	POJOPersonne pojoPersonne = new POJOPersonne();
+}

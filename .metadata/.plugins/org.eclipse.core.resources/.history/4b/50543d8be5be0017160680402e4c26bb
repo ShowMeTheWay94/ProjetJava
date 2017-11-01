@@ -1,0 +1,9 @@
+package be.bastien.POJO;
+
+import java.io.Serializable;
+
+public class POJOCyclo implements Serializable {
+	private static final long serialVersionUID = -9215696393555879369L;
+	
+	
+}

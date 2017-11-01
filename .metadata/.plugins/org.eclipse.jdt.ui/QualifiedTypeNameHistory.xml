@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="be.bastien.POJO.POJOPersonne"/>
+<fullyQualifiedTypeName name="be.bastien.POJO.POJOMembre"/>
+<fullyQualifiedTypeName name="be.bastien.POJO.POJOResponsable"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="be.bastien.POJO.POJOCategorie"/>
+<fullyQualifiedTypeName name="be.bastien.POJO.POJOVtt"/>
+<fullyQualifiedTypeName name="be.bastien.POJO.POJORandonneur"/>
+<fullyQualifiedTypeName name="be.bastien.POJO.POJOTrialiste"/>
+<fullyQualifiedTypeName name="be.bastien.POJO.POJODescendeur"/>
+<fullyQualifiedTypeName name="be.bastien.POJO.POJOCyclo"/>
+<fullyQualifiedTypeName name="be.bastien.POJO.POJOVehicule"/>
+<fullyQualifiedTypeName name="java.util.GregorianCalendar"/>
+<fullyQualifiedTypeName name="be.bastien.POJO.POJOBalade"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="be.bastien.POJO.POJOCalendrier"/>
+</qualifiedTypeNameHistroy>

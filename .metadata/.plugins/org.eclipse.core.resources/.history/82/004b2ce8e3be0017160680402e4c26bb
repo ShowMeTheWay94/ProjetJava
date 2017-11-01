@@ -1,0 +1,9 @@
+package be.bastien.metier;
+
+public class Descendeur {
+	POJODescendeur pojoDescendeur;
+	
+	public Descendeur(POJODescendeur pojoDescendeur) {
+		this.pojoDescendeur = pojoDescendeur;
+	}
+}

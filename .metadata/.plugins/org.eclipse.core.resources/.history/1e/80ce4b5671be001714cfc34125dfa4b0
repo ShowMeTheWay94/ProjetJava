@@ -1,0 +1,18 @@
+package be.bastien.POJO;
+
+import java.io.Serializable;
+import java.util.List;
+
+public class POJOCategorie implements Serializable {
+	private static final long serialVersionUID = 7742525273144891592L;
+	
+	//Variable d'instance
+	private int idCategorie;
+	private int supplement;
+	private List<POJOMembre> listMembre;
+	
+	//Constructeur
+	public POJOCategorie() { }
+	
+	
+}

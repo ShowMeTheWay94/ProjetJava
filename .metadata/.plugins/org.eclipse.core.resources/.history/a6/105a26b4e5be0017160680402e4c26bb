@@ -1,0 +1,9 @@
+package be.bastien.metier;
+
+public class Cyclo {
+	POJOCyclo pojoCyclo;
+	
+	public Cyclo(POJOCyclo pojoCyclo) {
+		this.pojoCyclo = pojoCyclo;
+	}
+}

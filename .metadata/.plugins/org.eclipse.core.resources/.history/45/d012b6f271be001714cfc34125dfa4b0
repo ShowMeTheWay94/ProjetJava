@@ -1,0 +1,8 @@
+package be.bastien.POJO;
+
+import java.io.Serializable;
+
+public class POJOVtt implements Serializable {
+	
+
+}

@@ -1,0 +1,7 @@
+package be.bastien.POJO;
+
+import java.io.Serializable;
+
+public class POJOTrialiste implements Serializable {
+	
+}

@@ -1,0 +1,11 @@
+package be.bastien.metier;
+
+import be.bastien.POJO.POJOTresorier;
+
+public class Tresorier {
+	POJOTresorier pojoTresorier = new POJOTresorier();
+	
+	public Tresorier(POJOTresorier pojoTresorier) {
+		this.pojoTresorier = pojoTresorier;
+	}
+}
