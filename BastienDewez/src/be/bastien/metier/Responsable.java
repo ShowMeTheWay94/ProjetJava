@@ -1,11 +1,12 @@
 package be.bastien.metier;
 
-import be.bastien.POJO.POJOResponsable;
+import be.bastien.POJO.*;
 
-public class Responsable {
-	POJOResponsable pojoResponsable;
+public class Responsable extends Personne{
+	private POJOResponsable pojoResponsable;
 	
-	public Responsable(POJOResponsable pojoResponsable) {
+	public Responsable(POJOResponsable pojoResponsable, POJOPersonne pojoPersonne) {
+		super(pojoPersonne);
 		this.pojoResponsable = pojoResponsable;
 	}
 }

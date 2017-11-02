@@ -1,11 +1,12 @@
 package be.bastien.metier;
 
-import be.bastien.POJO.POJOMembre;
+import be.bastien.POJO.*;
 
-public class Membre {
-	POJOMembre pojoMembre;
+public class Membre extends Personne {
+	private POJOMembre pojoMembre;
 	
-	public Membre(POJOMembre pojoMembre) {
+	public Membre(POJOMembre pojoMembre, POJOPersonne pojoPersonne) {
+		super(pojoPersonne);
 		this.pojoMembre = pojoMembre;
 	}
 }

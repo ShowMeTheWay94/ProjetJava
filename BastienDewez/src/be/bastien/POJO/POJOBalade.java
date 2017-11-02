@@ -12,7 +12,6 @@ public class POJOBalade implements Serializable {
 	private String lieuDepart;
 	private GregorianCalendar dateBalade;
 	private double forfait;
-	private String type;
 	private List<POJOVehicule> listVehicule;
 	
 	//Constructeur
@@ -49,14 +48,6 @@ public class POJOBalade implements Serializable {
 
 	public void setForfait(double forfait) {
 		this.forfait = forfait;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public List<POJOVehicule> getListVehicule() {

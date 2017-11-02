@@ -1,11 +1,12 @@
 package be.bastien.metier;
 
-import be.bastien.POJO.POJODescendeur;
+import be.bastien.POJO.*;
 
-public class Descendeur {
-	POJODescendeur pojoDescendeur;
+public class Descendeur extends Vtt {
+	private POJODescendeur pojoDescendeur;
 	
-	public Descendeur(POJODescendeur pojoDescendeur) {
+	public Descendeur(POJODescendeur pojoDescendeur, POJOVtt pojoVtt, POJOCategorie pojoCategorie) {
+		super(pojoVtt, pojoCategorie);
 		this.pojoDescendeur = pojoDescendeur;
 	}
 }

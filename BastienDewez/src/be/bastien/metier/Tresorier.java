@@ -1,11 +1,12 @@
 package be.bastien.metier;
 
-import be.bastien.POJO.POJOTresorier;
+import be.bastien.POJO.*;
 
-public class Tresorier {
-	POJOTresorier pojoTresorier;
+public class Tresorier extends Personne {
+	private POJOTresorier pojoTresorier;
 	
-	public Tresorier(POJOTresorier pojoTresorier) {
+	public Tresorier(POJOTresorier pojoTresorier, POJOPersonne pojoPersonne) {
+		super(pojoPersonne);
 		this.pojoTresorier = pojoTresorier;
 	}
 }

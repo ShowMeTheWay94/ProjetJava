@@ -1,0 +1,12 @@
+package be.bastien.metier;
+
+import be.bastien.POJO.POJOCyclo;
+
+public class Cyclo extends Categorie{
+	private POJOCyclo pojoCyclo;
+	
+	public Cyclo(POJOCyclo pojoCyclo) {
+		super();
+		this.pojoCyclo = pojoCyclo;
+	}
+}

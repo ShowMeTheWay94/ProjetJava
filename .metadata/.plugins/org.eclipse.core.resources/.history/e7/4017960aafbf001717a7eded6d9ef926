@@ -1,0 +1,29 @@
+package be.bastien.DAO;
+
+import java.sql.Connection;
+
+import be.bastien.POJO.POJOResponsable;
+
+public class DAOResponsable {
+	public DAOResponsable(Connection conn){
+		super(conn);
+	}
+	
+	public boolean create(POJOPersonne balade) {
+		return false;
+	}
+	
+	public boolean delete(POJOPersonne balade) {
+		return false;
+	}
+	
+	public boolean update(POJOPersonne balade) {
+		return false;
+	}
+	
+	public POJOPersonne find(int id) {
+		POJOPersonne personne = new POJOPersonne();
+		
+		return personne;
+	}
+}

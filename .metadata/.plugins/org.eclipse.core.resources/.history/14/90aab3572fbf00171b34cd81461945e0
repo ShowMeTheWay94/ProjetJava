@@ -1,0 +1,12 @@
+package be.bastien.metier;
+
+import be.bastien.POJO.*;
+
+public class Descendeur extends Vtt {
+	POJODescendeur pojoDescendeur;
+	
+	public Descendeur(POJODescendeur pojoDescendeur, POJOVtt pojoVtt) {
+		super(pojoVtt)
+		this.pojoDescendeur = pojoDescendeur;
+	}
+}

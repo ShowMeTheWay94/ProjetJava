@@ -1,0 +1,21 @@
+package be.bastien.DAO;
+
+import java.sql.Connection;
+
+import be.bastien.POJO.POJOBalade;
+
+public class DAOBalade extends DAO<POJOBalade> {
+	public DAOBalade(Connection conn){
+		super(conn);
+	}
+	
+	public boolean create(POJOBalade balade) {
+		return false;
+	}
+	
+	public boolean delete(POJOBalade balade);
+	
+	public boolean update(POJOBalade balade);
+	
+	public POJOBalade find(int id);
+}
