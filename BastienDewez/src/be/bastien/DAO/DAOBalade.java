@@ -21,9 +21,9 @@ public class DAOBalade extends DAO<POJOBalade> {
 		return false;
 	}
 	
-	public POJOBalade find(int id) {
-		POJOBalade balade = new POJOBalade();
+	public boolean find(POJOBalade balade) {
+		boolean trouve = false;
 		
-		return balade;
+		return trouve;
 	}
 }

@@ -9,21 +9,21 @@ public class DAOCategorie extends DAO<POJOCategorie> {
 		super(conn);
 	}
 	
-	public boolean create(POJOCategorie balade) {
+	public boolean create(POJOCategorie categorie) {
 		return false;
 	}
 	
-	public boolean delete(POJOCategorie balade) {
+	public boolean delete(POJOCategorie categorie) {
 		return false;
 	}
 	
-	public boolean update(POJOCategorie balade) {
+	public boolean update(POJOCategorie categorie) {
 		return false;
 	}
 	
-	public POJOCategorie find(int id) {
-		POJOCategorie categorie = new POJOCategorie();
+	public boolean find(POJOCategorie categorie) {	
+		boolean trouve = false;
 		
-		return categorie;
+		return trouve;
 	}
 }

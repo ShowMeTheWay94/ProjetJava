@@ -1,0 +1,24 @@
+package be.bastien.ecran;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+
+public class Acceuil extends JFrame {
+	private static final long serialVersionUID = -3593788473037822996L;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Acceuil acceuil = new Acceuil();
+					acceuil.setTitle("Acceuil");
+					acceuil.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+}

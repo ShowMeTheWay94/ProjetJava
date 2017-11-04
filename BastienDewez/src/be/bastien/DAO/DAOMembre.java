@@ -1,6 +1,8 @@
 package be.bastien.DAO;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import be.bastien.POJO.POJOMembre;
 
@@ -9,21 +11,33 @@ public class DAOMembre extends DAO<POJOMembre>{
 		super(conn);
 	}
 	
-	public boolean create(POJOMembre balade) {
+	public boolean create(POJOMembre membre) {
 		return false;
 	}
 	
-	public boolean delete(POJOMembre balade) {
+	public boolean delete(POJOMembre membre) {
 		return false;
 	}
 	
-	public boolean update(POJOMembre balade) {
+	public boolean update(POJOMembre membre) {
 		return false;
 	}
 	
-	public POJOMembre find(int id) {
-		POJOMembre membre = new POJOMembre();
+	public boolean find(POJOMembre membre) {	
+		boolean trouve = false;
 		
-		return membre;
+		try{
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM PERSONNE");
+			while(result.next()){
+				if(result.getString("LOGIN").equals(membre.getLogin()) && result.getString("PASSWORD").equals(membre.getPassword())){
+					trouve = true;
+				}
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return trouve;
 	}
 }

@@ -9,21 +9,21 @@ public class DAOTresorier extends DAO<POJOTresorier>{
 		super(conn);
 	}
 	
-	public boolean create(POJOTresorier balade) {
+	public boolean create(POJOTresorier tresorier) {
 		return false;
 	}
 	
-	public boolean delete(POJOTresorier balade) {
+	public boolean delete(POJOTresorier tresorier) {
 		return false;
 	}
 	
-	public boolean update(POJOTresorier balade) {
+	public boolean update(POJOTresorier tresorier) {
 		return false;
 	}
 	
-	public POJOTresorier find(int id) {
-		POJOTresorier tresorier = new POJOTresorier();
+	public boolean find(POJOTresorier tresorier) {
+		boolean trouve = false;
 		
-		return tresorier;
+		return trouve;
 	}
 }

@@ -9,21 +9,21 @@ public class DAOResponsable extends DAO<POJOResponsable> {
 		super(conn);
 	}
 	
-	public boolean create(POJOResponsable balade) {
+	public boolean create(POJOResponsable responsable) {
 		return false;
 	}
 	
-	public boolean delete(POJOResponsable balade) {
+	public boolean delete(POJOResponsable responsable) {
 		return false;
 	}
 	
-	public boolean update(POJOResponsable balade) {
+	public boolean update(POJOResponsable responsable) {
 		return false;
 	}
 	
-	public POJOResponsable find(int id) {
-		POJOResponsable responsable = new POJOResponsable();
+	public boolean find(POJOResponsable responsable) {
+		boolean trouve = false;
 		
-		return responsable;
+		return trouve;
 	}
 }

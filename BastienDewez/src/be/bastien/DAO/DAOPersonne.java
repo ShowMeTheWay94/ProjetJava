@@ -9,21 +9,21 @@ public class DAOPersonne extends DAO<POJOPersonne> {
 		super(conn);
 	}
 	
-	public boolean create(POJOPersonne balade) {
+	public boolean create(POJOPersonne personne) {
 		return false;
 	}
 	
-	public boolean delete(POJOPersonne balade) {
+	public boolean delete(POJOPersonne personne) {
 		return false;
 	}
 	
-	public boolean update(POJOPersonne balade) {
+	public boolean update(POJOPersonne personne) {
 		return false;
 	}
 	
-	public POJOPersonne find(int id) {
-		POJOPersonne personne = new POJOPersonne();
+	public boolean find(POJOPersonne personne) {	
+		boolean trouve = false;
 		
-		return personne;
+		return trouve;
 	}
 }

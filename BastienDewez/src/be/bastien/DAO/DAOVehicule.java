@@ -9,21 +9,21 @@ public class DAOVehicule extends DAO<POJOVehicule> {
 		super(conn);
 	}
 	
-	public boolean create(POJOVehicule balade) {
+	public boolean create(POJOVehicule vehicule) {
 		return false;
 	}
 	
-	public boolean delete(POJOVehicule balade) {
+	public boolean delete(POJOVehicule vehicule) {
 		return false;
 	}
 	
-	public boolean update(POJOVehicule balade) {
+	public boolean update(POJOVehicule vehicule) {
 		return false;
 	}
 	
-	public POJOVehicule find(int id) {
-		POJOVehicule vehicule = new POJOVehicule();
+	public boolean find(POJOVehicule vehicule) {	
+		boolean trouve = false;
 		
-		return vehicule;
+		return trouve;
 	}
 }
