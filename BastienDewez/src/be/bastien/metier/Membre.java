@@ -9,4 +9,9 @@ public class Membre extends Personne {
 		super(pojoPersonne);
 		this.pojoMembre = pojoMembre;
 	}
+	
+	public void payerCotisation() {
+		pojoMembre.setCotisation(0);
+		pojoMembre.setStatutCotisation("Payé");
+	}
 }

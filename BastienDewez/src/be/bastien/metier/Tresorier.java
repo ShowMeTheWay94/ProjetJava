@@ -9,4 +9,8 @@ public class Tresorier extends Personne {
 		super(pojoPersonne);
 		this.pojoTresorier = pojoTresorier;
 	}
+	
+	public void ajouterMembre(POJOMembre membre) {
+		pojoTresorier.addMembre(membre);
+	}
 }

@@ -6,7 +6,7 @@ public class POJODescendeur extends POJOVtt implements Serializable {
 	private static final long serialVersionUID = 6010485200513188698L;
 
 	//Variable d'instance
-	private String typeSyspension;
+	private String typeSuspension;
 	
 	//Constructeur
 	public POJODescendeur() { 
@@ -14,11 +14,11 @@ public class POJODescendeur extends POJOVtt implements Serializable {
 	}
 
 	//Getters et Setters
-	public String getTypeSyspension() {
-		return typeSyspension;
+	public String getTypeSuspension() {
+		return typeSuspension;
 	}
 
-	public void setTypeSyspension(String typeSyspension) {
-		this.typeSyspension = typeSyspension;
+	public void setTypeSuspension(String typeSuspension) {
+		this.typeSuspension = typeSuspension;
 	}
 }

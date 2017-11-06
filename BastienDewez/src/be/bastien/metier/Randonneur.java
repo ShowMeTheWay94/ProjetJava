@@ -9,4 +9,8 @@ public class Randonneur extends Vtt {
 		super(pojoVtt, pojoCategorie);
 		this.pojoRandonneur = pojoRandonneur;
 	}
+	
+	public void modifierFourche(String typeFourche) {
+		pojoRandonneur.setTypeFourche(typeFourche);
+	}
 }

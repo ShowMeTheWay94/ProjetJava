@@ -9,4 +9,8 @@ public class Cyclo extends Categorie{
 		super(pojoCategorie);
 		this.pojoCyclo = pojoCyclo;
 	}
+	
+	public void modifierPorteBidon(boolean porteBidon) {
+		pojoCyclo.setPorteBidon(porteBidon);
+	}
 }

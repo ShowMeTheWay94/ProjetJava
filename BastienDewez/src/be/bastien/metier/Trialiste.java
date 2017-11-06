@@ -9,4 +9,8 @@ public class Trialiste extends Vtt {
 		super(pojoVtt, pojoCategorie);
 		this.pojoTrialiste = pojoTrialiste;
 	}
+	
+	public void modifierScelle(boolean scelle) {
+		pojoTrialiste.setScelle(scelle);
+	}
 }

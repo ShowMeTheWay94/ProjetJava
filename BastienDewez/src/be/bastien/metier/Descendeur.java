@@ -9,4 +9,8 @@ public class Descendeur extends Vtt {
 		super(pojoVtt, pojoCategorie);
 		this.pojoDescendeur = pojoDescendeur;
 	}
+	
+	public void modifierSuspension(String typeSuspension) {
+		pojoDescendeur.setTypeSuspension(typeSuspension);
+	}
 }

@@ -9,7 +9,6 @@ public class POJOPersonne implements Serializable {
 	private int idPersonne;
 	private String nom;
 	private String prenom;
-	private int age;
 	private String login;
 	private String password;
 	
@@ -41,15 +40,7 @@ public class POJOPersonne implements Serializable {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
+	
 	public String getLogin() {
 		return login;
 	}

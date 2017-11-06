@@ -9,4 +9,8 @@ public class Vtt extends Categorie{
 		super(pojoCategorie);
 		this.pojoVtt = pojoVtt;
 	}
+	
+	public void modifierRoue(String typeRoue) {
+		pojoVtt.setTypeRoue(typeRoue);
+	}
 }
