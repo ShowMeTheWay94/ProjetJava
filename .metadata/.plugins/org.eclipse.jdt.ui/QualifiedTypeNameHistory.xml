@@ -17,13 +17,6 @@
 <fullyQualifiedTypeName name="be.bastien.DAO.ProjetConnection"/>
 <fullyQualifiedTypeName name="java.awt.EventQueue"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
-<fullyQualifiedTypeName name="javax.swing.JPanel"/>
-<fullyQualifiedTypeName name="javax.swing.JTextField"/>
-<fullyQualifiedTypeName name="javax.swing.JLabel"/>
-<fullyQualifiedTypeName name="javax.swing.JPasswordField"/>
-<fullyQualifiedTypeName name="javax.swing.JButton"/>
-<fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
-<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="javax.swing.JRadioButton"/>
 <fullyQualifiedTypeName name="javax.swing.ButtonGroup"/>
 <fullyQualifiedTypeName name="be.bastien.DAO.DAOMembre"/>
@@ -34,4 +27,18 @@
 <fullyQualifiedTypeName name="be.bastien.POJO.POJOBalade"/>
 <fullyQualifiedTypeName name="java.util.GregorianCalendar"/>
 <fullyQualifiedTypeName name="be.bastien.POJO.POJOMembre"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="javax.swing.JPasswordField"/>
+<fullyQualifiedTypeName name="javax.swing.JLabel"/>
+<fullyQualifiedTypeName name="javax.swing.JButton"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
+<fullyQualifiedTypeName name="be.bastien.metier.Balade"/>
+<fullyQualifiedTypeName name="be.bastien.metier.Categorie"/>
+<fullyQualifiedTypeName name="be.bastien.metier.Personne"/>
+<fullyQualifiedTypeName name="be.bastien.metier.Vehicule"/>
+<fullyQualifiedTypeName name="be.bastien.metier.Tresorier"/>
+<fullyQualifiedTypeName name="be.bastien.metier.Responsable"/>
+<fullyQualifiedTypeName name="be.bastien.metier.Membre"/>
 </qualifiedTypeNameHistroy>

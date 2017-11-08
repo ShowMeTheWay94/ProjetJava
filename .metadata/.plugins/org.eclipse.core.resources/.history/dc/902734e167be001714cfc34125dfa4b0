@@ -1,7 +1,0 @@
-package be.bastien.POJO;
-
-import java.io.Serializable;
-
-public class POJOTresorier implements Serializable {
-
-}

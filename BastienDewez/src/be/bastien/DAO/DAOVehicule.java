@@ -2,26 +2,26 @@ package be.bastien.DAO;
 
 import java.sql.Connection;
 
-import be.bastien.POJO.POJOVehicule;
+import be.bastien.metier.Vehicule;
 
-public class DAOVehicule extends DAO<POJOVehicule> {
+public class DAOVehicule extends DAO<Vehicule> {
 	public DAOVehicule(Connection conn){
 		super(conn);
 	}
 	
-	public boolean create(POJOVehicule vehicule) {
+	public boolean create(Vehicule vehicule) {
 		return false;
 	}
 	
-	public boolean delete(POJOVehicule vehicule) {
+	public boolean delete(Vehicule vehicule) {
 		return false;
 	}
 	
-	public boolean update(POJOVehicule vehicule) {
+	public boolean update(Vehicule vehicule) {
 		return false;
 	}
 	
-	public boolean find(POJOVehicule vehicule) {	
+	public boolean find(Vehicule vehicule) {	
 		boolean trouve = false;
 		
 		return trouve;

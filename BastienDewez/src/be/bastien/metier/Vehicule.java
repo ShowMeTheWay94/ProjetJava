@@ -1,40 +1,101 @@
 package be.bastien.metier;
 
-import be.bastien.POJO.POJOMembre;
-import be.bastien.POJO.POJOVehicule;
+import java.io.Serializable;
+import java.util.List;
 
-public class Vehicule {
-	private POJOVehicule pojoVehicule;
+public class Vehicule implements Serializable {
+	private static final long serialVersionUID = 168084761600626678L;
+
+	//Variable d'instance
+	private int idVehicule;
+	private int numImmatriculation;
+	private Membre conducteur;
+	private List<Membre> listMembre;
+	private int placeLibreMembre;
+	private int placeLibreVelo;
 	
-	public Vehicule(POJOVehicule pojoVehicule) {
-		this.pojoVehicule = pojoVehicule;
+	//Constructeur
+	public Vehicule() { }
+	
+	//Getters et Setters
+	public int getIdVehicule() {
+		return idVehicule;
+	}
+
+	public void setIdVehicule(int idVehicule) {
+		this.idVehicule = idVehicule;
 	}
 	
-	public void ajouterMembre(POJOMembre membre) {
-		pojoVehicule.addMembre(membre);
+	public int getNumImmatriculation() {
+		return numImmatriculation;
+	}
+
+	public void setNumImmatriculation(int numImmatriculation) {
+		this.numImmatriculation = numImmatriculation;
+	}
+
+	public Membre getConducteur() {
+		return conducteur;
+	}
+
+	public void setConducteur(Membre conducteur) {
+		this.conducteur = conducteur;
+	}
+
+	public List<Membre> getListMembre() {
+		return listMembre;
+	}
+
+	public void setListMembre(List<Membre> listMembre) {
+		this.listMembre = listMembre;
+	}
+
+	public int getPlaceLibreMembre() {
+		return placeLibreMembre;
+	}
+
+	public void setPlaceLibreMembre(int placeLibreMembre) {
+		this.placeLibreMembre = placeLibreMembre;
+	}
+
+	public int getPlaceLibreVelo() {
+		return placeLibreVelo;
+	}
+
+	public void setPlaceLibreVelo(int placeLibreVelo) {
+		this.placeLibreVelo = placeLibreVelo;
+	}
+	
+	public void addMembre(Membre membre){
+		if(!listMembre.contains(membre))
+			listMembre.add(membre);
+	}
+	
+	public void removeMembre(Membre membre){
+		this.listMembre.remove(membre);
 	}
 	
 	public void retirerPlaceVehicule() {
-		int placeMembre = pojoVehicule.getPlaceLibreMembre();
+		int placeMembre = getPlaceLibreMembre();
 		placeMembre--;
-		pojoVehicule.setPlaceLibreMembre(placeMembre);
+		setPlaceLibreMembre(placeMembre);
 	}
 	
 	public void ajouterPlaceVehicule() {
-		int placeMembre = pojoVehicule.getPlaceLibreMembre();
+		int placeMembre = getPlaceLibreMembre();
 		placeMembre++;
-		pojoVehicule.setPlaceLibreMembre(placeMembre);
+		setPlaceLibreMembre(placeMembre);
 	}
 	
 	public void retirerPlaceVelo() {
-		int placeVelo = pojoVehicule.getPlaceLibreVelo();
+		int placeVelo = getPlaceLibreVelo();
 		placeVelo--;
-		pojoVehicule.setPlaceLibreMembre(placeVelo);
+		setPlaceLibreMembre(placeVelo);
 	}
 	
 	public void ajouterPlaceVelo() {
-		int placeVelo = pojoVehicule.getPlaceLibreVelo();
+		int placeVelo = getPlaceLibreVelo();
 		placeVelo++;
-		pojoVehicule.setPlaceLibreMembre(placeVelo);
+		setPlaceLibreMembre(placeVelo);
 	}
 }

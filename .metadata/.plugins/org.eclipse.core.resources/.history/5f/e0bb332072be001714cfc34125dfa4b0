@@ -1,7 +1,0 @@
-package be.bastien.metier;
-
-import be.bastien.POJO.POJOVtt;
-
-public class Vtt {
-
-}

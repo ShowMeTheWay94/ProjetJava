@@ -2,26 +2,26 @@ package be.bastien.DAO;
 
 import java.sql.Connection;
 
-import be.bastien.POJO.POJOCategorie;
+import be.bastien.metier.Categorie;
 
-public class DAOCategorie extends DAO<POJOCategorie> {
+public class DAOCategorie extends DAO<Categorie> {
 	public DAOCategorie(Connection conn){
 		super(conn);
 	}
 	
-	public boolean create(POJOCategorie categorie) {
+	public boolean create(Categorie categorie) {
 		return false;
 	}
 	
-	public boolean delete(POJOCategorie categorie) {
+	public boolean delete(Categorie categorie) {
 		return false;
 	}
 	
-	public boolean update(POJOCategorie categorie) {
+	public boolean update(Categorie categorie) {
 		return false;
 	}
 	
-	public boolean find(POJOCategorie categorie) {	
+	public boolean find(Categorie categorie) {	
 		boolean trouve = false;
 		
 		return trouve;

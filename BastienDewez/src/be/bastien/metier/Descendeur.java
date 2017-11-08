@@ -1,16 +1,24 @@
 package be.bastien.metier;
 
-import be.bastien.POJO.*;
+import java.io.Serializable;
 
-public class Descendeur extends Vtt {
-	private POJODescendeur pojoDescendeur;
+public class Descendeur extends Vtt implements Serializable {
+	private static final long serialVersionUID = 6010485200513188698L;
+
+	//Variable d'instance
+	private String typeSuspension;
 	
-	public Descendeur(POJODescendeur pojoDescendeur, POJOVtt pojoVtt, POJOCategorie pojoCategorie) {
-		super(pojoVtt, pojoCategorie);
-		this.pojoDescendeur = pojoDescendeur;
+	//Constructeur
+	public Descendeur() { 
+		super();
 	}
-	
-	public void modifierSuspension(String typeSuspension) {
-		pojoDescendeur.setTypeSuspension(typeSuspension);
+
+	//Getters et Setters
+	public String getTypeSuspension() {
+		return typeSuspension;
+	}
+
+	public void setTypeSuspension(String typeSuspension) {
+		this.typeSuspension = typeSuspension;
 	}
 }

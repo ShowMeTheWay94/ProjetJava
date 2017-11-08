@@ -2,26 +2,26 @@ package be.bastien.DAO;
 
 import java.sql.Connection;
 
-import be.bastien.POJO.POJOResponsable;
+import be.bastien.metier.Responsable;
 
-public class DAOResponsable extends DAO<POJOResponsable> {
+public class DAOResponsable extends DAO<Responsable> {
 	public DAOResponsable(Connection conn){
 		super(conn);
 	}
 	
-	public boolean create(POJOResponsable responsable) {
+	public boolean create(Responsable responsable) {
 		return false;
 	}
 	
-	public boolean delete(POJOResponsable responsable) {
+	public boolean delete(Responsable responsable) {
 		return false;
 	}
 	
-	public boolean update(POJOResponsable responsable) {
+	public boolean update(Responsable responsable) {
 		return false;
 	}
 	
-	public boolean find(POJOResponsable responsable) {
+	public boolean find(Responsable responsable) {
 		boolean trouve = false;
 		
 		return trouve;

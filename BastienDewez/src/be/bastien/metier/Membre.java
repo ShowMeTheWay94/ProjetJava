@@ -1,17 +1,33 @@
 package be.bastien.metier;
 
-import be.bastien.POJO.*;
+import java.io.Serializable;
 
-public class Membre extends Personne {
-	private POJOMembre pojoMembre;
+public class Membre extends Personne implements Serializable {
+	private static final long serialVersionUID = 7958552928958704463L;
+
+	//Variable d'instance
+	private int cotisation;
+	private String statutCotisation;
 	
-	public Membre(POJOMembre pojoMembre, POJOPersonne pojoPersonne) {
-		super(pojoPersonne);
-		this.pojoMembre = pojoMembre;
+	//Constructeur
+	public Membre() { 
+		super();
 	}
 	
-	public void payerCotisation() {
-		pojoMembre.setCotisation(0);
-		pojoMembre.setStatutCotisation("Payé");
+	//Getters et Setters
+	public int getCotisation() {
+		return cotisation;
+	}
+
+	public void setCotisation(int cotisation) {
+		this.cotisation = cotisation;
+	}
+
+	public String getStatutCotisation() {
+		return statutCotisation;
+	}
+
+	public void setStatutCotisation(String statutCotisation) {
+		this.statutCotisation = statutCotisation;
 	}
 }

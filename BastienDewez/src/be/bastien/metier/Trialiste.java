@@ -1,16 +1,24 @@
 package be.bastien.metier;
 
-import be.bastien.POJO.*;
+import java.io.Serializable;
 
-public class Trialiste extends Vtt {
-	private POJOTrialiste pojoTrialiste;
+public class Trialiste extends Vtt implements Serializable {
+	private static final long serialVersionUID = -8929728861169228577L;
 	
-	public Trialiste(POJOTrialiste pojoTrialiste, POJOVtt pojoVtt, POJOCategorie pojoCategorie) {
-		super(pojoVtt, pojoCategorie);
-		this.pojoTrialiste = pojoTrialiste;
+	//Variable d'instance
+	private boolean scelle;
+	
+	//Constructeur
+	public Trialiste() { 
+		super();
 	}
 	
-	public void modifierScelle(boolean scelle) {
-		pojoTrialiste.setScelle(scelle);
+	//Getters et Setters
+	public boolean getScelle() {
+		return scelle;
+	}
+
+	public void setScelle(boolean scelle) {
+		this.scelle = scelle;
 	}
 }

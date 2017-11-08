@@ -1,9 +1,0 @@
-package be.bastien.metier;
-
-public class Responsable {
-	POJOResponsable pojoResponsable;
-	
-	public Responsable(POJOResponsable pojoResponsable) {
-		this.pojoResponsable = pojoResponsable;
-	}
-}

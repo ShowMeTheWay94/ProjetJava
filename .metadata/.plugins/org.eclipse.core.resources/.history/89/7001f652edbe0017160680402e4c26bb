@@ -1,5 +1,0 @@
-package be.bastien.POJO;
-
-public class POJOVehicule implements Serializable {
-
-}

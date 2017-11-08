@@ -1,0 +1,8 @@
+package be.bastien.ecran;
+
+import javax.swing.JFrame;
+
+public class Inscription extends JFrame {
+	private static final long serialVersionUID = 3341925907420592374L;
+
+}

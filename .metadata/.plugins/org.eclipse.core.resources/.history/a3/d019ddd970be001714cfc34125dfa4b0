@@ -1,8 +1,0 @@
-package be.bastien.POJO;
-
-import java.io.Serializable;
-
-public class POJOResponsable implements Serializable {
-	private static final long serialVersionUID = -3666600781634000802L;
-	
-}

@@ -1,9 +1,0 @@
-package be.bastien.metier;
-
-public class Balade {
-	POJOBalade pojoBalade;
-	
-	public Balade(POJOBalade pojoBalade) {
-		this.pojoBalade = pojoBalade;
-	}
-}

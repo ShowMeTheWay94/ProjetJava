@@ -1,16 +1,24 @@
 package be.bastien.metier;
 
-import be.bastien.POJO.*;
+import java.io.Serializable;
 
-public class Randonneur extends Vtt {
-	private POJORandonneur pojoRandonneur;
+public class Randonneur extends Vtt implements Serializable {
+	private static final long serialVersionUID = -5143863980700263605L;
+
+	//Variable d'isntance
+	private String typeFourche;
 	
-	public Randonneur(POJORandonneur pojoRandonneur, POJOVtt pojoVtt, POJOCategorie pojoCategorie) {
-		super(pojoVtt, pojoCategorie);
-		this.pojoRandonneur = pojoRandonneur;
+	//Constructeur
+	public Randonneur() { 
+		super();
 	}
-	
-	public void modifierFourche(String typeFourche) {
-		pojoRandonneur.setTypeFourche(typeFourche);
+
+	//Getters et Setters
+	public String getTypeFourche() {
+		return typeFourche;
+	}
+
+	public void setTypeFourche(String typeFourche) {
+		this.typeFourche = typeFourche;
 	}
 }

@@ -1,16 +1,33 @@
 package be.bastien.metier;
 
-import be.bastien.POJO.*;
+import java.io.Serializable;
 
-public class Vtt extends Categorie{
-	private POJOVtt pojoVtt;
+public class Vtt extends Categorie implements Serializable {
+	private static final long serialVersionUID = -7507320119939123463L;
 	
-	public Vtt(POJOVtt pojoVtt, POJOCategorie pojoCategorie) {
-		super(pojoCategorie);
-		this.pojoVtt = pojoVtt;
+	//Variable d'instance
+	private int nbrPlateau;
+	private String typeRoue;
+	
+	//Constructeur
+	public Vtt() { 
+		super();
 	}
 	
-	public void modifierRoue(String typeRoue) {
-		pojoVtt.setTypeRoue(typeRoue);
+	//Getters et Setters
+	public int getNbrPlateau() {
+		return nbrPlateau;
+	}
+
+	public void setNbrPlateau(int nbrPlateau) {
+		this.nbrPlateau = nbrPlateau;
+	}
+
+	public String getTypeRoue() {
+		return typeRoue;
+	}
+
+	public void setTypeRoue(String typeRoue) {
+		this.typeRoue = typeRoue;
 	}
 }

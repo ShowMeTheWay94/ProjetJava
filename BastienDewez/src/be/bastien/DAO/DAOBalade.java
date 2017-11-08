@@ -2,26 +2,26 @@ package be.bastien.DAO;
 
 import java.sql.Connection;
 
-import be.bastien.POJO.POJOBalade;
+import be.bastien.metier.Balade;
 
-public class DAOBalade extends DAO<POJOBalade> {
+public class DAOBalade extends DAO<Balade> {
 	public DAOBalade(Connection conn){
 		super(conn);
 	}
 	
-	public boolean create(POJOBalade balade) {
+	public boolean create(Balade balade) {
 		return false;
 	}
 	
-	public boolean delete(POJOBalade balade) {
+	public boolean delete(Balade balade) {
 		return false;
 	}
 	
-	public boolean update(POJOBalade balade) {
+	public boolean update(Balade balade) {
 		return false;
 	}
 	
-	public boolean find(POJOBalade balade) {
+	public boolean find(Balade balade) {
 		boolean trouve = false;
 		
 		return trouve;

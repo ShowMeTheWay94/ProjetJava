@@ -2,26 +2,26 @@ package be.bastien.DAO;
 
 import java.sql.Connection;
 
-import be.bastien.POJO.POJOTresorier;
+import be.bastien.metier.Tresorier;
 
-public class DAOTresorier extends DAO<POJOTresorier>{
+public class DAOTresorier extends DAO<Tresorier>{
 	public DAOTresorier(Connection conn){
 		super(conn);
 	}
 	
-	public boolean create(POJOTresorier tresorier) {
+	public boolean create(Tresorier tresorier) {
 		return false;
 	}
 	
-	public boolean delete(POJOTresorier tresorier) {
+	public boolean delete(Tresorier tresorier) {
 		return false;
 	}
 	
-	public boolean update(POJOTresorier tresorier) {
+	public boolean update(Tresorier tresorier) {
 		return false;
 	}
 	
-	public boolean find(POJOTresorier tresorier) {
+	public boolean find(Tresorier tresorier) {
 		boolean trouve = false;
 		
 		return trouve;

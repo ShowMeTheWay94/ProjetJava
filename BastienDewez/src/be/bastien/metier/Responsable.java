@@ -1,18 +1,25 @@
 package be.bastien.metier;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-import be.bastien.POJO.*;
-
-public class Responsable extends Personne{
-	private POJOResponsable pojoResponsable;
+public class Responsable extends Personne implements Serializable {
+	private static final long serialVersionUID = -3666600781634000802L;
 	
-	public Responsable(POJOResponsable pojoResponsable, POJOPersonne pojoPersonne) {
-		super(pojoPersonne);
-		this.pojoResponsable = pojoResponsable;
+	//Variable d'instance
+	private GregorianCalendar dateExpiration;
+	
+	//Constructeur
+	public Responsable() { 
+		super();
 	}
 	
-	public void modifierDateExp(GregorianCalendar dateExp) {
-		pojoResponsable.setDateExpiration(dateExp);
+	//Getters et Setters
+	public GregorianCalendar getDateExpiration() {
+		return dateExpiration;
+	}
+
+	public void setDateExpiration(GregorianCalendar dateExpiration) {
+		this.dateExpiration = dateExpiration;
 	}
 }

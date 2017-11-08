@@ -1,8 +1,0 @@
-package be.bastien.metier;
-
-import be.bastien.POJO.POJOPersonne;
-
-public class Personne {
-	//Référant à la POJO
-	POJOPersonne pojoPersonne = new POJOPersonne();
-}

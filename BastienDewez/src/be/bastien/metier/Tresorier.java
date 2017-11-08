@@ -1,16 +1,43 @@
 package be.bastien.metier;
 
-import be.bastien.POJO.*;
+import java.io.Serializable;
+import java.util.List;
 
-public class Tresorier extends Personne {
-	private POJOTresorier pojoTresorier;
+public class Tresorier extends Personne implements Serializable {
+	private static final long serialVersionUID = 303556501633655016L;
+
+	//Variable d'instance
+	private List<Membre> listMembre;
+	private int numCompteCourant;
 	
-	public Tresorier(POJOTresorier pojoTresorier, POJOPersonne pojoPersonne) {
-		super(pojoPersonne);
-		this.pojoTresorier = pojoTresorier;
+	//Constructeur
+	public Tresorier() {
+		super();
+	}
+
+	//Getters et Setters
+	public List<Membre> getListMembre() {
+		return listMembre;
+	}
+
+	public void setListMembre(List<Membre> listMembre) {
+		this.listMembre = listMembre;
+	}
+
+	public int getNumCompteCourant() {
+		return numCompteCourant;
+	}
+
+	public void setNumCompteCourant(int numCompteCourant) {
+		this.numCompteCourant = numCompteCourant;
 	}
 	
-	public void ajouterMembre(POJOMembre membre) {
-		pojoTresorier.addMembre(membre);
+	public void addMembre(Membre membre){
+		if(!listMembre.contains(membre))
+			listMembre.add(membre);
+	}
+	
+	public void removeMembre(Membre membre){
+		this.listMembre.remove(membre);
 	}
 }

@@ -12,7 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import be.bastien.DAO.*;
-import be.bastien.POJO.*;
+import be.bastien.metier.Membre;
 
 public class Connexion extends JFrame {
 	private static final long serialVersionUID = 5245627092132909230L;
@@ -51,11 +51,11 @@ public class Connexion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//Instanciation du dao et du POJO
 				DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
-				POJOMembre pojoMembre = new POJOMembre();
+				Membre membre = new Membre();
 				
-				pojoMembre.setLogin(txtPseudo.getText());
-				pojoMembre.setPassword(String.valueOf(passwordField.getPassword()));
-				if(daoMembre.find(pojoMembre)) {
+				membre.setLogin(txtPseudo.getText());
+				membre.setPassword(String.valueOf(passwordField.getPassword()));
+				if(daoMembre.find(membre)) {
 					JOptionPane.showMessageDialog(null, "Connexion réussie");
 				}
 				else {

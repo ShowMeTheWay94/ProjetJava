@@ -1,9 +1,0 @@
-package be.bastien.metier;
-
-public class Calendrier {
-	POJOCalendrier pojoCalendrier;
-	
-	public Calendrier(POJOCalendrier pojoCalendrier) {
-		this.pojoCalendrier = pojoCalendrier;
-	}
-}

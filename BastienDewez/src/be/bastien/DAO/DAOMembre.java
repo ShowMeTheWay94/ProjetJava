@@ -4,26 +4,26 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import be.bastien.POJO.POJOMembre;
+import be.bastien.metier.Membre;
 
-public class DAOMembre extends DAO<POJOMembre>{
+public class DAOMembre extends DAO<Membre>{
 	public DAOMembre(Connection conn){
 		super(conn);
 	}
 	
-	public boolean create(POJOMembre membre) {
+	public boolean create(Membre membre) {
 		return false;
 	}
 	
-	public boolean delete(POJOMembre membre) {
+	public boolean delete(Membre membre) {
 		return false;
 	}
 	
-	public boolean update(POJOMembre membre) {
+	public boolean update(Membre membre) {
 		return false;
 	}
 	
-	public boolean find(POJOMembre membre) {	
+	public boolean find(Membre membre) {	
 		boolean trouve = false;
 		
 		try{
