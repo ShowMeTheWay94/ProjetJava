@@ -21,9 +21,7 @@ public class DAOVehicule extends DAO<Vehicule> {
 		return false;
 	}
 	
-	public boolean find(Vehicule vehicule) {	
-		boolean trouve = false;
-		
-		return trouve;
+	public Vehicule find(Vehicule vehicule) {	
+		return vehicule;
 	}
 }

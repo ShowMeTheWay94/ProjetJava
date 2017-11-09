@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import be.bastien.metier.Membre;
+import be.bastien.metier.Personne;
 
 public class DAOMembre extends DAO<Membre>{
 	public DAOMembre(Connection conn){
@@ -23,15 +24,17 @@ public class DAOMembre extends DAO<Membre>{
 		return false;
 	}
 	
-	public boolean find(Membre membre) {	
+	public Membre find(Membre membre) {	
+		return membre;
+	}
+	
+	public boolean find(Personne personne) {	
 		boolean trouve = false;
 		
 		try{
-			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM PERSONNE");
-			while(result.next()){
-				if(result.getString("LOGIN").equals(membre.getLogin()) && result.getString("PASSWORD").equals(membre.getPassword())){
-					trouve = true;
-				}
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM MEMBRE WHERE IdMembre = " + personne.getIdPersonne());
+			if(result.next()){
+				trouve = true;
 			}
 		}
 		catch(SQLException e){

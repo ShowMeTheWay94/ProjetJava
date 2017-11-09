@@ -36,9 +36,9 @@
 <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
 <fullyQualifiedTypeName name="be.bastien.metier.Balade"/>
 <fullyQualifiedTypeName name="be.bastien.metier.Categorie"/>
-<fullyQualifiedTypeName name="be.bastien.metier.Personne"/>
 <fullyQualifiedTypeName name="be.bastien.metier.Vehicule"/>
 <fullyQualifiedTypeName name="be.bastien.metier.Tresorier"/>
 <fullyQualifiedTypeName name="be.bastien.metier.Responsable"/>
 <fullyQualifiedTypeName name="be.bastien.metier.Membre"/>
+<fullyQualifiedTypeName name="be.bastien.metier.Personne"/>
 </qualifiedTypeNameHistroy>

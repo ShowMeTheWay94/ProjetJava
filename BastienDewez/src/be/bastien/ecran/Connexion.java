@@ -12,7 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import be.bastien.DAO.*;
-import be.bastien.metier.Membre;
+import be.bastien.metier.Personne;
 
 public class Connexion extends JFrame {
 	private static final long serialVersionUID = 5245627092132909230L;
@@ -50,13 +50,23 @@ public class Connexion extends JFrame {
 		Connect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Instanciation du dao et du POJO
+				DAOPersonne daoPersonne = new DAOPersonne(ProjetConnection.getInstance());
 				DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
-				Membre membre = new Membre();
+				DAOResponsable daoResponsable = new DAOResponsable(ProjetConnection.getInstance());
+				DAOTresorier daoTresorier = new DAOTresorier(ProjetConnection.getInstance());
+				Personne personne = new Personne();
 				
-				membre.setLogin(txtPseudo.getText());
-				membre.setPassword(String.valueOf(passwordField.getPassword()));
-				if(daoMembre.find(membre)) {
-					JOptionPane.showMessageDialog(null, "Connexion réussie");
+				personne.setLogin(txtPseudo.getText());
+				personne.setPassword(String.valueOf(passwordField.getPassword()));
+				personne = daoPersonne.find(personne);
+				if(daoMembre.find(personne)) {
+					JOptionPane.showMessageDialog(null, "Connexion membre réussie");
+				}
+				else if(daoResponsable.find(personne)) {
+					JOptionPane.showMessageDialog(null, "Connexion responsable réussie");
+				}
+				else if(daoTresorier.find(personne)) {
+					JOptionPane.showMessageDialog(null, "Connexion trésorier réussie");
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Connexion ratée");

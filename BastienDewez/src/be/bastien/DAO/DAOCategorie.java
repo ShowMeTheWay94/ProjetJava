@@ -21,9 +21,7 @@ public class DAOCategorie extends DAO<Categorie> {
 		return false;
 	}
 	
-	public boolean find(Categorie categorie) {	
-		boolean trouve = false;
-		
-		return trouve;
+	public Categorie find(Categorie categorie) {	
+		return categorie;
 	}
 }

@@ -21,9 +21,7 @@ public class DAOBalade extends DAO<Balade> {
 		return false;
 	}
 	
-	public boolean find(Balade balade) {
-		boolean trouve = false;
-		
-		return trouve;
+	public Balade find(Balade balade) {	
+		return balade;
 	}
 }

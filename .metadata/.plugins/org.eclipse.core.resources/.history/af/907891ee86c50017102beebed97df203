@@ -1,0 +1,29 @@
+package be.bastien.DAO;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import be.bastien.metier.Membre;
+
+public class DAOMembre extends DAO<Membre>{
+	public DAOMembre(Connection conn){
+		super(conn);
+	}
+	
+	public boolean create(Membre membre) {
+		return false;
+	}
+	
+	public boolean delete(Membre membre) {
+		return false;
+	}
+	
+	public boolean update(Membre membre) {
+		return false;
+	}
+	
+	public boolean find(Membre membre) {	
+		return false;
+	}
+}
