@@ -1,0 +1,76 @@
+package be.bastien.DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import be.bastien.metier.Personne;
+
+public class DAOPersonne extends DAO<Personne> {
+	public DAOPersonne(Connection conn){
+		super(conn);
+	}
+	
+	public boolean create(Personne personne) {
+		try{
+			if(!findPersonne(personne)) {
+				String strCreate = "INSERT INTO PERSONNE (NOM,PRENOM,LOGIN,PASSWORD) VALUES ('" + personne.getNom() + "','"
+			    + personne.getPrenom() + "','" + personne.getLogin() + "','" + personne.getPassword() + "');";
+			    PreparedStatement s = this.connect.prepareStatement(strCreate);
+				s.executeUpdate();
+				personne.setIdPersonne(s.getGeneratedKeys().getInt(1));
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean delete(Personne personne) {
+		return false;
+	}
+	
+	public boolean update(Personne personne) {
+		return false;
+	}
+	
+	public Personne find(Personne personne) {	
+		try{
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM PERSONNE");
+			while(result.next()){
+				if(result.getString("LOGIN").equals(personne.getLogin()) && result.getString("PASSWORD").equals(personne.getPassword())){
+					personne.setIdPersonne(result.getInt("IdPersonne"));
+					personne.setNom(result.getString("Nom"));
+					personne.setPrenom("Prenom");
+				}
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return personne;
+	}
+	
+	public boolean findPersonne(Personne personne) {	
+		boolean trouve = false;
+		
+		try{
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM PERSONNE");
+			if(result.next()){
+				trouve = true;
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return trouve;
+	}
+}
