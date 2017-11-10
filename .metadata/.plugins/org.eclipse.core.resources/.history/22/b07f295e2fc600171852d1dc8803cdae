@@ -95,7 +95,7 @@ public class Inscription extends JFrame {
 					membre.setIdPersonne(personne.getIdPersonne());
 					
 					if(daoMembre.create(membre)) {
-						dispose();
+						JOptionPane.showMessageDialog(null, "Inscription réussie");
 						Acceuil acceuil = new Acceuil();
 						acceuil.setTitle("Acceuil");
 						acceuil.setVisible(true);
