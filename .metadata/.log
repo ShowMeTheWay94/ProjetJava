@@ -664,3 +664,9 @@ org.eclipse.jgit.errors.TransportException: https://github.com/ShowMeTheWay94/Pr
 	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:189)
 	at org.eclipse.egit.ui.internal.push.ConfirmationPage$2.run(ConfirmationPage.java:209)
 	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+
+!ENTRY org.eclipse.jface.text 2 0 2017-11-10 14:33:16.005
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-11-10 14:33:16.016
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'

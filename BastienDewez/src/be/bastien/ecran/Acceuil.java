@@ -49,10 +49,10 @@ public class Acceuil extends JFrame {
 		btnInscription.setBounds(230, 115, 100, 30);
 		btnInscription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
-				/*dispose();
+				dispose();
 				Inscription inscription = new Inscription();
 				inscription.setTitle("Inscription");
-				inscription.setVisible(true);*/
+				inscription.setVisible(true);
 			}
 		});
 		contentPane.add(btnInscription);

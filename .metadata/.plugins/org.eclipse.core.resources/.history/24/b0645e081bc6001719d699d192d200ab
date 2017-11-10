@@ -1,0 +1,119 @@
+package be.bastien.ecran;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class Inscription extends JFrame {
+	private static final long serialVersionUID = -6610007716347006771L;
+	private JPanel contentPane;
+	private JTextField txtNom;
+	private JTextField txtPrenom;
+	private JTextField txtPseudo;
+	private JPasswordField Mdp;
+	private JPasswordField MdpConfirm;
+
+	public Inscription() {
+	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	setBounds(100, 100, 450, 300);
+	contentPane = new JPanel();
+	contentPane.setLayout(null);
+	setContentPane(contentPane);
+	
+	JLabel lblNom = new JLabel("Nom :");
+	lblNom.setBounds(105, 24, 50, 14);
+	contentPane.add(lblNom);
+	
+	txtNom = new JTextField();
+	txtNom.setBounds(220, 21, 100, 20);
+	contentPane.add(txtNom);
+	txtNom.setColumns(10);
+	
+	JLabel lblPrnom = new JLabel("Pr\u00E9nom :");
+	lblPrnom.setBounds(105, 54, 60, 14);
+	contentPane.add(lblPrnom);
+	
+	txtPrenom = new JTextField();
+	txtPrenom.setBounds(220, 51, 100, 20);
+	contentPane.add(txtPrenom);
+	txtPrenom.setColumns(10);
+	
+	
+	JLabel lblPseudo = new JLabel("Pseudo :");
+	lblPseudo.setBounds(105, 174, 60, 14);
+	contentPane.add(lblPseudo);
+	
+	txtPseudo = new JTextField();
+	txtPseudo.setBounds(220, 171, 100, 20);
+	contentPane.add(txtPseudo);
+	txtPseudo.setColumns(10);
+	
+	JLabel lblMotDePasse = new JLabel("Mot de passe :");
+	lblMotDePasse.setBounds(105, 204, 120, 14);
+	contentPane.add(lblMotDePasse);
+	
+	Mdp = new JPasswordField();
+	Mdp.setBounds(220, 201, 100, 20);
+	contentPane.add(Mdp);
+	
+	JLabel lblMotDePasseConfirm = new JLabel("Confirmer mot de passe :");
+	lblMotDePasseConfirm.setBounds(105, 204, 120, 14);
+	contentPane.add(lblMotDePasseConfirm);
+	
+	MdpConfirm = new JPasswordField();
+	MdpConfirm.setBounds(220, 201, 100, 20);
+	contentPane.add(MdpConfirm);
+	
+	JButton btnInscription = new JButton("Inscription");
+	btnInscription.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			Eleve eleve = new Eleve();
+			LocalDate DateNaissance = LocalDate.of(Integer.parseInt(txtAnnee.getText()),Month.of(Integer.parseInt(txtMois.getText())) , Integer.parseInt(txtJours.getText()));
+			DAOEleve eleveDAO = new DAOEleve(DriverAccess.getInstance());
+			if(rdbtnAssuranceOui.isSelected()){
+				eleve = new Eleve(txtNom.getText(),txtPrenom.getText(),DateNaissance,true,txtPseudo.getText(),String.valueOf(Mdp.getPassword()),0);
+			}
+			else if(rdbtnAssuranceNon.isSelected()){
+				eleve = new Eleve(txtNom.getText(),txtPrenom.getText(),DateNaissance,false,txtPseudo.getText(),String.valueOf(Mdp.getPassword()),0);
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "Veuillez cocher le radio button");
+			}
+			if(eleveDAO.create(eleve)){
+				ListeEleve listeEleve = ListeEleve.Instance();
+				listeEleve.getListeEleve().add(eleve);
+				JOptionPane.showMessageDialog(null, "Inscription confirmée");
+				dispose();
+				Acceuil acceuil = new Acceuil();
+				acceuil.setTitle("Acceuil");
+				acceuil.setVisible(true);
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "Inscription échouée");
+				dispose();
+				Inscription inscription = new Inscription();
+				inscription.setTitle("Inscription");
+				inscription.setVisible(true);
+			}
+		}
+	});
+	btnInscription.setBounds(10, 220, 100, 30);
+	contentPane.add(btnInscription);
+	
+	JButton btnRetour = new JButton("Retour");
+	btnRetour.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			dispose();
+			Inscription inscription = new Inscription();
+			inscription.setTitle("Inscription");
+			inscription.setVisible(true);
+		}
+	});
+	btnRetour.setBounds(324, 220, 100, 30);
+	contentPane.add(btnRetour);
+	}
+
+}

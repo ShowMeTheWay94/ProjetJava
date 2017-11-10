@@ -1,11 +1,11 @@
 package be.bastien.DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import be.bastien.metier.Membre;
-import be.bastien.metier.Personne;
+import be.bastien.metier.*;
 
 public class DAOMembre extends DAO<Membre>{
 	public DAOMembre(Connection conn){
@@ -13,7 +13,17 @@ public class DAOMembre extends DAO<Membre>{
 	}
 	
 	public boolean create(Membre membre) {
-		return false;
+		try{
+			String strCreate = "INSERT INTO MEMBRE (IDMEMBRE,COTISATION,STATUTCOTISATION) VALUES (" + membre.getIdPersonne() + ","
+			+ membre.getCotisation() + ",'" + membre.getStatutCotisation() + "');";
+			PreparedStatement s = this.connect.prepareStatement(strCreate);
+			s.executeUpdate();
+			return true;
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	public boolean delete(Membre membre) {
@@ -39,6 +49,7 @@ public class DAOMembre extends DAO<Membre>{
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+			return false;
 		}
 		
 		return trouve;

@@ -1,6 +1,7 @@
 package be.bastien.DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -12,7 +13,19 @@ public class DAOPersonne extends DAO<Personne> {
 	}
 	
 	public boolean create(Personne personne) {
-		return false;
+		try{
+			String strCreate = "INSERT INTO PERSONNE (NOM,PRENOM,LOGIN,PASSWORD) VALUES ('" + personne.getNom() + "',"
+			+ "'" + personne.getPrenom() + "','" + personne.getLogin() + "','" + personne.getPassword() + "');";
+			PreparedStatement s = this.connect.prepareStatement(strCreate);
+			ResultSet rs = s.getGeneratedKeys();
+			personne.setIdPersonne(rs.getInt(1));
+			s.executeUpdate();
+			return true;
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	public boolean delete(Personne personne) {
@@ -39,5 +52,22 @@ public class DAOPersonne extends DAO<Personne> {
 		}
 		
 		return personne;
+	}
+	
+	public boolean findPersonne(Personne personne){
+		boolean trouve = false;
+		
+		try{
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM PERSONNE WHERE IdPersonne = " + personne.getIdPersonne());
+			if(result.next()){
+				trouve = true;
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}
+		
+		return trouve;
 	}
 }

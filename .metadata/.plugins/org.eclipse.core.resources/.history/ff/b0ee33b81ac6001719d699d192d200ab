@@ -1,0 +1,66 @@
+package be.bastien.ecran;
+
+public class Inscription extends JFrame {
+	private static final long serialVersionUID = -6610007716347006771L;
+	private JPanel contentPane;
+
+	/**
+	 * Create the frame.
+	 */
+	public Inscription() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setLayout(null);
+		setContentPane(contentPane);
+		
+		JButton btnInscriptionClient = new JButton("Inscription client");
+		btnInscriptionClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				dispose();
+				InscriptionClient inscriptionClient = new InscriptionClient();
+				inscriptionClient.setTitle("Inscription client");
+				inscriptionClient.setVisible(true);
+			}
+		});
+		btnInscriptionClient.setBounds(150, 50, 150, 30);
+		contentPane.add(btnInscriptionClient);
+		
+		JButton btnInscriptionEleve = new JButton("Inscription élève");
+		btnInscriptionEleve.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				InscriptionEleve inscriptionEleve = new InscriptionEleve();
+				inscriptionEleve.setTitle("Inscription élève");
+				inscriptionEleve.setVisible(true);
+			}
+		});
+		btnInscriptionEleve.setBounds(150, 100, 150, 30);
+		contentPane.add(btnInscriptionEleve);
+		
+		JButton btnInscriptionMoniteur = new JButton("Inscription moniteur");
+		btnInscriptionMoniteur.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				InscriptionMoniteur inscriptionMoniteur = new InscriptionMoniteur();
+				inscriptionMoniteur.setTitle("Inscription moniteur");
+				inscriptionMoniteur.setVisible(true);
+			}
+		});
+		btnInscriptionMoniteur.setBounds(150, 150, 150, 30);
+		contentPane.add(btnInscriptionMoniteur);
+		
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Acceuil acceuil = new Acceuil();
+				acceuil.setTitle("Acceuil");
+				acceuil.setVisible(true);
+			}
+		});
+		btnRetour.setBounds(324, 220, 100, 30);
+		contentPane.add(btnRetour);	
+	}
+
+}

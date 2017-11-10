@@ -12,7 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import be.bastien.DAO.*;
-import be.bastien.metier.Personne;
+import be.bastien.metier.*;
 
 public class Connexion extends JFrame {
 	private static final long serialVersionUID = 5245627092132909230L;
