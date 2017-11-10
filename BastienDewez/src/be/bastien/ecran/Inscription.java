@@ -92,6 +92,11 @@ public class Inscription extends JFrame {
 			
 			if(String.valueOf(Mdp.getPassword()).equals(String.valueOf(MdpConfirm.getPassword()))) {
 				if(daoPersonne.create(personne)) {
+<<<<<<< HEAD
+=======
+					
+					personne = daoPersonne.find(personne);
+>>>>>>> Acceuil
 					membre.setIdPersonne(personne.getIdPersonne());
 					
 					if(daoMembre.create(membre)) {
@@ -106,7 +111,11 @@ public class Inscription extends JFrame {
 				}
 			}
 			else {
+<<<<<<< HEAD
 				JOptionPane.showMessageDialog(null, "Les mots de passe ne correspondent pas");
+=======
+				JOptionPane.showMessageDialog(null, "Les motes de passe ne correspondent pas");
+>>>>>>> Acceuil
 			}
 		}
 	});

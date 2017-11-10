@@ -60,13 +60,19 @@ public class Connexion extends JFrame {
 				personne.setPassword(String.valueOf(passwordField.getPassword()));
 				personne = daoPersonne.find(personne);
 				if(daoMembre.find(personne)) {
-					JOptionPane.showMessageDialog(null, "Connexion membre réussie");
+					dispose();
+					AcceuilMembre acceuilMembre = new AcceuilMembre();
+					acceuilMembre.setTitle("Acceuil Membre");
+					acceuilMembre.setVisible(true);
 				}
 				else if(daoResponsable.find(personne)) {
 					JOptionPane.showMessageDialog(null, "Connexion responsable réussie");
 				}
 				else if(daoTresorier.find(personne)) {
-					JOptionPane.showMessageDialog(null, "Connexion trésorier réussie");
+					dispose();
+					AcceuilTresorier acceuilTresorier = new AcceuilTresorier();
+					acceuilTresorier.setTitle("Acceuil trésorier");
+					acceuilTresorier.setVisible(true);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Connexion ratée");

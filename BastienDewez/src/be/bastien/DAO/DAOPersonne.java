@@ -4,6 +4,9 @@ import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JOptionPane;
 
 import be.bastien.metier.Personne;
 
@@ -18,14 +21,23 @@ public class DAOPersonne extends DAO<Personne> {
 		try {
 			if(!findPersonne(personne)){
 				statement = connect.createStatement();
+<<<<<<< HEAD
 				statement.executeUpdate("INSERT INTO Personne(NOM,PRENOM,LOGIN,PASSWORD)" + 
 						"VALUES('"+ personne.getNom() + "','" + personne.getPrenom() + "','" + personne.getLogin() + "','"
 						+ personne.getPassword() + "')");
+=======
+				statement.executeUpdate("INSERT INTO PERSONNE (NOM,PRENOM,LOGIN,PASSWORD) VALUES ('" + personne.getNom() + "'," + 
+				"'" + personne.getPrenom() + "','" + personne.getLogin() + "','" + personne.getPassword() + "');");
+>>>>>>> Acceuil
 				idGenere = statement.getGeneratedKeys();
 				if(idGenere.next())
 					personne.setIdPersonne(idGenere.getInt(1));
 				else
+<<<<<<< HEAD
 					System.out.println("Pas d'ID enregistré");
+=======
+					JOptionPane.showMessageDialog(null, "Pas d'ID enregistré");
+>>>>>>> Acceuil
 				statement.close();
 				return true;
 			}
@@ -68,7 +80,7 @@ public class DAOPersonne extends DAO<Personne> {
 		boolean trouve = false;
 		
 		try{
-			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM PERSONNE WHERE IdPersonne = " + personne.getIdPersonne());
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM PERSONNE WHERE LOGIN = '" + personne.getLogin() + "' and PASSWORD = '" + personne.getPassword() + "'");
 			if(result.next()){
 				trouve = true;
 			}
