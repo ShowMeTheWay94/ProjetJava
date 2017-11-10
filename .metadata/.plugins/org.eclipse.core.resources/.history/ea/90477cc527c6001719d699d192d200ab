@@ -1,0 +1,30 @@
+package be.bastien.ecran;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class AcceuilTresorier extends JFrame {
+	private static final long serialVersionUID = -3207631333749439129L;
+	private JPanel contentPane;
+	
+	public AcceuilTresorier() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setLayout(null);
+		setContentPane(contentPane);
+		
+		JButton btnRemboursement = new JButton("Remboursement des chauffeurs");
+		btnRemboursement.setBounds(50, 115, 100, 30);
+		btnRemboursement.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0){
+				
+			}
+		});
+		contentPane.add(btnRemboursement);
+	}
+}

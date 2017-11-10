@@ -13,13 +13,13 @@ public class AcceuilTresorier extends JFrame {
 	
 	public AcceuilTresorier() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 200);
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
 		JButton btnRemboursement = new JButton("Remboursement des chauffeurs");
-		btnRemboursement.setBounds(50, 50, 170, 30);
+		btnRemboursement.setBounds(100, 40, 250, 30);
 		btnRemboursement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				
@@ -28,7 +28,7 @@ public class AcceuilTresorier extends JFrame {
 		contentPane.add(btnRemboursement);
 		
 		JButton btnCotisation = new JButton("Vérifier les paiements des cotisations");
-		btnCotisation.setBounds(50, 90, 200, 30);
+		btnCotisation.setBounds(100, 90, 250, 30);
 		btnCotisation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				
@@ -45,7 +45,7 @@ public class AcceuilTresorier extends JFrame {
 				connexion.setVisible(true);
 			}
 		});
-		Retour.setBounds(324, 220, 100, 30);
+		Retour.setBounds(324, 170, 100, 30);
 		contentPane.add(Retour);
 	}
 }

@@ -90,18 +90,25 @@ public class Inscription extends JFrame {
 			membre.setCotisation(20);
 			membre.setStatutCotisation("A payer");
 			
-			if(daoPersonne.create(personne)) {
-				membre.setIdPersonne(personne.getIdPersonne());
-				
-				if(daoMembre.create(membre)) {
-					JOptionPane.showMessageDialog(null, "Inscription réussie");
-					Acceuil acceuil = new Acceuil();
-					acceuil.setTitle("Acceuil");
-					acceuil.setVisible(true);
-				}			
+			if(String.valueOf(Mdp.getPassword()).equals(String.valueOf(MdpConfirm.getPassword()))) {
+				if(daoPersonne.create(personne)) {
+					
+					personne = daoPersonne.find(personne);
+					membre.setIdPersonne(personne.getIdPersonne());
+					
+					if(daoMembre.create(membre)) {
+						dispose();
+						Acceuil acceuil = new Acceuil();
+						acceuil.setTitle("Acceuil");
+						acceuil.setVisible(true);
+					}			
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Inscription ratée");
+				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Inscription ratée");
+				JOptionPane.showMessageDialog(null, "Les motes de passe ne correspondent pas");
 			}
 		}
 	});

@@ -1,9 +1,11 @@
 package be.bastien.DAO;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JOptionPane;
 
 import be.bastien.metier.Personne;
 
@@ -13,16 +15,25 @@ public class DAOPersonne extends DAO<Personne> {
 	}
 	
 	public boolean create(Personne personne) {
-		try{
-			String strCreate = "INSERT INTO PERSONNE (NOM,PRENOM,LOGIN,PASSWORD) VALUES ('" + personne.getNom() + "',"
-			+ "'" + personne.getPrenom() + "','" + personne.getLogin() + "','" + personne.getPassword() + "');";
-			PreparedStatement s = this.connect.prepareStatement(strCreate);
-			ResultSet rs = s.getGeneratedKeys();
-			personne.setIdPersonne(rs.getInt(1));
-			s.executeUpdate();
-			return true;
-		}
-		catch(SQLException e){
+		Statement statement = null;
+		ResultSet idGenere = null;
+		try {
+			if(!findPersonne(personne)){
+				statement = connect.createStatement();
+				statement.executeUpdate("INSERT INTO PERSONNE (NOM,PRENOM,LOGIN,PASSWORD) VALUES ('" + personne.getNom() + "'," + 
+				"'" + personne.getPrenom() + "','" + personne.getLogin() + "','" + personne.getPassword() + "');");
+				idGenere = statement.getGeneratedKeys();
+				if(idGenere.next())
+					personne.setIdPersonne(idGenere.getInt(1));
+				else
+					JOptionPane.showMessageDialog(null, "Pas d'ID enregistré");
+				statement.close();
+				return true;
+			}
+			else{
+				return false;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -58,7 +69,7 @@ public class DAOPersonne extends DAO<Personne> {
 		boolean trouve = false;
 		
 		try{
-			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM PERSONNE WHERE IdPersonne = " + personne.getIdPersonne());
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM PERSONNE WHERE LOGIN = '" + personne.getLogin() + "' and PASSWORD = '" + personne.getPassword() + "'");
 			if(result.next()){
 				trouve = true;
 			}
