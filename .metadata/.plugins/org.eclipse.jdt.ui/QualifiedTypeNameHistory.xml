@@ -10,7 +10,6 @@
 <fullyQualifiedTypeName name="be.bastien.POJO.POJODescendeur"/>
 <fullyQualifiedTypeName name="be.bastien.POJO.POJOCyclo"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="be.bastien.POJO.POJOCalendrier"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="java.sql.DriverManager"/>
@@ -21,8 +20,6 @@
 <fullyQualifiedTypeName name="javax.swing.ButtonGroup"/>
 <fullyQualifiedTypeName name="be.bastien.DAO.DAOMembre"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
-<fullyQualifiedTypeName name="java.sql.ResultSet"/>
-<fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="be.bastien.POJO.POJOVehicule"/>
 <fullyQualifiedTypeName name="be.bastien.POJO.POJOBalade"/>
 <fullyQualifiedTypeName name="java.util.GregorianCalendar"/>
@@ -41,4 +38,10 @@
 <fullyQualifiedTypeName name="be.bastien.metier.Responsable"/>
 <fullyQualifiedTypeName name="be.bastien.metier.Membre"/>
 <fullyQualifiedTypeName name="be.bastien.metier.Personne"/>
+<fullyQualifiedTypeName name="java.beans.Statement"/>
+<fullyQualifiedTypeName name="javax.swing.JComboBox"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 </qualifiedTypeNameHistroy>

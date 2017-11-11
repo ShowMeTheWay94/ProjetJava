@@ -87,7 +87,7 @@ public class Connexion extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			dispose();
 			Acceuil acceuil = new Acceuil();
-			acceuil.setTitle("Connexion");
+			acceuil.setTitle("Acceuil");
 			acceuil.setVisible(true);
 		}
 	});
