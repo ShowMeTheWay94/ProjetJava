@@ -5,12 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import be.bastien.DAO.DAOMembre;
 import be.bastien.DAO.ProjetConnection;
-import be.bastien.metier.Membre;
 import be.bastien.metier.Personne;
 
 public class AcceuilMembre extends JFrame {
@@ -70,18 +68,7 @@ public class AcceuilMembre extends JFrame {
 		btnCotisation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
-				
-				Membre membre = new Membre();
-				membre.setIdPersonne(personne.getIdPersonne());
-				membre.setCotisation(0);
-				membre.setStatutCotisation("Payé");
-				
-				if(daoMembre.update(membre)) {
-					JOptionPane.showMessageDialog(null, "Cotisation payée");
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Paiement cotisation ratée");
-				}
+				daoMembre.update(membre);
 			}
 		});
 		contentPane.add(btnCotisation);

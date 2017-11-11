@@ -40,7 +40,7 @@ public class DAOMembre extends DAO<Membre>{
 			String strUpdate = "UPDATE MEMBRE SET COTISATION = ?,STATUTCOTISATION = ? WHERE IDMEMBRE = " + membre.getIdPersonne() + ";";
 			PreparedStatement s = this.connect.prepareStatement(strUpdate);
 			s.setInt(1, membre.getCotisation());
-			s.setString(2, membre.getStatutCotisation());
+			s.setInt(2, membre.getStatutCotisation());
 			s.executeUpdate();
 			return true;
 		}

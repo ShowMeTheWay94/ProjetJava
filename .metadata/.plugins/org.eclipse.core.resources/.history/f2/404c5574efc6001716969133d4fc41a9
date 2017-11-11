@@ -36,17 +36,6 @@ public class DAOMembre extends DAO<Membre>{
 	}
 	
 	public boolean update(Membre membre) {
-		try{
-			String strUpdate = "UPDATE MEMBRE SET COTISATION = ?,STATUTCOTISATION = ? WHERE IDMEMBRE = " + membre.getIdPersonne() + ";";
-			PreparedStatement s = this.connect.prepareStatement(strUpdate);
-			s.setInt(1, membre.getCotisation());
-			s.setString(2, membre.getStatutCotisation());
-			s.executeUpdate();
-			return true;
-		}
-		catch(SQLException e){
-			e.printStackTrace();
-		}
 		return false;
 	}
 	
