@@ -62,6 +62,7 @@ public class Connexion extends JFrame {
 				if(daoMembre.find(personne)) {
 					dispose();
 					AcceuilMembre acceuilMembre = new AcceuilMembre();
+					acceuilMembre.setPersonne(personne);
 					acceuilMembre.setTitle("Acceuil Membre");
 					acceuilMembre.setVisible(true);
 				}

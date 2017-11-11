@@ -7,9 +7,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import be.bastien.metier.Personne;
+
 public class AcceuilMembre extends JFrame {
 	private static final long serialVersionUID = -3207631333749439129L;
 	private JPanel contentPane;
+	public Personne personne;
 	
 	public AcceuilMembre() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,7 +25,11 @@ public class AcceuilMembre extends JFrame {
 		btnInscription.setBounds(90, 20, 250, 30);
 		btnInscription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
-				
+				dispose();
+				InscriptionCategorie inscriptionCategorie = new InscriptionCategorie();
+				inscriptionCategorie.setPersonne(personne);
+				inscriptionCategorie.setTitle("Inscription catégorie");
+				inscriptionCategorie.setVisible(true);
 			}
 		});
 		contentPane.add(btnInscription);
@@ -74,5 +81,13 @@ public class AcceuilMembre extends JFrame {
 		});
 		Retour.setBounds(304, 220, 120, 30);
 		contentPane.add(Retour);
+	}
+	
+	public Personne getPersonne(){
+		return personne;
+	}
+	
+	public void setPersonne(Personne personne){
+		this.personne = personne;
 	}
 }

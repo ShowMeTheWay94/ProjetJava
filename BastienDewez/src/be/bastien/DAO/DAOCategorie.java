@@ -47,7 +47,6 @@ public class DAOCategorie extends DAO<Categorie> {
 				if(result.getString("SOUSTYPE").equals(nomCategorie)) {
 					categorie.setIdCategorie(result.getInt("IDCATEGORIE"));
 					categorie.setNbrMembres(result.getInt("NBRMEMBRES"));
-					categorie.setSupplement(0);
 				}
 			}
 		}

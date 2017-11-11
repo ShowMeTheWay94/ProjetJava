@@ -88,6 +88,7 @@ public class Inscription extends JFrame {
 			DAOCategorie daoCategorie = new DAOCategorie(ProjetConnection.getInstance());
 			
 			Categorie categorie = daoCategorie.find(txtCategorie.getText());
+			categorie.setSupplement(0);
 			
 			Personne personne = new Personne();
 			personne.setNom(txtNom.getText());
@@ -103,11 +104,18 @@ public class Inscription extends JFrame {
 				if(daoPersonne.create(personne)) {
 					membre.setIdPersonne(personne.getIdPersonne());
 					if(daoMembre.create(membre)) {
-						daoMembre.addCategorie(membre,categorie);
-						dispose();
-						Acceuil acceuil = new Acceuil();
-						acceuil.setTitle("Acceuil");
-						acceuil.setVisible(true);
+						if(daoMembre.addCategorie(membre,categorie)) {
+							int nbr = categorie.getNbrMembres();
+							categorie.setNbrMembres(++nbr);
+							daoCategorie.update(categorie);
+							dispose();
+							Acceuil acceuil = new Acceuil();
+							acceuil.setTitle("Acceuil");
+							acceuil.setVisible(true);
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Ajout de la catégorie ratée");
+						}
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "Inscription ratée");
