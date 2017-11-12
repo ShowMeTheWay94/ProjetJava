@@ -49,4 +49,8 @@ public class Membre extends Personne implements Serializable {
 	public void removeCategorie(Categorie categorie){
 		this.listCategorie.remove(categorie);
 	}
+	
+	public String toString() {
+		return getNom() + " " + getPrenom() + " " + getStatutCotisation();
+	}
 }

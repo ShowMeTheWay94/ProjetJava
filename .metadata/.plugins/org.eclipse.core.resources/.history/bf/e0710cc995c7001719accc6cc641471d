@@ -1,0 +1,51 @@
+package be.bastien.ecran;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class AcceuilResponsable extends JFrame {
+	private static final long serialVersionUID = 2341718848245518222L;
+	private JPanel contentPane;
+	
+	public AcceuilResponsable() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 200);
+		contentPane = new JPanel();
+		contentPane.setLayout(null);
+		setContentPane(contentPane);
+		
+		JButton btnBalade = new JButton("Afficher le calendrier des balades");
+		btnBalade.setBounds(100, 40, 250, 30);
+		btnBalade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0){
+				
+			}
+		});
+		contentPane.add(btnBalade);
+		
+		JButton btnDisponibilites = new JButton("Vérifier les disponibilités");
+		btnDisponibilites.setBounds(100, 90, 250, 30);
+		btnDisponibilites.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0){
+				
+			}
+		});
+		contentPane.add(btnDisponibilites);
+		
+		JButton Retour = new JButton("Retour");
+		Retour.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				Connexion connexion = new Connexion();
+				connexion.setTitle("Connexion");
+				connexion.setVisible(true);
+			}
+		});
+		Retour.setBounds(324, 170, 100, 30);
+		contentPane.add(Retour);
+	}
+}

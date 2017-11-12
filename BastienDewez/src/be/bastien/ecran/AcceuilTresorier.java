@@ -7,13 +7,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import be.bastien.metier.Personne;
+
 public class AcceuilTresorier extends JFrame {
 	private static final long serialVersionUID = -3207631333749439129L;
 	private JPanel contentPane;
+	public Personne personne;
 	
 	public AcceuilTresorier() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 200);
+		setBounds(100, 100, 450, 250);
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
@@ -31,12 +34,15 @@ public class AcceuilTresorier extends JFrame {
 		btnCotisation.setBounds(100, 90, 250, 30);
 		btnCotisation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
-				
+				dispose();
+				PaiementCotisation paiementCotisation = new PaiementCotisation();
+				paiementCotisation.setTitle("Vérifier les cotisations");
+				paiementCotisation.setVisible(true);
 			}
 		});
 		contentPane.add(btnCotisation);
 		
-		JButton Retour = new JButton("Retour");
+		JButton Retour = new JButton("Deconnexion");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -45,7 +51,15 @@ public class AcceuilTresorier extends JFrame {
 				connexion.setVisible(true);
 			}
 		});
-		Retour.setBounds(324, 170, 100, 30);
+		Retour.setBounds(304, 160, 120, 30);
 		contentPane.add(Retour);
+	}
+	
+	public Personne getPersonne(){
+		return personne;
+	}
+	
+	public void setPersonne(Personne personne){
+		this.personne = personne;
 	}
 }

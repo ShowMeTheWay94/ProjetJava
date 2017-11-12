@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import be.bastien.metier.*;
 
@@ -100,5 +102,27 @@ public class DAOMembre extends DAO<Membre>{
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public List<Membre> cotisation(){
+		List<Membre> listMembre = new ArrayList<Membre>();
+		
+		try {
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM MEMBRE M INNER JOIN PERSONNE P ON M.IDMEMBRE "
+					+ "= P.IDPERSONNE");
+			while(result.next()) {
+				Membre membre = new Membre();
+				membre.setNom(result.getString("NOM"));
+				membre.setPrenom(result.getString("PRENOM"));
+				membre.setCotisation(result.getInt("COTISATION"));
+				membre.setStatutCotisation(result.getString("STATUTCOTISATION"));
+				listMembre.add(membre);
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return listMembre;
 	}
 }

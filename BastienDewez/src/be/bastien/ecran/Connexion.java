@@ -67,11 +67,16 @@ public class Connexion extends JFrame {
 					acceuilMembre.setVisible(true);
 				}
 				else if(daoResponsable.find(personne)) {
-					JOptionPane.showMessageDialog(null, "Connexion responsable réussie");
+					dispose();
+					AcceuilResponsable acceuilResponsable = new AcceuilResponsable();
+					acceuilResponsable.setPersonne(personne);
+					acceuilResponsable.setTitle("Acceuil Responsable");
+					acceuilResponsable.setVisible(true);
 				}
 				else if(daoTresorier.find(personne)) {
 					dispose();
 					AcceuilTresorier acceuilTresorier = new AcceuilTresorier();
+					acceuilTresorier.setPersonne(personne);
 					acceuilTresorier.setTitle("Acceuil trésorier");
 					acceuilTresorier.setVisible(true);
 				}
