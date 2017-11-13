@@ -1,7 +1,0 @@
-package be.bastien.ecran;
-
-import javax.swing.JFrame;
-
-public class RemboursementChauffeur extends JFrame {
-
-}
