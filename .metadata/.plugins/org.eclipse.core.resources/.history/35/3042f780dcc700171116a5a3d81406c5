@@ -1,0 +1,12 @@
+package be.bastien.ecran;
+
+import javax.swing.JFrame;
+
+public class RemboursementChauffeur extends JFrame {
+	private static final long serialVersionUID = 1420270537310638510L;
+	private JPanel contentPane;
+	
+	public RemboursementChauffeur() {
+		
+	}
+}

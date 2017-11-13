@@ -1,0 +1,17 @@
+package be.bastien.ecran;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class RemboursementChauffeur extends JFrame {
+	private static final long serialVersionUID = 1420270537310638510L;
+	private JPanel contentPane;
+	
+	public RemboursementChauffeur() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 400, 200);
+		contentPane = new JPanel();
+		contentPane.setLayout(null);
+		setContentPane(contentPane);
+	}
+}

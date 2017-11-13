@@ -1,7 +1,7 @@
 package be.bastien.metier;
 
 import java.io.Serializable;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.List;
 
 public class Balade implements Serializable {
@@ -9,8 +9,9 @@ public class Balade implements Serializable {
 	
 	//Variable d'instance
 	private int idBalade;
+	private String nomBalade;
 	private String lieuDepart;
-	private GregorianCalendar dateBalade;
+	private Date dateBalade;
 	private double forfait;
 	private List<Vehicule> listVehicule;
 	
@@ -25,6 +26,14 @@ public class Balade implements Serializable {
 	public void setIdBalade(int idBalade) {
 		this.idBalade = idBalade;
 	}
+	
+	public String getNomBalade() {
+		return nomBalade;
+	}
+
+	public void setNomBalade(String nomBalade) {
+		this.nomBalade = nomBalade;
+	}
 
 	public String getLieuDepart() {
 		return lieuDepart;
@@ -34,11 +43,11 @@ public class Balade implements Serializable {
 		this.lieuDepart = lieuDepart;
 	}
 
-	public GregorianCalendar getDateBalade() {
+	public Date getDateBalade() {
 		return dateBalade;
 	}
 
-	public void setDateBalade(GregorianCalendar dateBalade) {
+	public void setDateBalade(Date dateBalade) {
 		this.dateBalade = dateBalade;
 	}
 
@@ -69,5 +78,9 @@ public class Balade implements Serializable {
 	
 	public void calculerForfait() {
 		
+	}
+	
+	public String toString() {
+		return getNomBalade() + " " + getLieuDepart() + " " + getDateBalade() + " " + getForfait();
 	}
 }

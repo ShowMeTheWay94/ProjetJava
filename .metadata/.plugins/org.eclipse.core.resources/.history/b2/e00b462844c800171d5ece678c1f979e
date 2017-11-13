@@ -1,0 +1,56 @@
+package be.bastien.DAO;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import be.bastien.metier.Balade;
+
+public class DAOBalade extends DAO<Balade> {
+	public DAOBalade(Connection conn){
+		super(conn);
+	}
+	
+	public boolean create(Balade balade) {
+		return false;
+	}
+	
+	public boolean delete(Balade balade) {
+		return false;
+	}
+	
+	public boolean update(Balade balade) {
+		return false;
+	}
+	
+	public Balade find(Balade balade) {	
+		return balade;
+	}
+	
+	public List<Balade> find(){
+		List<Balade> listBalade = new ArrayList<Balade>();
+		DAOVehicule daoVehicule = new DAOVehicule(ProjetConnection.getInstance());
+		
+		try {
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM BALADE");
+			while(result.next()) {
+				Balade balade = new Balade();
+				balade.setIdBalade(result.getInt("IDBALADE"));
+				balade.setNomBalade(result.getString("NOMBALADE"));
+				balade.setLieuDepart(result.getString("LIEU"));
+				balade.setDateBalade(result.getDate("DATEBALADE"));
+				balade.setForfait(result.getDouble("FORFAIT"));
+				
+				balade.setListVehicule(listVehicule);
+				listBalade.add(balade);
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return listBalade;
+	}
+}

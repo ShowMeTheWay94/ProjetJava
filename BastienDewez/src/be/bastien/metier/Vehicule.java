@@ -7,8 +7,7 @@ public class Vehicule implements Serializable {
 	private static final long serialVersionUID = 168084761600626678L;
 
 	//Variable d'instance
-	private int idVehicule;
-	private int numImmatriculation;
+	private String numImmatriculation;
 	private Membre conducteur;
 	private List<Membre> listMembre;
 	private int placeLibreMembre;
@@ -17,20 +16,12 @@ public class Vehicule implements Serializable {
 	//Constructeur
 	public Vehicule() { }
 	
-	//Getters et Setters
-	public int getIdVehicule() {
-		return idVehicule;
-	}
-
-	public void setIdVehicule(int idVehicule) {
-		this.idVehicule = idVehicule;
-	}
-	
-	public int getNumImmatriculation() {
+	//Getters et Setters	
+	public String getNumImmatriculation() {
 		return numImmatriculation;
 	}
 
-	public void setNumImmatriculation(int numImmatriculation) {
+	public void setNumImmatriculation(String numImmatriculation) {
 		this.numImmatriculation = numImmatriculation;
 	}
 

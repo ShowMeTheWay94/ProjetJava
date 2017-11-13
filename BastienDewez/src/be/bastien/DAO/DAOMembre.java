@@ -52,8 +52,42 @@ public class DAOMembre extends DAO<Membre>{
 		return false;
 	}
 	
-	public Membre find(Membre membre) {	
+	public Membre find(Membre membre) {		
+		try {
+			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+					.executeQuery("SELECT * FROM PERSONNE WHERE IDPERSONNE = " + membre.getIdPersonne());
+			if(result.first()) {
+				membre.setNom(result.getString("NOM"));
+				membre.setPrenom(result.getString("PRENOM"));
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return membre;
+	}
+	
+	public List<Membre> find(){
+		List<Membre> listMembre = new ArrayList<Membre>();
+		
+		try {
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM MEMBRE M INNER JOIN PERSONNE P ON M.IDMEMBRE "
+					+ "= P.IDPERSONNE");
+			while(result.next()) {
+				Membre membre = new Membre();
+				membre.setNom(result.getString("NOM"));
+				membre.setPrenom(result.getString("PRENOM"));
+				membre.setCotisation(result.getInt("COTISATION"));
+				membre.setStatutCotisation(result.getString("STATUTCOTISATION"));
+				listMembre.add(membre);
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return listMembre;
 	}
 	
 	public boolean find(Personne personne) {	
@@ -102,27 +136,5 @@ public class DAOMembre extends DAO<Membre>{
 			e.printStackTrace();
 			return false;
 		}
-	}
-	
-	public List<Membre> cotisation(){
-		List<Membre> listMembre = new ArrayList<Membre>();
-		
-		try {
-			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM MEMBRE M INNER JOIN PERSONNE P ON M.IDMEMBRE "
-					+ "= P.IDPERSONNE");
-			while(result.next()) {
-				Membre membre = new Membre();
-				membre.setNom(result.getString("NOM"));
-				membre.setPrenom(result.getString("PRENOM"));
-				membre.setCotisation(result.getInt("COTISATION"));
-				membre.setStatutCotisation(result.getString("STATUTCOTISATION"));
-				listMembre.add(membre);
-			}
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return listMembre;
 	}
 }

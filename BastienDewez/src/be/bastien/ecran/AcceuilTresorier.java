@@ -25,7 +25,11 @@ public class AcceuilTresorier extends JFrame {
 		btnRemboursement.setBounds(100, 40, 250, 30);
 		btnRemboursement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
-				
+				dispose();
+				RemboursementChauffeur remboursementChauffeur = new RemboursementChauffeur();
+				remboursementChauffeur.setPersonne(personne);
+				remboursementChauffeur.setTitle("Remboursement chauffeur");
+				remboursementChauffeur.setVisible(true);
 			}
 		});
 		contentPane.add(btnRemboursement);
@@ -36,6 +40,7 @@ public class AcceuilTresorier extends JFrame {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
 				PaiementCotisation paiementCotisation = new PaiementCotisation();
+				paiementCotisation.setPersonne(personne);
 				paiementCotisation.setTitle("Vérifier les cotisations");
 				paiementCotisation.setVisible(true);
 			}

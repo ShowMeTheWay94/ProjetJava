@@ -1,0 +1,54 @@
+package be.bastien.DAO;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import be.bastien.metier.Balade;
+import be.bastien.metier.Membre;
+
+public class DAOBalade extends DAO<Balade> {
+	public DAOBalade(Connection conn){
+		super(conn);
+	}
+	
+	public boolean create(Balade balade) {
+		return false;
+	}
+	
+	public boolean delete(Balade balade) {
+		return false;
+	}
+	
+	public boolean update(Balade balade) {
+		return false;
+	}
+	
+	public Balade find(Balade balade) {	
+		return balade;
+	}
+	
+	public List<Balade> find(){
+		List<Balade> listBalade = new ArrayList<Balade>();
+		
+		try {
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM BALADE M INNER JOIN PERSONNE P ON M.IDMEMBRE "
+					+ "= P.IDPERSONNE");
+			while(result.next()) {
+				Membre membre = new Membre();
+				membre.setNom(result.getString("NOM"));
+				membre.setPrenom(result.getString("PRENOM"));
+				membre.setCotisation(result.getInt("COTISATION"));
+				membre.setStatutCotisation(result.getString("STATUTCOTISATION"));
+				listMembre.add(membre);
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return listBalade;
+	}
+}

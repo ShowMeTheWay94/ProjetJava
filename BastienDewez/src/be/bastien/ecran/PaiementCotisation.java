@@ -7,15 +7,18 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import be.bastien.DAO.DAOMembre;
 import be.bastien.DAO.ProjetConnection;
 import be.bastien.metier.Membre;
+import be.bastien.metier.Personne;
 
 public class PaiementCotisation extends JFrame {
 	private static final long serialVersionUID = 8491766187158806612L;
 	private JPanel contentPane;
+	public Personne personne;
 	
 	public PaiementCotisation() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,14 +27,17 @@ public class PaiementCotisation extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
-		DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
+		JLabel lblCotisation = new JLabel("Nom - Prénom - Statut Cotisation");
+		lblCotisation.setBounds(95,20,200,20);
+		contentPane.add(lblCotisation);
 		
 		JComboBox<String> cmBoxCotisation = new JComboBox<String>();
-		List<Membre> listeMembre = daoMembre.cotisation();
+		DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
+		List<Membre> listeMembre = daoMembre.find();
 		for(int i = 0;i < listeMembre.size();i++) {
 			cmBoxCotisation.addItem(listeMembre.get(i).toString());
 		}	
-		cmBoxCotisation.setBounds(90, 20, 200, 20);
+		cmBoxCotisation.setBounds(90, 40, 200, 20);
 		contentPane.add(cmBoxCotisation);
 		
 		JButton Retour = new JButton("Retour");
@@ -39,11 +45,20 @@ public class PaiementCotisation extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				AcceuilTresorier acceuilTresorier = new AcceuilTresorier();
+				acceuilTresorier.setPersonne(personne);
 				acceuilTresorier.setTitle("Acceuil Tresorier");
 				acceuilTresorier.setVisible(true);
 			}
 		});
 		Retour.setBounds(244, 114, 120, 30);
 		contentPane.add(Retour);
+	}
+	
+	public Personne getPersonne(){
+		return personne;
+	}
+	
+	public void setPersonne(Personne personne){
+		this.personne = personne;
 	}
 }
