@@ -1,0 +1,18 @@
+package be.bastien.ecran;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import be.bastien.metier.Personne;
+
+public class AfficherDisponibilites extends JFrame {
+	private static final long serialVersionUID = 8491766187158806612L;
+	private JPanel contentPane;
+	public Personne personne;
+	
+	public AfficherDisponibilites() {
+		private static final long serialVersionUID = 8491766187158806612L;
+		private JPanel contentPane;
+		public Personne personne;
+	}
+}

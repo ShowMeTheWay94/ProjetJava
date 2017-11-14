@@ -38,11 +38,15 @@ public class AcceuilMembre extends JFrame {
 		});
 		contentPane.add(btnInscription);
 		
-		JButton btnDisponibilite = new JButton("Ajouter une disponibilité");
+		JButton btnDisponibilite = new JButton("Gérer les disponibilités");
 		btnDisponibilite.setBounds(90, 60, 250, 30);
 		btnDisponibilite.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
-				
+				dispose();
+				GererDisponibilites gererDisponibilites = new GererDisponibilites();
+				gererDisponibilites.setPersonne(personne);
+				gererDisponibilites.setTitle("Gérer les disponibilités");
+				gererDisponibilites.setVisible(true);
 			}
 		});
 		contentPane.add(btnDisponibilite);
@@ -51,7 +55,11 @@ public class AcceuilMembre extends JFrame {
 		btnForfait.setBounds(90, 100, 250, 30);
 		btnForfait.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
-				
+				dispose();
+				AfficherForfait afficherForfait = new AfficherForfait();
+				afficherForfait.setPersonne(personne);
+				afficherForfait.setTitle("Afficher forfait");
+				afficherForfait.setVisible(true);
 			}
 		});
 		contentPane.add(btnForfait);
@@ -60,7 +68,11 @@ public class AcceuilMembre extends JFrame {
 		btnSupplement.setBounds(90, 140, 250, 30);
 		btnSupplement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
-				
+				dispose();
+				AfficherSupplement afficherSupplement = new AfficherSupplement();
+				afficherSupplement.setPersonne(personne);
+				afficherSupplement.setTitle("Afficher supplément");
+				afficherSupplement.setVisible(true);
 			}
 		});
 		contentPane.add(btnSupplement);

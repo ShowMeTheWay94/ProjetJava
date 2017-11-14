@@ -16,7 +16,7 @@ public class AcceuilResponsable extends JFrame {
 	
 	public AcceuilResponsable() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 250);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
@@ -25,7 +25,11 @@ public class AcceuilResponsable extends JFrame {
 		btnBalade.setBounds(100, 40, 250, 30);
 		btnBalade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
-				
+				dispose();
+				AfficherBalade afficherBalade = new AfficherBalade();
+				afficherBalade.setPersonne(personne);
+				afficherBalade.setTitle("Afficher les balades");
+				afficherBalade.setVisible(true);
 			}
 		});
 		contentPane.add(btnBalade);
@@ -34,7 +38,11 @@ public class AcceuilResponsable extends JFrame {
 		btnDisponibilites.setBounds(100, 90, 250, 30);
 		btnDisponibilites.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
-				
+				dispose();
+				AfficherDisponibilites afficherDisponibilites = new AfficherDisponibilites();
+				afficherDisponibilites.setPersonne(personne);
+				afficherDisponibilites.setTitle("Afficher les disponibilités");
+				afficherDisponibilites.setVisible(true);
 			}
 		});
 		contentPane.add(btnDisponibilites);
@@ -43,9 +51,14 @@ public class AcceuilResponsable extends JFrame {
 		btnForfait.setBounds(100,140,250,30);
 		btnForfait.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				dispose();
+				CalculerForfait calculerForfait = new CalculerForfait();
+				calculerForfait.setPersonne(personne);
+				calculerForfait.setTitle("Calculer forfait");
+				calculerForfait.setVisible(true);
 			}
 		});
+		contentPane.add(btnForfait);
 		
 		JButton Retour = new JButton("Deconnexion");
 		Retour.addActionListener(new ActionListener(){
@@ -56,7 +69,7 @@ public class AcceuilResponsable extends JFrame {
 				connexion.setVisible(true);
 			}
 		});
-		Retour.setBounds(304, 170, 120, 30);
+		Retour.setBounds(304, 220, 120, 30);
 		contentPane.add(Retour);
 	}
 	
