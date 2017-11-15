@@ -18,9 +18,8 @@ import be.bastien.metier.Personne;
 public class PaiementCotisation extends JFrame {
 	private static final long serialVersionUID = 8491766187158806612L;
 	private JPanel contentPane;
-	public Personne personne;
 	
-	public PaiementCotisation() {
+	public PaiementCotisation(Personne personne) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 200);
 		contentPane = new JPanel();
@@ -44,21 +43,12 @@ public class PaiementCotisation extends JFrame {
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				AcceuilTresorier acceuilTresorier = new AcceuilTresorier();
-				acceuilTresorier.setPersonne(personne);
+				AcceuilTresorier acceuilTresorier = new AcceuilTresorier(personne);
 				acceuilTresorier.setTitle("Acceuil Tresorier");
 				acceuilTresorier.setVisible(true);
 			}
 		});
 		Retour.setBounds(244, 114, 120, 30);
 		contentPane.add(Retour);
-	}
-	
-	public Personne getPersonne(){
-		return personne;
-	}
-	
-	public void setPersonne(Personne personne){
-		this.personne = personne;
 	}
 }

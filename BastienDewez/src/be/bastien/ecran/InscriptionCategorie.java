@@ -21,9 +21,8 @@ public class InscriptionCategorie extends JFrame {
 	private static final long serialVersionUID = -3207631333749439129L;
 	private JPanel contentPane;
 	private JTextField txtCategorie;
-	public Personne personne;
 	
-	public InscriptionCategorie() {
+	public InscriptionCategorie(Personne personne) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 150);
 		contentPane = new JPanel();
@@ -55,8 +54,7 @@ public class InscriptionCategorie extends JFrame {
 					categorie.setNbrMembres(++nbr);
 					daoCategorie.update(categorie);
 					dispose();
-					AcceuilMembre acceuilMembre = new AcceuilMembre();
-					acceuilMembre.setPersonne(personne);
+					AcceuilMembre acceuilMembre = new AcceuilMembre(personne);
 					acceuilMembre.setTitle("Acceuil Membre");
 					acceuilMembre.setVisible(true);
 				}
@@ -72,21 +70,12 @@ public class InscriptionCategorie extends JFrame {
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				AcceuilMembre acceuilMembre = new AcceuilMembre();
-				acceuilMembre.setPersonne(personne);
+				AcceuilMembre acceuilMembre = new AcceuilMembre(personne);
 				acceuilMembre.setTitle("Acceuil Membre");
 				acceuilMembre.setVisible(true);
 			}
 		});
 		Retour.setBounds(294, 64, 120, 30);
 		contentPane.add(Retour);
-	}
-	
-	public Personne getPersonne(){
-		return personne;
-	}
-	
-	public void setPersonne(Personne personne){
-		this.personne = personne;
 	}
 }

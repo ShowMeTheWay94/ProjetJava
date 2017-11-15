@@ -12,9 +12,8 @@ import be.bastien.metier.Personne;
 public class AcceuilTresorier extends JFrame {
 	private static final long serialVersionUID = -3207631333749439129L;
 	private JPanel contentPane;
-	public Personne personne;
 	
-	public AcceuilTresorier() {
+	public AcceuilTresorier(Personne personne) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 250);
 		contentPane = new JPanel();
@@ -26,8 +25,7 @@ public class AcceuilTresorier extends JFrame {
 		btnRemboursement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
-				RemboursementChauffeur remboursementChauffeur = new RemboursementChauffeur();
-				remboursementChauffeur.setPersonne(personne);
+				RemboursementChauffeur remboursementChauffeur = new RemboursementChauffeur(personne);
 				remboursementChauffeur.setTitle("Remboursement chauffeur");
 				remboursementChauffeur.setVisible(true);
 			}
@@ -39,8 +37,7 @@ public class AcceuilTresorier extends JFrame {
 		btnCotisation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
-				PaiementCotisation paiementCotisation = new PaiementCotisation();
-				paiementCotisation.setPersonne(personne);
+				PaiementCotisation paiementCotisation = new PaiementCotisation(personne);
 				paiementCotisation.setTitle("Vérifier les cotisations");
 				paiementCotisation.setVisible(true);
 			}
@@ -58,13 +55,5 @@ public class AcceuilTresorier extends JFrame {
 		});
 		Retour.setBounds(304, 160, 120, 30);
 		contentPane.add(Retour);
-	}
-	
-	public Personne getPersonne(){
-		return personne;
-	}
-	
-	public void setPersonne(Personne personne){
-		this.personne = personne;
 	}
 }

@@ -13,10 +13,11 @@ public class DAOPersonne extends DAO<Personne> {
 	public DAOPersonne(Connection conn){
 		super(conn);
 	}
-	
+
 	public boolean create(Personne personne) {
 		Statement statement = null;
 		ResultSet idGenere = null;
+
 		try {
 			if(!findPersonne(personne)){
 				statement = connect.createStatement();
@@ -28,6 +29,7 @@ public class DAOPersonne extends DAO<Personne> {
 				else
 					JOptionPane.showMessageDialog(null, "Pas d'ID enregistré");
 				statement.close();
+
 				return true;
 			}
 			else{
@@ -38,36 +40,40 @@ public class DAOPersonne extends DAO<Personne> {
 			return false;
 		}
 	}
-	
+
 	public boolean delete(Personne personne) {
 		return false;
 	}
-	
+
 	public boolean update(Personne personne) {
 		return false;
 	}
-	
+
 	public Personne find(Personne personne) {	
 		try{
 			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM PERSONNE");
+
 			while(result.next()){
 				if(result.getString("LOGIN").equals(personne.getLogin()) && result.getString("PASSWORD").equals(personne.getPassword())){
 					personne.setIdPersonne(result.getInt("IdPersonne"));
 					personne.setNom(result.getString("Nom"));
 					personne.setPrenom("Prenom");
+					return personne;
 				}
 			}
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
-		
+
 		return personne;
 	}
+
 	
+
 	public boolean findPersonne(Personne personne){
 		boolean trouve = false;
-		
+
 		try{
 			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM PERSONNE WHERE LOGIN = '" + personne.getLogin() + "' and PASSWORD = '" + personne.getPassword() + "'");
 			if(result.next()){
@@ -78,7 +84,7 @@ public class DAOPersonne extends DAO<Personne> {
 			e.printStackTrace();
 			return false;
 		}
-		
+
 		return trouve;
 	}
 }

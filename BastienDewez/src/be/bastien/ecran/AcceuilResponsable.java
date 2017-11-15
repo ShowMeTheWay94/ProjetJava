@@ -12,9 +12,8 @@ import be.bastien.metier.Personne;
 public class AcceuilResponsable extends JFrame {
 	private static final long serialVersionUID = 2341718848245518222L;
 	private JPanel contentPane;
-	public Personne personne;
 	
-	public AcceuilResponsable() {
+	public AcceuilResponsable(Personne personne) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -26,8 +25,7 @@ public class AcceuilResponsable extends JFrame {
 		btnBalade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
-				AfficherBalade afficherBalade = new AfficherBalade();
-				afficherBalade.setPersonne(personne);
+				AfficherBalade afficherBalade = new AfficherBalade(personne);
 				afficherBalade.setTitle("Afficher les balades");
 				afficherBalade.setVisible(true);
 			}
@@ -39,8 +37,7 @@ public class AcceuilResponsable extends JFrame {
 		btnDisponibilites.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
-				AfficherDisponibilites afficherDisponibilites = new AfficherDisponibilites();
-				afficherDisponibilites.setPersonne(personne);
+				AfficherDisponibilites afficherDisponibilites = new AfficherDisponibilites(personne);
 				afficherDisponibilites.setTitle("Afficher les disponibilités");
 				afficherDisponibilites.setVisible(true);
 			}
@@ -52,8 +49,7 @@ public class AcceuilResponsable extends JFrame {
 		btnForfait.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				CalculerForfait calculerForfait = new CalculerForfait();
-				calculerForfait.setPersonne(personne);
+				CalculerForfait calculerForfait = new CalculerForfait(personne);
 				calculerForfait.setTitle("Calculer forfait");
 				calculerForfait.setVisible(true);
 			}
@@ -71,13 +67,5 @@ public class AcceuilResponsable extends JFrame {
 		});
 		Retour.setBounds(304, 220, 120, 30);
 		contentPane.add(Retour);
-	}
-	
-	public Personne getPersonne(){
-		return personne;
-	}
-	
-	public void setPersonne(Personne personne){
-		this.personne = personne;
 	}
 }

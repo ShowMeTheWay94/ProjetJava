@@ -14,9 +14,8 @@ import be.bastien.metier.Personne;
 public class AfficherDisponibilites extends JFrame {
 	private static final long serialVersionUID = 8491766187158806612L;
 	private JPanel contentPane;
-	public Personne personne;
 	
-	public AfficherDisponibilites() {
+	public AfficherDisponibilites(Personne personne) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 200);
 		contentPane = new JPanel();
@@ -35,21 +34,12 @@ public class AfficherDisponibilites extends JFrame {
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				AcceuilResponsable acceuilResponsable = new AcceuilResponsable();
-				acceuilResponsable.setPersonne(personne);
+				AcceuilResponsable acceuilResponsable = new AcceuilResponsable(personne);
 				acceuilResponsable.setTitle("Acceuil Responsable");
 				acceuilResponsable.setVisible(true);
 			}
 		});
 		Retour.setBounds(244, 114, 120, 30);
 		contentPane.add(Retour);
-	}
-	
-	public Personne getPersonne(){
-		return personne;
-	}
-	
-	public void setPersonne(Personne personne){
-		this.personne = personne;
 	}
 }

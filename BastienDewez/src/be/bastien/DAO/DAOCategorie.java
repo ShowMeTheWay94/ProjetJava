@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import be.bastien.metier.Categorie;
+import be.bastien.metier.Personne;
 
 public class DAOCategorie extends DAO<Categorie> {
 	public DAOCategorie(Connection conn){
@@ -55,5 +58,25 @@ public class DAOCategorie extends DAO<Categorie> {
 		}
 		
 		return categorie;
+	}
+	
+	public List<Categorie> find(Personne personne){
+		List<Categorie> listeCategorie = new ArrayList<Categorie>();
+		
+		try{
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM MEMBRE_CATEGORIE MC INNER JOIN CATEGORIE C ON MC.IDCATEGORIE = C.IDCATEGORIE WHERE IDMEMBRE = 5");
+			while(result.next()){
+				Categorie categorie = new Categorie();
+				categorie.setIdCategorie(result.getInt("IDCATEGORIE"));
+				categorie.setSupplement(result.getInt("SUPPLEMENT"));
+				categorie.setNomCategorie(result.getString("SOUSTYPE"));
+				listeCategorie.add(categorie);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return listeCategorie;
 	}
 }

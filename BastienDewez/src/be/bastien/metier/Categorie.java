@@ -7,6 +7,7 @@ public class Categorie implements Serializable {
 	
 	//Variable d'instance
 	private int idCategorie;
+	private String nomCategorie;
 	private int nbrMembres;
 	private int supplement;
 	private Calendrier pojoCalendrier;
@@ -21,6 +22,14 @@ public class Categorie implements Serializable {
 
 	public void setIdCategorie(int idCategorie) {
 		this.idCategorie = idCategorie;
+	}
+	
+	public String getNomCategorie() {
+		return nomCategorie;
+	}
+
+	public void setNomCategorie(String nomCategorie) {
+		this.nomCategorie = nomCategorie;
 	}
 	
 	public int getNbrMembres() {
@@ -45,5 +54,9 @@ public class Categorie implements Serializable {
 
 	public void setPojoCalendrier(Calendrier pojoCalendrier) {
 		this.pojoCalendrier = pojoCalendrier;
+	}
+	
+	public String toString() {
+		return getNomCategorie() + " " + getSupplement();
 	}
 }

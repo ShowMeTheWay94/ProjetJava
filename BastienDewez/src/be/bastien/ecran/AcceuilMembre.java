@@ -16,9 +16,8 @@ import be.bastien.metier.Personne;
 public class AcceuilMembre extends JFrame {
 	private static final long serialVersionUID = -3207631333749439129L;
 	private JPanel contentPane;
-	public Personne personne;
 	
-	public AcceuilMembre() {
+	public AcceuilMembre(Personne personne) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -30,8 +29,7 @@ public class AcceuilMembre extends JFrame {
 		btnInscription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
-				InscriptionCategorie inscriptionCategorie = new InscriptionCategorie();
-				inscriptionCategorie.setPersonne(personne);
+				InscriptionCategorie inscriptionCategorie = new InscriptionCategorie(personne);
 				inscriptionCategorie.setTitle("Inscription catégorie");
 				inscriptionCategorie.setVisible(true);
 			}
@@ -43,8 +41,7 @@ public class AcceuilMembre extends JFrame {
 		btnDisponibilite.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
-				GererDisponibilites gererDisponibilites = new GererDisponibilites();
-				gererDisponibilites.setPersonne(personne);
+				GererDisponibilites gererDisponibilites = new GererDisponibilites(personne);
 				gererDisponibilites.setTitle("Gérer les disponibilités");
 				gererDisponibilites.setVisible(true);
 			}
@@ -56,8 +53,7 @@ public class AcceuilMembre extends JFrame {
 		btnForfait.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
-				AfficherForfait afficherForfait = new AfficherForfait();
-				afficherForfait.setPersonne(personne);
+				AfficherForfait afficherForfait = new AfficherForfait(personne);
 				afficherForfait.setTitle("Afficher forfait");
 				afficherForfait.setVisible(true);
 			}
@@ -69,8 +65,7 @@ public class AcceuilMembre extends JFrame {
 		btnSupplement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
-				AfficherSupplement afficherSupplement = new AfficherSupplement();
-				afficherSupplement.setPersonne(personne);
+				AfficherSupplement afficherSupplement = new AfficherSupplement(personne);
 				afficherSupplement.setTitle("Afficher supplément");
 				afficherSupplement.setVisible(true);
 			}
@@ -110,13 +105,5 @@ public class AcceuilMembre extends JFrame {
 		});
 		Retour.setBounds(304, 220, 120, 30);
 		contentPane.add(Retour);
-	}
-	
-	public Personne getPersonne(){
-		return personne;
-	}
-	
-	public void setPersonne(Personne personne){
-		this.personne = personne;
 	}
 }

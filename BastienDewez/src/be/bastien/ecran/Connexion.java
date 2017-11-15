@@ -61,22 +61,19 @@ public class Connexion extends JFrame {
 				personne = daoPersonne.find(personne);
 				if(daoMembre.find(personne)) {
 					dispose();
-					AcceuilMembre acceuilMembre = new AcceuilMembre();
-					acceuilMembre.setPersonne(personne);
+					AcceuilMembre acceuilMembre = new AcceuilMembre(personne);
 					acceuilMembre.setTitle("Acceuil Membre");
 					acceuilMembre.setVisible(true);
 				}
 				else if(daoResponsable.find(personne)) {
 					dispose();
-					AcceuilResponsable acceuilResponsable = new AcceuilResponsable();
-					acceuilResponsable.setPersonne(personne);
+					AcceuilResponsable acceuilResponsable = new AcceuilResponsable(personne);
 					acceuilResponsable.setTitle("Acceuil Responsable");
 					acceuilResponsable.setVisible(true);
 				}
 				else if(daoTresorier.find(personne)) {
 					dispose();
-					AcceuilTresorier acceuilTresorier = new AcceuilTresorier();
-					acceuilTresorier.setPersonne(personne);
+					AcceuilTresorier acceuilTresorier = new AcceuilTresorier(personne);
 					acceuilTresorier.setTitle("Acceuil trésorier");
 					acceuilTresorier.setVisible(true);
 				}
