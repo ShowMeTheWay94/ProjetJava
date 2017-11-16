@@ -1,8 +1,11 @@
 package be.bastien.DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import be.bastien.metier.Balade;
 
@@ -20,6 +23,16 @@ public class DAOBalade extends DAO<Balade> {
 	}
 	
 	public boolean update(Balade balade) {
+		try{
+			String strUpdate = "UPDATE BALADE SET FORFAIT = ? WHERE IDBALADE = " + balade.getIdBalade() + ";";
+			PreparedStatement s = this.connect.prepareStatement(strUpdate);
+			s.setDouble(1, balade.getForfait());
+			s.executeUpdate();
+			return true;
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
 		return false;
 	}
 	
@@ -78,5 +91,27 @@ public class DAOBalade extends DAO<Balade> {
 		}
 		
 		return nbr;
+	}
+	
+	public List<Balade> find(){
+		List<Balade> listeBalade = new ArrayList<Balade>();
+		
+		try{
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM BALADE");
+			while(result.next()){
+				Balade balade = new Balade();
+				balade.setIdBalade(result.getInt("IDBALADE"));
+				balade.setNomBalade(result.getString("NOMBALADE"));
+				balade.setLieuDepart(result.getString("LIEU"));
+				balade.setDateBalade(result.getDate("DATEBALADE"));
+				balade.setForfait(result.getDouble("FORFAIT"));
+				listeBalade.add(balade);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return listeBalade;
 	}
 }

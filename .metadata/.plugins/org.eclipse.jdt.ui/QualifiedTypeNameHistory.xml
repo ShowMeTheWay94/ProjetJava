@@ -19,7 +19,6 @@
 <fullyQualifiedTypeName name="be.bastien.POJO.POJOVehicule"/>
 <fullyQualifiedTypeName name="be.bastien.POJO.POJOBalade"/>
 <fullyQualifiedTypeName name="be.bastien.POJO.POJOMembre"/>
-<fullyQualifiedTypeName name="javax.swing.JTextField"/>
 <fullyQualifiedTypeName name="javax.swing.JPasswordField"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
@@ -35,8 +34,6 @@
 <fullyQualifiedTypeName name="javax.swing.JTable"/>
 <fullyQualifiedTypeName name="javax.swing.JLabel"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
-<fullyQualifiedTypeName name="be.bastien.DAO.DAOBalade"/>
-<fullyQualifiedTypeName name="be.bastien.metier.Balade"/>
 <fullyQualifiedTypeName name="java.util.GregorianCalendar"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
@@ -50,4 +47,7 @@
 <fullyQualifiedTypeName name="be.bastien.DAO.DAOVehicule"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="be.bastien.DAO.DAOBalade"/>
+<fullyQualifiedTypeName name="be.bastien.metier.Balade"/>
 </qualifiedTypeNameHistroy>

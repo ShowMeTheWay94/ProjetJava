@@ -29,6 +29,10 @@ public class DAOCategorie extends DAO<Categorie> {
 			PreparedStatement s = this.connect.prepareStatement(strUpdate);
 			s.setInt(1, categorie.getNbrMembres());
 			s.executeUpdate();
+			String strUpdate2 = "UPDATE MEMBRE_CATEGORIE SET SUPPLEMENT = ? WHERE IDCATEGORIE = " + categorie.getIdCategorie() + ";";
+			PreparedStatement s2 = this.connect.prepareStatement(strUpdate2);
+			s2.setInt(1, categorie.getSupplement());
+			s2.executeUpdate();
 			return true;
 		}
 		catch(SQLException e){
