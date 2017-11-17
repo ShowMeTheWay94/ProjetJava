@@ -38,16 +38,16 @@
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
-<fullyQualifiedTypeName name="be.bastien.metier.Membre"/>
-<fullyQualifiedTypeName name="be.bastien.DAO.ProjetConnection"/>
 <fullyQualifiedTypeName name="be.bastien.DAO.DAOCategorie"/>
 <fullyQualifiedTypeName name="be.bastien.metier.Categorie"/>
 <fullyQualifiedTypeName name="be.bastien.metier.Personne"/>
-<fullyQualifiedTypeName name="be.bastien.metier.Vehicule"/>
-<fullyQualifiedTypeName name="be.bastien.DAO.DAOVehicule"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="javax.swing.JTextField"/>
 <fullyQualifiedTypeName name="be.bastien.DAO.DAOBalade"/>
 <fullyQualifiedTypeName name="be.bastien.metier.Balade"/>
+<fullyQualifiedTypeName name="be.bastien.metier.Vehicule"/>
+<fullyQualifiedTypeName name="be.bastien.DAO.ProjetConnection"/>
+<fullyQualifiedTypeName name="be.bastien.DAO.DAOVehicule"/>
+<fullyQualifiedTypeName name="be.bastien.metier.Membre"/>
 </qualifiedTypeNameHistroy>

@@ -2,6 +2,7 @@ package be.bastien.ecran;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -9,6 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import be.bastien.DAO.DAOBalade;
+import be.bastien.DAO.ProjetConnection;
+import be.bastien.metier.Balade;
 import be.bastien.metier.Personne;
 
 public class AfficherBalade extends JFrame {
@@ -26,7 +30,12 @@ public class AfficherBalade extends JFrame {
 		lblBalade.setBounds(90,20,280,20);
 		contentPane.add(lblBalade);
 		
-		JComboBox<String> cmBoxBalade = new JComboBox<String>();
+		JComboBox<Balade> cmBoxBalade = new JComboBox<Balade>();
+		DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
+		List<Balade> listeBalade = daoBalade.find();
+		for(int i = 0;i < listeBalade.size();i++) {
+			cmBoxBalade.addItem(listeBalade.get(i));
+		}
 		cmBoxBalade.setBounds(10, 40, 350, 20);
 		contentPane.add(cmBoxBalade);
 		

@@ -114,4 +114,22 @@ public class DAOBalade extends DAO<Balade> {
 		
 		return listeBalade;
 	}
+	
+	public List<String> findDisponibilites(){
+		List<String> listeDisponibilites = new ArrayList<String>();
+		
+		try{
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM BALADE B INNER JOIN BALADE_VEHICULE BV "
+					+ "ON B.IDBALADE = BV.IDBALADE INNER JOIN VEHICULE V ON BV.NUMIMMATRICULATION = V.NUMIMMATRICULATION");
+			while(result.next()){
+				String disponibilites = result.getString("NOMBALADE") + " " + result.getString("NUMIMMATRICULATION") + " " + result.getInt("NBRPLACEMEMBRE") + " " + result.getInt("NBRPLACEVELO");
+				listeDisponibilites.add(disponibilites);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return listeDisponibilites;
+	}
 }

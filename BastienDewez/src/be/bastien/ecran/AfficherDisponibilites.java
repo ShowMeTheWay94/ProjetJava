@@ -2,6 +2,7 @@ package be.bastien.ecran;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -9,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import be.bastien.DAO.DAOBalade;
+import be.bastien.DAO.ProjetConnection;
 import be.bastien.metier.Personne;
 
 public class AfficherDisponibilites extends JFrame {
@@ -27,6 +30,11 @@ public class AfficherDisponibilites extends JFrame {
 		contentPane.add(lblDisponibilites);
 		
 		JComboBox<String> cmBoxDisponibilites = new JComboBox<String>();
+		DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
+		List<String> listeDisponiblites = daoBalade.findDisponibilites();
+		for(int i = 0;i < listeDisponiblites.size();i++) {
+			cmBoxDisponibilites.addItem(listeDisponiblites.get(i));
+		}
 		cmBoxDisponibilites.setBounds(10, 40, 350, 20);
 		contentPane.add(cmBoxDisponibilites);
 		

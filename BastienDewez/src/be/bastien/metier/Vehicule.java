@@ -66,27 +66,15 @@ public class Vehicule implements Serializable {
 		this.listMembre.remove(membre);
 	}
 	
-	public void retirerPlaceVehicule() {
+	public void retirerPlaceMembre() {
 		int placeMembre = getPlaceLibreMembre();
 		placeMembre--;
-		setPlaceLibreMembre(placeMembre);
-	}
-	
-	public void ajouterPlaceVehicule() {
-		int placeMembre = getPlaceLibreMembre();
-		placeMembre++;
 		setPlaceLibreMembre(placeMembre);
 	}
 	
 	public void retirerPlaceVelo() {
 		int placeVelo = getPlaceLibreVelo();
 		placeVelo--;
-		setPlaceLibreMembre(placeVelo);
-	}
-	
-	public void ajouterPlaceVelo() {
-		int placeVelo = getPlaceLibreVelo();
-		placeVelo++;
-		setPlaceLibreMembre(placeVelo);
+		setPlaceLibreVelo(placeVelo);
 	}
 }

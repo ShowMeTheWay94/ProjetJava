@@ -49,17 +49,22 @@ public class InscriptionCategorie extends JFrame {
 				Membre membre = new Membre();
 				membre.setIdPersonne(personne.getIdPersonne());
 				
-				if(daoMembre.addCategorie(membre,categorie)) {
-					int nbr = categorie.getNbrMembres();
-					categorie.setNbrMembres(++nbr);
-					daoCategorie.update(categorie);
-					dispose();
-					AcceuilMembre acceuilMembre = new AcceuilMembre(personne);
-					acceuilMembre.setTitle("Acceuil Membre");
-					acceuilMembre.setVisible(true);
+				if(!txtCategorie.getText().equals("")) {
+					if(daoMembre.addCategorie(membre,categorie)) {
+						int nbr = categorie.getNbrMembres();
+						categorie.setNbrMembres(++nbr);
+						daoCategorie.update(categorie);
+						dispose();
+						AcceuilMembre acceuilMembre = new AcceuilMembre(personne);
+						acceuilMembre.setTitle("Acceuil Membre");
+						acceuilMembre.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Ajout de la catégorie ratée");
+					}
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Ajout de la catégorie ratée");
+					JOptionPane.showMessageDialog(null, "Le champ catégorie est vide");
 				}
 			}
 		});

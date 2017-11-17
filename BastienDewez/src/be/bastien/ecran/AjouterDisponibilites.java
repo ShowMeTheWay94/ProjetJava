@@ -6,10 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import be.bastien.DAO.DAOVehicule;
+import be.bastien.DAO.ProjetConnection;
+import be.bastien.metier.Membre;
 import be.bastien.metier.Personne;
+import be.bastien.metier.Vehicule;
 
 public class AjouterDisponibilites extends JFrame {
 	private static final long serialVersionUID = 8491766187158806612L;
@@ -50,7 +55,31 @@ public class AjouterDisponibilites extends JFrame {
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DAOVehicule daoVehicule = new DAOVehicule(ProjetConnection.getInstance());
 				
+				Membre membre = new Membre();
+				membre.setIdPersonne(personne.getIdPersonne());
+				
+				Vehicule vehicule = new Vehicule();
+				vehicule.setNumImmatriculation(txtImmatriculation.getText());
+				vehicule.setPlaceLibreMembre(Integer.parseInt(txtPlaceMembre.getText()));
+				vehicule.setPlaceLibreVelo(Integer.parseInt(txtPlaceVelo.getText()));
+				vehicule.setConducteur(membre);
+				
+				if(!txtImmatriculation.getText().equals("") && !txtPlaceMembre.getText().equals("") && !txtPlaceVelo.getText().equals("")) {
+					if(daoVehicule.create(vehicule)) {
+						dispose();
+						GererDisponibilites gererDisponibilites = new GererDisponibilites(personne);
+						gererDisponibilites.setTitle("Gérer les disponibilités");
+						gererDisponibilites.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Inscription ratée");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Un ou plusieurs champs sont vides");
+				}
 			}
 		});
 		btnAjouter.setBounds(10, 164, 100, 30);

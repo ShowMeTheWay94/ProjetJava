@@ -2,6 +2,7 @@ package be.bastien.ecran;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -9,7 +10,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import be.bastien.DAO.DAOBalade;
+import be.bastien.DAO.DAOVehicule;
+import be.bastien.DAO.ProjetConnection;
 import be.bastien.metier.Personne;
+import be.bastien.metier.Vehicule;
 
 public class GererDisponibilites extends JFrame {
 	private static final long serialVersionUID = 8491766187158806612L;
@@ -22,11 +27,16 @@ public class GererDisponibilites extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
-		JLabel lblDisponibilites = new JLabel("Nom Balade - Place Membre - Place Vélo");
-		lblDisponibilites.setBounds(70,20,280,20);
+		JLabel lblDisponibilites = new JLabel("Nom Balade - Num Immatriculation - Place Membre - Place Vélo");
+		lblDisponibilites.setBounds(50,20,280,20);
 		contentPane.add(lblDisponibilites);
 		
 		JComboBox<String> cmBoxDisponibilites = new JComboBox<String>();
+		DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
+		List<String> listeDisponiblites = daoBalade.findDisponibilites();
+		for(int i = 0;i < listeDisponiblites.size();i++) {
+			cmBoxDisponibilites.addItem(listeDisponiblites.get(i));
+		}
 		cmBoxDisponibilites.setBounds(10, 40, 350, 20);
 		contentPane.add(cmBoxDisponibilites);
 		
@@ -45,7 +55,20 @@ public class GererDisponibilites extends JFrame {
 		JButton ReserverPlaceMembre = new JButton("Réserver place membre");
 		ReserverPlaceMembre.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
-			
+				String disponibilites = (String)cmBoxDisponibilites.getSelectedItem();
+				String placeMembre = disponibilites.substring(disponibilites.length()-3, disponibilites.length()-2);
+				String placeVelo = disponibilites.substring(disponibilites.length()-1, disponibilites.length());
+				Vehicule vehicule = new Vehicule();
+				vehicule.setNumImmatriculation(disponibilites.substring(disponibilites.indexOf(" ") + 1,disponibilites.indexOf(" ") + 2));
+				vehicule.setPlaceLibreMembre(Integer.parseInt(placeMembre));
+				vehicule.setPlaceLibreVelo(Integer.parseInt(placeVelo));
+				vehicule.retirerPlaceMembre();
+				DAOVehicule daoVehicule = new DAOVehicule(ProjetConnection.getInstance());
+				daoVehicule.update(vehicule);
+				dispose();
+				GererDisponibilites gererDisponibilites = new GererDisponibilites(personne);
+				gererDisponibilites.setTitle("Gérer les disponibilités");
+				gererDisponibilites.setVisible(true);
 			}
 		});
 		ReserverPlaceMembre.setBounds(94, 94, 180, 30);
@@ -54,7 +77,20 @@ public class GererDisponibilites extends JFrame {
 		JButton ReserverPlaceVelo = new JButton("Réserver place vélo");
 		ReserverPlaceVelo.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
-			
+				String disponibilites = (String)cmBoxDisponibilites.getSelectedItem();
+				String placeMembre = disponibilites.substring(disponibilites.length()-3, disponibilites.length()-2);
+				String placeVelo = disponibilites.substring(disponibilites.length()-1, disponibilites.length());
+				Vehicule vehicule = new Vehicule();
+				vehicule.setNumImmatriculation(disponibilites.substring(disponibilites.indexOf(" ") + 1,disponibilites.indexOf(" ") + 2));
+				vehicule.setPlaceLibreMembre(Integer.parseInt(placeMembre));
+				vehicule.setPlaceLibreVelo(Integer.parseInt(placeVelo));
+				vehicule.retirerPlaceVelo();
+				DAOVehicule daoVehicule = new DAOVehicule(ProjetConnection.getInstance());
+				daoVehicule.update(vehicule);
+				dispose();
+				GererDisponibilites gererDisponibilites = new GererDisponibilites(personne);
+				gererDisponibilites.setTitle("Gérer les disponibilités");
+				gererDisponibilites.setVisible(true);
 			}
 		});
 		ReserverPlaceVelo.setBounds(94, 124, 180, 30);
