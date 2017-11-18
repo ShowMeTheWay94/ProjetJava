@@ -39,6 +39,33 @@ public class AfficherBalade extends JFrame {
 		cmBoxBalade.setBounds(10, 40, 350, 20);
 		contentPane.add(cmBoxBalade);
 		
+		JButton Ajouter = new JButton("Ajouter");
+		Ajouter.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				AjouterBalade ajouterBalade = new AjouterBalade(personne);
+				ajouterBalade.setTitle("Ajouter balade");
+				ajouterBalade.setVisible(true);
+			}
+		});
+		Ajouter.setBounds(10, 114, 120, 30);
+		contentPane.add(Ajouter);
+		
+		JButton Supprimer = new JButton("Supprimer");
+		Supprimer.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
+				Balade balade = (Balade)cmBoxBalade.getSelectedItem();
+				daoBalade.delete(balade);
+				dispose();
+				AfficherBalade afficherBalade = new AfficherBalade(personne);
+				afficherBalade.setTitle("Afficher les balades");
+				afficherBalade.setVisible(true);
+			}
+		});
+		Supprimer.setBounds(130, 114, 120, 30);
+		contentPane.add(Supprimer);
+		
 		JButton Retour = new JButton("Retour");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
@@ -48,7 +75,7 @@ public class AfficherBalade extends JFrame {
 				acceuilResponsable.setVisible(true);
 			}
 		});
-		Retour.setBounds(244, 114, 120, 30);
+		Retour.setBounds(250, 114, 120, 30);
 		contentPane.add(Retour);
 	}
 }

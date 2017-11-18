@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import be.bastien.DAO.DAOBalade;
 import be.bastien.DAO.ProjetConnection;
@@ -38,6 +39,30 @@ public class CalculerForfait extends JFrame {
 		}
 		cmBoxBalade.setBounds(10, 40, 350, 20);
 		contentPane.add(cmBoxBalade);
+		
+		JLabel lblKilometre = new JLabel("Kilomètres : ");
+		lblKilometre.setBounds(90,70,100,20);
+		contentPane.add(lblKilometre);
+		
+		JTextField txtKilometre = new JTextField();
+		txtKilometre.setBounds(170,70,100,20);
+		contentPane.add(txtKilometre);
+		
+		JButton Calculer = new JButton("Calculer");
+		Calculer.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
+				Balade balade = (Balade)cmBoxBalade.getSelectedItem();
+				balade.setForfait(balade.calculerForfait(Integer.parseInt(txtKilometre.getText())));
+				daoBalade.update(balade);
+				dispose();
+				CalculerForfait calculerForfait = new CalculerForfait(personne);
+				calculerForfait.setTitle("Calculer forfait");
+				calculerForfait.setVisible(true);
+			}
+		});
+		Calculer.setBounds(124, 114, 120, 30);
+		contentPane.add(Calculer);
 		
 		JButton Retour = new JButton("Retour");
 		Retour.addActionListener(new ActionListener(){

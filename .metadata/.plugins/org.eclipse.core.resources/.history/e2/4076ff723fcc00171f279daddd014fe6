@@ -1,0 +1,19 @@
+package be.bastien.ecran;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import be.bastien.metier.Personne;
+
+public class AjouterBalade extends JFrame {
+	private static final long serialVersionUID = 8491766187158806612L;
+	private JPanel contentPane;
+	
+	public AjouterBalade (Personne personne) {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 400, 250);
+		contentPane = new JPanel();
+		contentPane.setLayout(null);
+		setContentPane(contentPane);
+	}
+}

@@ -27,8 +27,8 @@ public class GererDisponibilites extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
-		JLabel lblDisponibilites = new JLabel("Nom Balade - Num Immatriculation - Place Membre - Place Vélo");
-		lblDisponibilites.setBounds(50,20,280,20);
+		JLabel lblDisponibilites = new JLabel("Nom Balade - Immatriculation - Place Membre - Place Vélo");
+		lblDisponibilites.setBounds(20,20,340,20);
 		contentPane.add(lblDisponibilites);
 		
 		JComboBox<String> cmBoxDisponibilites = new JComboBox<String>();

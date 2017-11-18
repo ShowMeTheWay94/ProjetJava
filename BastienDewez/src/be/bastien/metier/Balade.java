@@ -14,6 +14,7 @@ public class Balade implements Serializable {
 	private Date dateBalade;
 	private double forfait;
 	private List<Vehicule> listVehicule;
+	private Categorie categorie;
 	
 	//Constructeur
 	public Balade() { }
@@ -76,8 +77,20 @@ public class Balade implements Serializable {
 		this.listVehicule.remove(vehicule);
 	}
 	
-	public void calculerForfait() {
+	public Categorie getCategorie() {
+		return categorie;
+	}
+	
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+	
+	public double calculerForfait(int kilometre) {
+		double forfait;
 		
+		forfait = 0.15*kilometre;
+		
+		return forfait;
 	}
 	
 	public String toString() {

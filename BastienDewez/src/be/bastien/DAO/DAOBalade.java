@@ -15,10 +15,34 @@ public class DAOBalade extends DAO<Balade> {
 	}
 	
 	public boolean create(Balade balade) {
-		return false;
+		try{
+			if(!findBalade(balade)){
+				String strCreate = "INSERT INTO BALADE (NOMBALADE,LIEU,FORFAIT,IDCATEGORIE) VALUES ('" + balade.getNomBalade()
+				+ "','" + balade.getLieuDepart() + "'," + balade.getForfait() + "," + balade.getCategorie().getIdCategorie() + ");";
+				PreparedStatement s = this.connect.prepareStatement(strCreate);
+				s.executeUpdate();
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	public boolean delete(Balade balade) {
+		try{
+			String strDelete = "DELETE FROM BALADE WHERE NOMBALADE = '" + balade.getNomBalade() + "';";
+			PreparedStatement s = this.connect.prepareStatement(strDelete);
+			s.executeUpdate();
+			return true;
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
 		return false;
 	}
 	
@@ -131,5 +155,22 @@ public class DAOBalade extends DAO<Balade> {
 		}
 		
 		return listeDisponibilites;
+	}
+	
+	public boolean findBalade(Balade balade) {	
+		boolean trouve = false;
+		
+		try{
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM BALADE WHERE NOMBALADE = '" + balade.getNomBalade() + "'");
+			if(result.next()){
+				trouve = true;
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}
+		
+		return trouve;
 	}
 }
