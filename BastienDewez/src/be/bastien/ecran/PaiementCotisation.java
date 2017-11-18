@@ -30,6 +30,7 @@ public class PaiementCotisation extends JFrame {
 		lblCotisation.setBounds(95,20,200,20);
 		contentPane.add(lblCotisation);
 		
+		//Initialisation de la comboBox
 		JComboBox<String> cmBoxCotisation = new JComboBox<String>();
 		DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
 		List<Membre> listeMembre = daoMembre.find();

@@ -76,13 +76,16 @@ public class AcceuilMembre extends JFrame {
 		btnCotisation.setBounds(90, 180, 250, 30);
 		btnCotisation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
+				//Instanciation du daoMembre
 				DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
 				
+				//Instanciation et initialisation des variables du membre
 				Membre membre = new Membre();
 				membre.setIdPersonne(personne.getIdPersonne());
 				membre.setCotisation(0);
 				membre.setStatutCotisation("Payé");
 				
+				//Mise à jour du membre
 				if(daoMembre.update(membre)) {
 					JOptionPane.showMessageDialog(null, "Cotisation payée");
 					btnCotisation.setVisible(false);

@@ -30,6 +30,7 @@ public class AfficherForfait extends JFrame{
 		lblBalade.setBounds(90,20,280,20);
 		contentPane.add(lblBalade);
 		
+		//Initialisation de la comboBox avec des balades
 		JComboBox<Balade> cmBoxBalade = new JComboBox<Balade>();
 		DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
 		List<Balade> listeBalade = daoBalade.find();
@@ -42,10 +43,16 @@ public class AfficherForfait extends JFrame{
 		JButton Payer = new JButton("Payer");
 		Payer.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Instanciation du daoBalade
 				DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
+				
+				//Instanciation de la balade par la comboBox et initialisation du forfait
 				Balade balade = (Balade)cmBoxBalade.getSelectedItem();
 				balade.setForfait(0);
+				
+				//Mise à jour de la balade
 				daoBalade.update(balade);
+				
 				dispose();
 				AfficherForfait afficherForfait = new AfficherForfait(personne);
 				afficherForfait.setTitle("Afficher forfait");

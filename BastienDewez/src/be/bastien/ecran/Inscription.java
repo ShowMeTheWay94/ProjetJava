@@ -83,32 +83,39 @@ public class Inscription extends JFrame {
 	JButton btnInscription = new JButton("Inscription");
 	btnInscription.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
+			//Instanciation des daoPersonne, daoMembre et daoCategorie
 			DAOPersonne daoPersonne = new DAOPersonne(ProjetConnection.getInstance());
 			DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
 			DAOCategorie daoCategorie = new DAOCategorie(ProjetConnection.getInstance());
 			
+			//Instanciation et initialisation des variables de la catégorie
 			Categorie categorie = daoCategorie.find(txtCategorie.getText());
 			categorie.setSupplement(0);
 			
+			//Instanciation et initialisation des variables d'une personne
 			Personne personne = new Personne();
 			personne.setNom(txtNom.getText());
 			personne.setPrenom(txtPrenom.getText());
 			personne.setLogin(txtPseudo.getText());
 			personne.setPassword(String.valueOf(Mdp.getPassword()));
 			
+			//Instanciation et initialisation des variables du membre
 			Membre membre = new Membre();
 			membre.setCotisation(20);
 			membre.setStatutCotisation("A payer");
 			
+			//Vérification si les champs sont vides, vérification des mots de passe,création de la personne et du membre et ajout dans la table membre_categorie
 			if(!txtPseudo.getText().equals("") && !txtPrenom.getText().equals("") && !txtNom.getText().equals("") && !(Mdp.getPassword().length == 0) && !(MdpConfirm.getPassword().length ==0) && !txtCategorie.getText().equals("")) {
 				if(String.valueOf(Mdp.getPassword()).equals(String.valueOf(MdpConfirm.getPassword()))) {
 					if(daoPersonne.create(personne)) {
 						membre.setIdPersonne(personne.getIdPersonne());
 						if(daoMembre.create(membre)) {
 							if(daoMembre.addCategorie(membre,categorie)) {
+								//Récupération du nombre de membre de la catégorie, incrémentation du nombre et mise à jour de la catégorie
 								int nbr = categorie.getNbrMembres();
 								categorie.setNbrMembres(++nbr);
 								daoCategorie.update(categorie);
+								
 								dispose();
 								Acceuil acceuil = new Acceuil();
 								acceuil.setTitle("Acceuil");

@@ -12,18 +12,22 @@ public class DAOTresorier extends DAO<Tresorier>{
 		super(conn);
 	}
 	
+	//Fonction pour créer un trésorier
 	public boolean create(Tresorier tresorier) {
 		return false;
 	}
 	
+	//Fonction pour supprimer un trésorier
 	public boolean delete(Tresorier tresorier) {
 		return false;
 	}
 	
+	//Fonction pour mettre à jour un trésorier
 	public boolean update(Tresorier tresorier) {
 		return false;
 	}
 	
+	//Fonctions pour trouver un trésorier
 	public Tresorier find(Tresorier tresorier) {
 		return tresorier;
 	}

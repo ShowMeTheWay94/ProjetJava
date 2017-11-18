@@ -30,6 +30,7 @@ public class AfficherBalade extends JFrame {
 		lblBalade.setBounds(90,20,280,20);
 		contentPane.add(lblBalade);
 		
+		//Initialisation de la comboBox avec des balades
 		JComboBox<Balade> cmBoxBalade = new JComboBox<Balade>();
 		DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
 		List<Balade> listeBalade = daoBalade.find();
@@ -54,9 +55,15 @@ public class AfficherBalade extends JFrame {
 		JButton Supprimer = new JButton("Supprimer");
 		Supprimer.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Instanciation du daoBalade
 				DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
+				
+				//Instanciation de la balade par la comboBox
 				Balade balade = (Balade)cmBoxBalade.getSelectedItem();
+				
+				//Suppression de la balade
 				daoBalade.delete(balade);
+				
 				dispose();
 				AfficherBalade afficherBalade = new AfficherBalade(personne);
 				afficherBalade.setTitle("Afficher les balades");

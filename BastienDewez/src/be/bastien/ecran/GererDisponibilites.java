@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import be.bastien.DAO.DAOBalade;
 import be.bastien.DAO.DAOVehicule;
 import be.bastien.DAO.ProjetConnection;
+import be.bastien.metier.Balade;
 import be.bastien.metier.Personne;
 import be.bastien.metier.Vehicule;
 
@@ -31,6 +32,7 @@ public class GererDisponibilites extends JFrame {
 		lblDisponibilites.setBounds(20,20,340,20);
 		contentPane.add(lblDisponibilites);
 		
+		//Initialisation de la comboBox
 		JComboBox<String> cmBoxDisponibilites = new JComboBox<String>();
 		DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
 		List<String> listeDisponiblites = daoBalade.findDisponibilites();
@@ -55,16 +57,35 @@ public class GererDisponibilites extends JFrame {
 		JButton ReserverPlaceMembre = new JButton("Réserver place membre");
 		ReserverPlaceMembre.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Instanciation des daoBalade et daoVehicule
+				DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
+				DAOVehicule daoVehicule = new DAOVehicule(ProjetConnection.getInstance());
+				
+				//Récupération de la ligne sélectionnées dans la comboBox
 				String disponibilites = (String)cmBoxDisponibilites.getSelectedItem();
 				String placeMembre = disponibilites.substring(disponibilites.length()-3, disponibilites.length()-2);
 				String placeVelo = disponibilites.substring(disponibilites.length()-1, disponibilites.length());
+				
+				//Instanciation et initialisation des variables du véhicule
 				Vehicule vehicule = new Vehicule();
 				vehicule.setNumImmatriculation(disponibilites.substring(disponibilites.indexOf(" ") + 1,disponibilites.indexOf(" ") + 2));
 				vehicule.setPlaceLibreMembre(Integer.parseInt(placeMembre));
 				vehicule.setPlaceLibreVelo(Integer.parseInt(placeVelo));
+				
+				//Décrémenter la variable placeMembre du véhicule
 				vehicule.retirerPlaceMembre();
-				DAOVehicule daoVehicule = new DAOVehicule(ProjetConnection.getInstance());
+				
+				//Instanciation et initialisation des variables de la balade
+				Balade balade = new Balade();
+				balade.setNomBalade(disponibilites.substring(0, disponibilites.indexOf(" ")));
+				balade = daoBalade.find(balade);
+				
+				//Mise à jour du véhicule
 				daoVehicule.update(vehicule);
+				
+				//Ajout dans la table balade_vehicule
+				daoBalade.addDisponibilites(vehicule.getNumImmatriculation(),balade.getIdBalade(),personne.getIdPersonne());
+				
 				dispose();
 				GererDisponibilites gererDisponibilites = new GererDisponibilites(personne);
 				gererDisponibilites.setTitle("Gérer les disponibilités");
@@ -77,16 +98,26 @@ public class GererDisponibilites extends JFrame {
 		JButton ReserverPlaceVelo = new JButton("Réserver place vélo");
 		ReserverPlaceVelo.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Instanciation du daoVehicule
+				DAOVehicule daoVehicule = new DAOVehicule(ProjetConnection.getInstance());
+				
+				//Récupération de la ligne sélectionnées dans la comboBox
 				String disponibilites = (String)cmBoxDisponibilites.getSelectedItem();
 				String placeMembre = disponibilites.substring(disponibilites.length()-3, disponibilites.length()-2);
 				String placeVelo = disponibilites.substring(disponibilites.length()-1, disponibilites.length());
+				
+				//Instanciation et initialisation des variables du véhicule
 				Vehicule vehicule = new Vehicule();
 				vehicule.setNumImmatriculation(disponibilites.substring(disponibilites.indexOf(" ") + 1,disponibilites.indexOf(" ") + 2));
 				vehicule.setPlaceLibreMembre(Integer.parseInt(placeMembre));
 				vehicule.setPlaceLibreVelo(Integer.parseInt(placeVelo));
+				
+				//Décrémenter la variable placeVelo du véhicule
 				vehicule.retirerPlaceVelo();
-				DAOVehicule daoVehicule = new DAOVehicule(ProjetConnection.getInstance());
+				
+				//Mise à jour du véhicule
 				daoVehicule.update(vehicule);
+				
 				dispose();
 				GererDisponibilites gererDisponibilites = new GererDisponibilites(personne);
 				gererDisponibilites.setTitle("Gérer les disponibilités");

@@ -55,17 +55,21 @@ public class AjouterDisponibilites extends JFrame {
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Instanciation du daoVehicule
 				DAOVehicule daoVehicule = new DAOVehicule(ProjetConnection.getInstance());
 				
+				//Instanciation et initialisation des variables du membre
 				Membre membre = new Membre();
 				membre.setIdPersonne(personne.getIdPersonne());
 				
+				//Instanciation et initialisation des variables du vehicule
 				Vehicule vehicule = new Vehicule();
 				vehicule.setNumImmatriculation(txtImmatriculation.getText());
 				vehicule.setPlaceLibreMembre(Integer.parseInt(txtPlaceMembre.getText()));
 				vehicule.setPlaceLibreVelo(Integer.parseInt(txtPlaceVelo.getText()));
 				vehicule.setConducteur(membre);
 				
+				//Vérification si les champs sont vides et ajout du véhicule
 				if(!txtImmatriculation.getText().equals("") && !txtPlaceMembre.getText().equals("") && !txtPlaceVelo.getText().equals("")) {
 					if(daoVehicule.create(vehicule)) {
 						dispose();

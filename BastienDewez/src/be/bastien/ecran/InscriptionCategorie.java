@@ -40,20 +40,26 @@ public class InscriptionCategorie extends JFrame {
 		JButton Inscription = new JButton("Inscription");
 		Inscription.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Instanciation des daoMembre et daoCategorie
 				DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
 				DAOCategorie daoCategorie = new DAOCategorie(ProjetConnection.getInstance());
 				
+				//Instanciation et initialisation des variables de la catégorie
 				Categorie categorie = daoCategorie.find(txtCategorie.getText());
 				categorie.setSupplement(5);
 				
+				//Instanciation et initialisation des variables du membre
 				Membre membre = new Membre();
 				membre.setIdPersonne(personne.getIdPersonne());
 				
+				//Vérification si les champs sont vides et ajout dans la table membre_categorie
 				if(!txtCategorie.getText().equals("")) {
 					if(daoMembre.addCategorie(membre,categorie)) {
+						//Récupération du nombre de membre de la catégorie, incrémentation du nombre et mise à jour de la catégorie
 						int nbr = categorie.getNbrMembres();
 						categorie.setNbrMembres(++nbr);
 						daoCategorie.update(categorie);
+						
 						dispose();
 						AcceuilMembre acceuilMembre = new AcceuilMembre(personne);
 						acceuilMembre.setTitle("Acceuil Membre");

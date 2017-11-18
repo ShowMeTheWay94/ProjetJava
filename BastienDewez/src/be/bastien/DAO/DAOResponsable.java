@@ -12,18 +12,22 @@ public class DAOResponsable extends DAO<Responsable> {
 		super(conn);
 	}
 	
+	//Fonction pour créer un responsable
 	public boolean create(Responsable responsable) {
 		return false;
 	}
 	
+	//Fonction pour supprimer un responsable
 	public boolean delete(Responsable responsable) {
 		return false;
 	}
 	
+	//Fonction pour mettre à jour un responsable
 	public boolean update(Responsable responsable) {
 		return false;
 	}
 	
+	//Fonstions pour trouver un responsable
 	public Responsable find(Responsable responsable) {
 		return responsable;
 	}

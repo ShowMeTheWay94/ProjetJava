@@ -55,18 +55,21 @@ public class AjouterBalade extends JFrame {
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Instanciation des daoBalade et daoCategorie
 				DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
 				DAOCategorie daoCategorie = new DAOCategorie(ProjetConnection.getInstance());
 				
+				//Instanciation de la catégorie
 				Categorie categorie = daoCategorie.find(txtCategorie.getText());
 				
+				//Instanciation et initialisation des variables du membre
 				Balade balade = new Balade();
 				balade.setNomBalade(txtNom.getText());
 				balade.setLieuDepart(txtLieu.getText());
 				balade.setCategorie(categorie);
 				
+				//Vérification si les champs sont vides et ajout de la balade
 				if(!txtNom.getText().equals("") && !txtLieu.getText().equals("") && !txtCategorie.getText().equals("")) {
-					System.out.println(balade);
 					if(daoBalade.create(balade)) {
 						dispose();
 						AfficherBalade afficherBalade = new AfficherBalade(personne);

@@ -15,14 +15,17 @@ public class DAOCategorie extends DAO<Categorie> {
 		super(conn);
 	}
 	
+	//Fonction pour créer une catégorie
 	public boolean create(Categorie categorie) {
 		return false;
 	}
 	
+	//Fonction pour supprimer une catégorie
 	public boolean delete(Categorie categorie) {
 		return false;
 	}
 	
+	//Fonction pour mettre à jour une catégorie et la table membre_catégorie
 	public boolean update(Categorie categorie) {
 		try{
 			String strUpdate = "UPDATE CATEGORIE SET NBRMEMBRES = ? WHERE IDCATEGORIE = " + categorie.getIdCategorie() + ";";
@@ -41,6 +44,7 @@ public class DAOCategorie extends DAO<Categorie> {
 		return false;
 	}
 	
+	//Fonctions pour trouver une catégorie
 	public Categorie find(Categorie categorie) {	
 		return categorie;
 	}

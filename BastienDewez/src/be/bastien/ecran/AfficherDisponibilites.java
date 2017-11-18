@@ -29,6 +29,7 @@ public class AfficherDisponibilites extends JFrame {
 		lblDisponibilites.setBounds(70,20,280,20);
 		contentPane.add(lblDisponibilites);
 		
+		//Initialisation de la comboBox
 		JComboBox<String> cmBoxDisponibilites = new JComboBox<String>();
 		DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
 		List<String> listeDisponiblites = daoBalade.findDisponibilites();

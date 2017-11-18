@@ -14,6 +14,7 @@ public class DAOPersonne extends DAO<Personne> {
 		super(conn);
 	}
 
+	//Fonction pour créer une personne
 	public boolean create(Personne personne) {
 		Statement statement = null;
 		ResultSet idGenere = null;
@@ -41,14 +42,17 @@ public class DAOPersonne extends DAO<Personne> {
 		}
 	}
 
+	//Fonction pour supprimer une personne
 	public boolean delete(Personne personne) {
 		return false;
 	}
 
+	//Fonction pour mettre à jour une personne
 	public boolean update(Personne personne) {
 		return false;
 	}
 
+	//Fonctions pour trouver une personne
 	public Personne find(Personne personne) {	
 		try{
 			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM PERSONNE");
@@ -68,8 +72,6 @@ public class DAOPersonne extends DAO<Personne> {
 
 		return personne;
 	}
-
-	
 
 	public boolean findPersonne(Personne personne){
 		boolean trouve = false;

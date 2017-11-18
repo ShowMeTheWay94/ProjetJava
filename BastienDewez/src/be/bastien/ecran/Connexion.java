@@ -49,16 +49,19 @@ public class Connexion extends JFrame {
 		JButton Connect = new JButton("Connexion");
 		Connect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Instanciation du dao et du POJO
+				//Instanciation des daoPersonne, daoMembre, daoResponsable et daoTresorier
 				DAOPersonne daoPersonne = new DAOPersonne(ProjetConnection.getInstance());
 				DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
 				DAOResponsable daoResponsable = new DAOResponsable(ProjetConnection.getInstance());
 				DAOTresorier daoTresorier = new DAOTresorier(ProjetConnection.getInstance());
-				Personne personne = new Personne();
 				
+				//Instanciation et initialisation des variables de la personne
+				Personne personne = new Personne();
 				personne.setLogin(txtPseudo.getText());
 				personne.setPassword(String.valueOf(passwordField.getPassword()));
 				personne = daoPersonne.find(personne);
+				
+				//Vérification si la personne est un membre, un responsable ou un trésorier
 				if(daoMembre.find(personne)) {
 					dispose();
 					AcceuilMembre acceuilMembre = new AcceuilMembre(personne);

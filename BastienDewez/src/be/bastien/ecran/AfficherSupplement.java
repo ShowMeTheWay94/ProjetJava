@@ -30,6 +30,7 @@ public class AfficherSupplement extends JFrame {
 		lblSupplement.setBounds(110,20,280,20);
 		contentPane.add(lblSupplement);
 		
+		//Initialisation de la comboBox avec des catégories
 		JComboBox<Categorie> cmBoxSupplement = new JComboBox<Categorie>();
 		DAOCategorie daoCategorie = new DAOCategorie(ProjetConnection.getInstance());
 		List<Categorie> listeCategorie = daoCategorie.find(personne);
@@ -42,10 +43,16 @@ public class AfficherSupplement extends JFrame {
 		JButton Payer = new JButton("Payer");
 		Payer.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Instanciation du daoCategorie
 				DAOCategorie daoCategorie = new DAOCategorie(ProjetConnection.getInstance());
+				
+				//Instanciation de la catégorie et initialisation du supplément
 				Categorie categorie = (Categorie)cmBoxSupplement.getSelectedItem();
 				categorie.setSupplement(0);
+				
+				//Mise à jour de la catégorie
 				daoCategorie.update(categorie);
+				
 				dispose();
 				AfficherSupplement afficherSupplement = new AfficherSupplement(personne);
 				afficherSupplement.setTitle("Afficher supplément");

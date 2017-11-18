@@ -14,6 +14,7 @@ public class DAOMembre extends DAO<Membre>{
 		super(conn);
 	}
 	
+	//Fonction pour créer un membre
 	public boolean create(Membre membre) {
 		try{
 			if(!findMembre(membre)){
@@ -33,10 +34,12 @@ public class DAOMembre extends DAO<Membre>{
 		}
 	}
 	
+	//Fonction pour supprimer un membre
 	public boolean delete(Membre membre) {
 		return false;
 	}
 	
+	//Fonction pour mettre à jour un membre
 	public boolean update(Membre membre) {
 		try{
 			String strUpdate = "UPDATE MEMBRE SET COTISATION = ?,STATUTCOTISATION = ? WHERE IDMEMBRE = " + membre.getIdPersonne() + ";";
@@ -52,6 +55,7 @@ public class DAOMembre extends DAO<Membre>{
 		return false;
 	}
 	
+	//Fonctions pour trouver un membre
 	public Membre find(Membre membre) {		
 		try {
 			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
@@ -124,6 +128,7 @@ public class DAOMembre extends DAO<Membre>{
 		return trouve;
 	}
 	
+	//Fonction pour ajouter dans la table membre_catégorie
 	public boolean addCategorie(Membre membre, Categorie categorie) {
 		try {
 			String strCreate = "INSERT INTO MEMBRE_CATEGORIE (IDMEMBRE,IDCATEGORIE,SUPPLEMENT) VALUES (" + membre.getIdPersonne() + ","

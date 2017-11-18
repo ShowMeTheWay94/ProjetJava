@@ -14,6 +14,7 @@ public class DAOBalade extends DAO<Balade> {
 		super(conn);
 	}
 	
+	//Fonction pour créer une balade
 	public boolean create(Balade balade) {
 		try{
 			if(!findBalade(balade)){
@@ -33,6 +34,7 @@ public class DAOBalade extends DAO<Balade> {
 		}
 	}
 	
+	//Fonction pour supprimer une balade
 	public boolean delete(Balade balade) {
 		try{
 			String strDelete = "DELETE FROM BALADE WHERE NOMBALADE = '" + balade.getNomBalade() + "';";
@@ -46,6 +48,7 @@ public class DAOBalade extends DAO<Balade> {
 		return false;
 	}
 	
+	//Fonction pour mettre à jour une balade
 	public boolean update(Balade balade) {
 		try{
 			String strUpdate = "UPDATE BALADE SET FORFAIT = ? WHERE IDBALADE = " + balade.getIdBalade() + ";";
@@ -60,7 +63,23 @@ public class DAOBalade extends DAO<Balade> {
 		return false;
 	}
 	
-	public Balade find(Balade balade) {	
+	//Fonctions pour trouver une balade
+	public Balade find(Balade balade) {			
+		try {
+			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+					.executeQuery("SELECT * FROM BALADE WHERE NOMBALADE = '" + balade.getNomBalade() + "'");
+			while(result.next()) {
+				balade.setIdBalade(result.getInt("IDBALADE"));
+				balade.setNomBalade(result.getString("NOMBALADE"));
+				balade.setLieuDepart(result.getString("LIEU"));
+				balade.setDateBalade(result.getDate("DATEBALADE"));
+				balade.setForfait(result.getDouble("FORFAIT"));
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return balade;
 	}
 	
@@ -85,36 +104,21 @@ public class DAOBalade extends DAO<Balade> {
 		return balade;
 	}
 	
-	public int nbrBalade() {
-		int nbr = 1;
+	public boolean findBalade(Balade balade) {	
+		boolean trouve = false;
 		
-		try {
-			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) NBR FROM BALADE");
-			if(result.first()) {
-				nbr = result.getInt("NBR");
+		try{
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM BALADE WHERE NOMBALADE = '" + balade.getNomBalade() + "'");
+			if(result.next()){
+				trouve = true;
 			}
 		}
-		catch(SQLException e) {
+		catch(SQLException e){
 			e.printStackTrace();
+			return false;
 		}
 		
-		return nbr;
-	}
-	
-	public int nbrBaladeDifferente(int idBalade) {
-		int nbr = 0;
-		
-		try {
-			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT COUNT(*) NBR FROM BALADE_VEHICULE WHERE IDBALADE = " + idBalade);
-			if(result.first()) {
-				nbr = result.getInt("NBR");
-			}
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return nbr;
+		return trouve;
 	}
 	
 	public List<Balade> find(){
@@ -139,6 +143,7 @@ public class DAOBalade extends DAO<Balade> {
 		return listeBalade;
 	}
 	
+	//Fonction qui permet de retrouver les disponibilités
 	public List<String> findDisponibilites(){
 		List<String> listeDisponibilites = new ArrayList<String>();
 		
@@ -157,20 +162,37 @@ public class DAOBalade extends DAO<Balade> {
 		return listeDisponibilites;
 	}
 	
-	public boolean findBalade(Balade balade) {	
-		boolean trouve = false;
+	//Fonction pour retourner les chauffeurs et balades
+	public List<String> findRemboursement(){
+		List<String> listeRemboursement = new ArrayList<String>();
 		
 		try{
-			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM BALADE WHERE NOMBALADE = '" + balade.getNomBalade() + "'");
-			if(result.next()){
-				trouve = true;
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM BALADE_VEHICULE BV INNER JOIN BALADE B "
+					+ "ON B.IDBALADE = BV.IDBALADE INNER JOIN VEHICULE V ON BV.NUMIMMATRICULATION = V.NUMIMMATRICULATION INNER JOIN"
+					+ " PERSONNE P ON V.IDMEMBRE = P.IDPERSONNE");
+			while(result.next()){
+				String disponibilites = result.getString("NOM") + " " + result.getString("PRENOM") + " " + result.getString("NOMBALADE") + " " + result.getString("LIEU") + " " + result.getDate("DATEBALADE") + " " + result.getInt("FORFAIT");
+				listeRemboursement.add(disponibilites);
 			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return listeRemboursement;
+	}
+	
+	//Fonction pour ajouter dans la table balade_vehicule
+	public boolean addDisponibilites(String numImmatriculation,int idBalade, int idMembre) {
+		try{
+			String strCreate = "INSERT INTO BALADE_VEHICULE VALUES ('" + numImmatriculation	+ "','" + idBalade + "','" + idMembre + "');";
+			PreparedStatement s = this.connect.prepareStatement(strCreate);
+			s.executeUpdate();
+			return true;
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 			return false;
 		}
-		
-		return trouve;
 	}
 }

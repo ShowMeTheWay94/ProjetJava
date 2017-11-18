@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -31,6 +32,7 @@ public class CalculerForfait extends JFrame {
 		lblBalade.setBounds(90,20,280,20);
 		contentPane.add(lblBalade);
 		
+		//Initialisation de la comboBox avec des balades
 		JComboBox<Balade> cmBoxBalade = new JComboBox<Balade>();
 		DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
 		List<Balade> listeBalade = daoBalade.find();
@@ -51,14 +53,26 @@ public class CalculerForfait extends JFrame {
 		JButton Calculer = new JButton("Calculer");
 		Calculer.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Instanciation du daoBalade
 				DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
-				Balade balade = (Balade)cmBoxBalade.getSelectedItem();
-				balade.setForfait(balade.calculerForfait(Integer.parseInt(txtKilometre.getText())));
-				daoBalade.update(balade);
-				dispose();
-				CalculerForfait calculerForfait = new CalculerForfait(personne);
-				calculerForfait.setTitle("Calculer forfait");
-				calculerForfait.setVisible(true);
+				
+				//Vérification si les champs sont vides et mise à jour de la balade
+				if(!txtKilometre.getText().equals("")) {
+					//Instanciation de la balade par la comboBox et initialisation du forfait
+					Balade balade = (Balade)cmBoxBalade.getSelectedItem();
+					balade.setForfait(balade.calculerForfait(Integer.parseInt(txtKilometre.getText())));
+					
+					//Mise à jour de la balade
+					daoBalade.update(balade);
+					
+					dispose();
+					CalculerForfait calculerForfait = new CalculerForfait(personne);
+					calculerForfait.setTitle("Calculer forfait");
+					calculerForfait.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Un ou plusieurs champs sont vides");
+				}
 			}
 		});
 		Calculer.setBounds(124, 114, 120, 30);
