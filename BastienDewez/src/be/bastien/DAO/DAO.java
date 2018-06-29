@@ -1,6 +1,7 @@
 package be.bastien.DAO;
 
 import java.sql.Connection;
+import java.util.List;
 
 public abstract class DAO<T> {
 	protected Connection connect = null;
@@ -15,5 +16,5 @@ public abstract class DAO<T> {
 	
 	public abstract boolean update(T obj);
 	
-	public abstract T find(T obj);
+	public abstract List <T> find();
 }

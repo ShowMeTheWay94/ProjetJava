@@ -1,7 +1,0 @@
-package be.bastien.ecran;
-
-import javax.swing.JFrame;
-
-public class AcceuilResponsable extends JFrame {
-	
-}

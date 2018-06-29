@@ -17,7 +17,7 @@ public class DAOBalade extends DAO<Balade> {
 	//Fonction pour créer une balade
 	public boolean create(Balade balade) {
 		try{
-			if(!findBalade(balade)){
+			if(!findBalade(balade)) {
 				String strCreate = "INSERT INTO BALADE (NOMBALADE,LIEU,FORFAIT,IDCATEGORIE) VALUES ('" + balade.getNomBalade()
 				+ "','" + balade.getLieuDepart() + "'," + balade.getForfait() + "," + balade.getCategorie().getIdCategorie() + ");";
 				PreparedStatement s = this.connect.prepareStatement(strCreate);
@@ -63,64 +63,7 @@ public class DAOBalade extends DAO<Balade> {
 		return false;
 	}
 	
-	//Fonctions pour trouver une balade
-	public Balade find(Balade balade) {			
-		try {
-			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
-					.executeQuery("SELECT * FROM BALADE WHERE NOMBALADE = '" + balade.getNomBalade() + "'");
-			while(result.next()) {
-				balade.setIdBalade(result.getInt("IDBALADE"));
-				balade.setNomBalade(result.getString("NOMBALADE"));
-				balade.setLieuDepart(result.getString("LIEU"));
-				balade.setDateBalade(result.getDate("DATEBALADE"));
-				balade.setForfait(result.getDouble("FORFAIT"));
-			}
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return balade;
-	}
-	
-	public Balade find(int idBalade){
-		Balade balade = new Balade();
-		
-		try {
-			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
-					.executeQuery("SELECT * FROM BALADE WHERE IDBALADE = " + idBalade);
-			while(result.next()) {
-				balade.setIdBalade(result.getInt("IDBALADE"));
-				balade.setNomBalade(result.getString("NOMBALADE"));
-				balade.setLieuDepart(result.getString("LIEU"));
-				balade.setDateBalade(result.getDate("DATEBALADE"));
-				balade.setForfait(result.getDouble("FORFAIT"));
-			}
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return balade;
-	}
-	
-	public boolean findBalade(Balade balade) {	
-		boolean trouve = false;
-		
-		try{
-			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM BALADE WHERE NOMBALADE = '" + balade.getNomBalade() + "'");
-			if(result.next()){
-				trouve = true;
-			}
-		}
-		catch(SQLException e){
-			e.printStackTrace();
-			return false;
-		}
-		
-		return trouve;
-	}
-	
+	//Fonction pour trouver une balade
 	public List<Balade> find(){
 		List<Balade> listeBalade = new ArrayList<Balade>();
 		
@@ -141,6 +84,23 @@ public class DAOBalade extends DAO<Balade> {
 		}
 		
 		return listeBalade;
+	}
+	
+	public boolean findBalade(Balade balade) {	
+		boolean trouve = false;
+		
+		try{
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM BALADE WHERE IdBalade = " + balade.getIdBalade());
+			if(result.next()){
+				trouve = true;
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}
+		
+		return trouve;
 	}
 	
 	//Fonction qui permet de retrouver les disponibilités

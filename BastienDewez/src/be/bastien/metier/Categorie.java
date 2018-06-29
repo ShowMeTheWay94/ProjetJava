@@ -10,7 +10,7 @@ public class Categorie implements Serializable {
 	private String nomCategorie;
 	private int nbrMembres;
 	private int supplement;
-	private Calendrier pojoCalendrier;
+	private Calendrier calendrier;
 
 	//Constructeur
 	public Categorie() { }
@@ -49,11 +49,11 @@ public class Categorie implements Serializable {
 	}
 	
 	public Calendrier getPojoCalendrier() {
-		return pojoCalendrier;
+		return calendrier;
 	}
 
-	public void setPojoCalendrier(Calendrier pojoCalendrier) {
-		this.pojoCalendrier = pojoCalendrier;
+	public void setPojoCalendrier(Calendrier calendrier) {
+		this.calendrier = calendrier;
 	}
 	
 	public String toString() {

@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import be.bastien.metier.Membre;
 import be.bastien.metier.Vehicule;
 
 public class DAOVehicule extends DAO<Vehicule> {
@@ -55,46 +56,23 @@ public class DAOVehicule extends DAO<Vehicule> {
 	}
 	
 	//Fonctions pour trovuer un véhicule
-	public Vehicule find(Vehicule vehicule) {	
-		return vehicule;
-	}
-	
-	public Vehicule find(int idBalade) {
-		Vehicule vehicule = new Vehicule();
-		DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
+	public List<Vehicule> find() {	
+		List<Vehicule> listVehicule = new ArrayList<Vehicule>();
 		
 		try {
-			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
-					.executeQuery("SELECT * FROM BALADE_VEHICULE WHERE IDBALADE = " + idBalade);
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM VEHICULE");
 			while(result.next()) {
-				Membre membre = new Membre();
+				Vehicule vehicule = new Vehicule();
 				vehicule.setNumImmatriculation(result.getString("NUMIMMATRICULATION"));
-				membre.setIdPersonne(find(vehicule.getNumImmatriculation()));
-				vehicule.setConducteur(daoMembre.find(membre));
+				vehicule.setPlaceLibreMembre(result.getInt("NBRPLACEMEMBRE"));
+				vehicule.setPlaceLibreVelo(result.getInt("NBRPLACEVELO"));
 			}
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return vehicule;
-	}
-	
-	public int find(String numImmatriculation) {
-		int idMembre = 0;
-		
-		try {
-			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
-					.executeQuery("SELECT * FROM VEHICULE WHERE NUMIMMATRICULATION = " + numImmatriculation);
-			if(result.first()) {
-				idMembre = result.getInt("IDMEMBRE");				
-			}
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return idMembre;
+		return listVehicule;
 	}
 	
 	public boolean findVehicule(Vehicule vehicule) {	

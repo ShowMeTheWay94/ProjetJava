@@ -12,7 +12,7 @@ public class ProjetConnection {
 	private ProjetConnection() {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			String url = "jdbc:ucanaccess://./Projet.accdb";
+			String url = "jdbc:ucanaccess://./Projet2.accdb";
 			instance = DriverManager.getConnection(url);
 		} catch (ClassNotFoundException ex) {
 			JOptionPane.showMessageDialog(null, "Classe de driver introuvable" + ex.getMessage());

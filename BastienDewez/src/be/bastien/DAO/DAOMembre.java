@@ -56,22 +56,6 @@ public class DAOMembre extends DAO<Membre>{
 	}
 	
 	//Fonctions pour trouver un membre
-	public Membre find(Membre membre) {		
-		try {
-			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
-					.executeQuery("SELECT * FROM PERSONNE WHERE IDPERSONNE = " + membre.getIdPersonne());
-			if(result.first()) {
-				membre.setNom(result.getString("NOM"));
-				membre.setPrenom(result.getString("PRENOM"));
-			}
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return membre;
-	}
-	
 	public List<Membre> find(){
 		List<Membre> listMembre = new ArrayList<Membre>();
 		
@@ -80,10 +64,13 @@ public class DAOMembre extends DAO<Membre>{
 					+ "= P.IDPERSONNE");
 			while(result.next()) {
 				Membre membre = new Membre();
+				membre.setIdPersonne(result.getInt("IDPERSONNE"));
 				membre.setNom(result.getString("NOM"));
 				membre.setPrenom(result.getString("PRENOM"));
 				membre.setCotisation(result.getInt("COTISATION"));
 				membre.setStatutCotisation(result.getString("STATUTCOTISATION"));
+				membre.setLogin(result.getString("LOGIN"));
+				membre.setPassword(result.getString("PASSWORD"));
 				listMembre.add(membre);
 			}
 		}
@@ -92,23 +79,6 @@ public class DAOMembre extends DAO<Membre>{
 		}
 		
 		return listMembre;
-	}
-	
-	public boolean find(Personne personne) {	
-		boolean trouve = false;
-		
-		try{
-			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM MEMBRE WHERE IdMembre = " + personne.getIdPersonne());
-			if(result.next()){
-				trouve = true;
-			}
-		}
-		catch(SQLException e){
-			e.printStackTrace();
-			return false;
-		}
-		
-		return trouve;
 	}
 	
 	public boolean findMembre(Membre membre) {	

@@ -2,6 +2,7 @@ package be.bastien.ecran;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -55,33 +56,43 @@ public class Connexion extends JFrame {
 				DAOResponsable daoResponsable = new DAOResponsable(ProjetConnection.getInstance());
 				DAOTresorier daoTresorier = new DAOTresorier(ProjetConnection.getInstance());
 				
-				//Instanciation et initialisation des variables de la personne
-				Personne personne = new Personne();
-				personne.setLogin(txtPseudo.getText());
-				personne.setPassword(String.valueOf(passwordField.getPassword()));
-				personne = daoPersonne.find(personne);
-				
-				//Vérification si la personne est un membre, un responsable ou un trésorier
-				if(daoMembre.find(personne)) {
-					dispose();
-					AcceuilMembre acceuilMembre = new AcceuilMembre(personne);
-					acceuilMembre.setTitle("Acceuil Membre");
-					acceuilMembre.setVisible(true);
-				}
-				else if(daoResponsable.find(personne)) {
-					dispose();
-					AcceuilResponsable acceuilResponsable = new AcceuilResponsable(personne);
-					acceuilResponsable.setTitle("Acceuil Responsable");
-					acceuilResponsable.setVisible(true);
-				}
-				else if(daoTresorier.find(personne)) {
-					dispose();
-					AcceuilTresorier acceuilTresorier = new AcceuilTresorier(personne);
-					acceuilTresorier.setTitle("Acceuil trésorier");
-					acceuilTresorier.setVisible(true);
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Connexion ratée");
+				//Vérification login et mot de passe
+				List<Personne> listPersonne = daoPersonne.find();
+				for(int i = 0;i < listPersonne.size();i++) {
+					if(listPersonne.get(i).getLogin().equals(txtPseudo.getText()) && listPersonne.get(i).getPassword().equals(String.valueOf(passwordField.getPassword()))) {
+						//Vérification si l'utilisateur est un membre
+						List<Membre> listMembre = daoMembre.find();
+						for(int j = 0;j < listMembre.size(); j++) {
+							if(listPersonne.get(i).getIdPersonne() == listMembre.get(j).getIdPersonne()) {
+								dispose();
+								AcceuilMembre acceuilMembre = new AcceuilMembre(listPersonne.get(i));
+								acceuilMembre.setTitle("Acceuil Membre");
+								acceuilMembre.setVisible(true);
+							}
+						}
+						
+						//Vérification si l'utilisateur est un responsable
+						List<Responsable> listResponsable = daoResponsable.find();
+						for(int j = 0;j < listResponsable.size(); j++) {
+							if(listPersonne.get(i).getIdPersonne() == listResponsable.get(j).getIdPersonne()) {
+								dispose();
+								AcceuilResponsable acceuilResponsable = new AcceuilResponsable(listPersonne.get(i));
+								acceuilResponsable.setTitle("Acceuil Responsable");
+								acceuilResponsable.setVisible(true);
+							}
+						}
+						
+						//Vérification si l'utilisateur est un trésorier
+						List<Tresorier> listTresorier = daoTresorier.find();
+						for(int j = 0;j < listTresorier.size(); j++) {
+							if(listPersonne.get(i).getIdPersonne() == listTresorier.get(j).getIdPersonne()) {
+								dispose();
+								AcceuilTresorier acceuilTresorier = new AcceuilTresorier(listPersonne.get(i));
+								acceuilTresorier.setTitle("Acceuil trésorier");
+								acceuilTresorier.setVisible(true);
+							}
+						}
+					}
 				}
 			}
 		});

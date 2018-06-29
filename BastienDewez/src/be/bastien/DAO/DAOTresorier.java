@@ -3,8 +3,9 @@ package be.bastien.DAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import be.bastien.metier.Personne;
 import be.bastien.metier.Tresorier;
 
 public class DAOTresorier extends DAO<Tresorier>{
@@ -28,23 +29,27 @@ public class DAOTresorier extends DAO<Tresorier>{
 	}
 	
 	//Fonctions pour trouver un trésorier
-	public Tresorier find(Tresorier tresorier) {
-		return tresorier;
-	}
-	
-	public boolean find(Personne personne) {	
-		boolean trouve = false;
+	public List<Tresorier> find() {
+		List<Tresorier> listTresorier = new ArrayList<Tresorier>();
 		
-		try{
-			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM TRESORIER WHERE IdTresorier = " + personne.getIdPersonne());
-			if(result.next()){
-				trouve = true;
+		try {
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM TRESORIER T INNER JOIN PERSONNE P ON T.IDTRESORIER "
+					+ "= P.IDPERSONNE");
+			while(result.next()) {
+				Tresorier tresorier = new Tresorier();
+				tresorier.setIdPersonne(result.getInt("IDPERSONNE"));
+				tresorier.setLogin(result.getString("LOGIN"));
+				tresorier.setNom(result.getString("NOM"));
+				tresorier.setNumCompteCourant(result.getString("COMPTECOURANT"));
+				tresorier.setPassword(result.getString("PASSWORD"));
+				tresorier.setPrenom(result.getString("PRENOM"));
+				listTresorier.add(tresorier);
 			}
 		}
-		catch(SQLException e){
+		catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return trouve;
+		return listTresorier;
 	}
 }

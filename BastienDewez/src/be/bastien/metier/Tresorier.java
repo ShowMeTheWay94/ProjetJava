@@ -8,7 +8,7 @@ public class Tresorier extends Personne implements Serializable {
 
 	//Variable d'instance
 	private List<Membre> listMembre;
-	private int numCompteCourant;
+	private String numCompteCourant;
 	
 	//Constructeur
 	public Tresorier() {
@@ -24,11 +24,11 @@ public class Tresorier extends Personne implements Serializable {
 		this.listMembre = listMembre;
 	}
 
-	public int getNumCompteCourant() {
+	public String getNumCompteCourant() {
 		return numCompteCourant;
 	}
 
-	public void setNumCompteCourant(int numCompteCourant) {
+	public void setNumCompteCourant(String numCompteCourant) {
 		this.numCompteCourant = numCompteCourant;
 	}
 	

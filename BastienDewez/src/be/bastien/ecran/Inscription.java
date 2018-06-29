@@ -2,8 +2,10 @@ package be.bastien.ecran;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,7 +24,12 @@ public class Inscription extends JFrame {
 	private JTextField txtPseudo;
 	private JPasswordField Mdp;
 	private JPasswordField MdpConfirm;
-	private JTextField txtCategorie;
+	private JComboBox<String> comboCategorie;
+	
+	//Instanciation des daoPersonne, daoMembre et daoCategorie
+	DAOPersonne daoPersonne = new DAOPersonne(ProjetConnection.getInstance());
+	DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
+	DAOCategorie daoCategorie = new DAOCategorie(ProjetConnection.getInstance());
 
 	public Inscription() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,7 +46,7 @@ public class Inscription extends JFrame {
 	txtNom.setBounds(230, 21, 100, 20);
 	contentPane.add(txtNom);
 	
-	JLabel lblPrnom = new JLabel("Pr\u00E9nom :");
+	JLabel lblPrnom = new JLabel("Prenom :");
 	lblPrnom.setBounds(80, 64, 60, 14);
 	contentPane.add(lblPrnom);
 	
@@ -76,20 +83,27 @@ public class Inscription extends JFrame {
 	lblCategorie.setBounds(80,224,150,14);
 	contentPane.add(lblCategorie);
 	
-	txtCategorie = new JTextField();
-	txtCategorie.setBounds(230, 221, 100, 20);
-	contentPane.add(txtCategorie);
+	comboCategorie = new JComboBox<String>();
+	
+	List<Categorie> listeCategorie = daoCategorie.find();
+	
+	for(int i = 0;i < listeCategorie.size();i++) {
+		comboCategorie.addItem(listeCategorie.get(i).getNomCategorie());
+	}
+
+	comboCategorie.setBounds(230, 221, 100, 20);
+	contentPane.add(comboCategorie);
 	
 	JButton btnInscription = new JButton("Inscription");
 	btnInscription.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			//Instanciation des daoPersonne, daoMembre et daoCategorie
-			DAOPersonne daoPersonne = new DAOPersonne(ProjetConnection.getInstance());
-			DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
-			DAOCategorie daoCategorie = new DAOCategorie(ProjetConnection.getInstance());
-			
+		public void actionPerformed(ActionEvent e) {	
+			Categorie categorie = new Categorie();
 			//Instanciation et initialisation des variables de la catégorie
-			Categorie categorie = daoCategorie.find(txtCategorie.getText());
+			for(int i = 0;i < listeCategorie.size();i++) {
+				if(listeCategorie.get(i).getNomCategorie() == comboCategorie.getSelectedItem().toString()) {
+					categorie = listeCategorie.get(i);
+				}
+			}
 			categorie.setSupplement(0);
 			
 			//Instanciation et initialisation des variables d'une personne
@@ -105,7 +119,7 @@ public class Inscription extends JFrame {
 			membre.setStatutCotisation("A payer");
 			
 			//Vérification si les champs sont vides, vérification des mots de passe,création de la personne et du membre et ajout dans la table membre_categorie
-			if(!txtPseudo.getText().equals("") && !txtPrenom.getText().equals("") && !txtNom.getText().equals("") && !(Mdp.getPassword().length == 0) && !(MdpConfirm.getPassword().length ==0) && !txtCategorie.getText().equals("")) {
+			if(!txtPseudo.getText().equals("") && !txtPrenom.getText().equals("") && !txtNom.getText().equals("") && !(Mdp.getPassword().length == 0) && !(MdpConfirm.getPassword().length ==0)) {
 				if(String.valueOf(Mdp.getPassword()).equals(String.valueOf(MdpConfirm.getPassword()))) {
 					if(daoPersonne.create(personne)) {
 						membre.setIdPersonne(personne.getIdPersonne());
@@ -130,8 +144,11 @@ public class Inscription extends JFrame {
 						}
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "Les mots de passe ne correspondent pas");;
+						JOptionPane.showMessageDialog(null, "Inscription ratée");
 					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Les mots de passe ne correspondent pas");;
 				}
 			}
 			else {

@@ -1,13 +1,13 @@
 package be.bastien.metier;
 
 import java.io.Serializable;
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 public class Responsable extends Personne implements Serializable {
 	private static final long serialVersionUID = -3666600781634000802L;
 	
 	//Variable d'instance
-	private GregorianCalendar dateExpiration;
+	private Date dateExpiration;
 	
 	//Constructeur
 	public Responsable() { 
@@ -15,11 +15,11 @@ public class Responsable extends Personne implements Serializable {
 	}
 	
 	//Getters et Setters
-	public GregorianCalendar getDateExpiration() {
+	public Date getDateExpiration() {
 		return dateExpiration;
 	}
 
-	public void setDateExpiration(GregorianCalendar dateExpiration) {
+	public void setDateExpiration(Date dateExpiration) {
 		this.dateExpiration = dateExpiration;
 	}
 }

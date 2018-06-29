@@ -3,8 +3,9 @@ package be.bastien.DAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import be.bastien.metier.Personne;
 import be.bastien.metier.Responsable;
 
 public class DAOResponsable extends DAO<Responsable> {
@@ -28,23 +29,27 @@ public class DAOResponsable extends DAO<Responsable> {
 	}
 	
 	//Fonstions pour trouver un responsable
-	public Responsable find(Responsable responsable) {
-		return responsable;
-	}
-	
-	public boolean find(Personne personne) {	
-		boolean trouve = false;
+	public List<Responsable> find() {
+		List<Responsable> listResponsable = new ArrayList<Responsable>();
 		
-		try{
-			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM RESPONSABLE WHERE IdResponsable = " + personne.getIdPersonne());
-			if(result.next()){
-				trouve = true;
+		try {
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM RESPONSABLE R INNER JOIN PERSONNE P ON R.IDRESPONSABLE "
+					+ "= P.IDPERSONNE");
+			while(result.next()) {
+				Responsable responsable = new Responsable();
+				responsable.setDateExpiration(result.getDate("DATEEXPIRATION"));
+				responsable.setIdPersonne(result.getInt("IDPERSONNE"));
+				responsable.setLogin(result.getString("LOGIN"));
+				responsable.setNom(result.getString("NOM"));
+				responsable.setPassword(result.getString("PASSWORD"));
+				responsable.setPrenom(result.getString("PRENOM"));
+				listResponsable.add(responsable);
 			}
 		}
-		catch(SQLException e){
+		catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return trouve;
+		return listResponsable;
 	}
 }

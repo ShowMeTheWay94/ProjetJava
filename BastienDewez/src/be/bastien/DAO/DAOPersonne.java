@@ -1,6 +1,8 @@
 package be.bastien.DAO;
 
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,25 +54,27 @@ public class DAOPersonne extends DAO<Personne> {
 		return false;
 	}
 
-	//Fonctions pour trouver une personne
-	public Personne find(Personne personne) {	
-		try{
+	//Fonction pour trouver une personne
+	public List<Personne> find() {	
+		List<Personne> listPersonne = new ArrayList<Personne>();
+		
+		try {
 			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM PERSONNE");
-
-			while(result.next()){
-				if(result.getString("LOGIN").equals(personne.getLogin()) && result.getString("PASSWORD").equals(personne.getPassword())){
-					personne.setIdPersonne(result.getInt("IdPersonne"));
-					personne.setNom(result.getString("Nom"));
-					personne.setPrenom("Prenom");
-					return personne;
-				}
+			while(result.next()) {
+				Personne personne = new Personne();
+				personne.setIdPersonne(result.getInt("IDPERSONNE"));
+				personne.setLogin(result.getString("LOGIN"));
+				personne.setNom(result.getString("NOM"));
+				personne.setPassword(result.getString("PASSWORD"));
+				personne.setPrenom(result.getString("PRENOM"));
+				listPersonne.add(personne);
 			}
 		}
-		catch(SQLException e){
+		catch(SQLException e) {
 			e.printStackTrace();
 		}
-
-		return personne;
+		
+		return listPersonne;
 	}
 
 	public boolean findPersonne(Personne personne){

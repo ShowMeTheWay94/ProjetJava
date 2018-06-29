@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.bastien.metier.Categorie;
-import be.bastien.metier.Personne;
 
 public class DAOCategorie extends DAO<Categorie> {
 	public DAOCategorie(Connection conn){
@@ -44,39 +43,16 @@ public class DAOCategorie extends DAO<Categorie> {
 		return false;
 	}
 	
-	//Fonctions pour trouver une catégorie
-	public Categorie find(Categorie categorie) {	
-		return categorie;
-	}
-	
-	public Categorie find(String nomCategorie) {
-		Categorie categorie = new Categorie();
+	//Fonction pour trouver les catégories
+	public List<Categorie> find() {	
+		List<Categorie> listeCategorie = new ArrayList<Categorie>();
 		
 		try{
 			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM CATEGORIE");
 			while(result.next()){
-				if(result.getString("SOUSTYPE").equals(nomCategorie)) {
-					categorie.setIdCategorie(result.getInt("IDCATEGORIE"));
-					categorie.setNbrMembres(result.getInt("NBRMEMBRES"));
-				}
-			}
-		}
-		catch(SQLException e){
-			e.printStackTrace();
-		}
-		
-		return categorie;
-	}
-	
-	public List<Categorie> find(Personne personne){
-		List<Categorie> listeCategorie = new ArrayList<Categorie>();
-		
-		try{
-			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM MEMBRE_CATEGORIE MC INNER JOIN CATEGORIE C ON MC.IDCATEGORIE = C.IDCATEGORIE WHERE IDMEMBRE = 5");
-			while(result.next()){
 				Categorie categorie = new Categorie();
 				categorie.setIdCategorie(result.getInt("IDCATEGORIE"));
-				categorie.setSupplement(result.getInt("SUPPLEMENT"));
+				categorie.setNbrMembres(result.getInt("NBRMEMBRES"));
 				categorie.setNomCategorie(result.getString("SOUSTYPE"));
 				listeCategorie.add(categorie);
 			}
