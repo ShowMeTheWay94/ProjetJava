@@ -84,13 +84,10 @@ public class Inscription extends JFrame {
 	contentPane.add(lblCategorie);
 	
 	comboCategorie = new JComboBox<String>();
-	
 	List<Categorie> listeCategorie = daoCategorie.find();
-	
 	for(int i = 0;i < listeCategorie.size();i++) {
 		comboCategorie.addItem(listeCategorie.get(i).getNomCategorie());
 	}
-
 	comboCategorie.setBounds(230, 221, 100, 20);
 	contentPane.add(comboCategorie);
 	

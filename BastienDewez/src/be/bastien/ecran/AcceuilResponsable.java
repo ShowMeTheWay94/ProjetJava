@@ -60,9 +60,9 @@ public class AcceuilResponsable extends JFrame {
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				Connexion connexion = new Connexion();
-				connexion.setTitle("Connexion");
-				connexion.setVisible(true);
+				Acceuil acceuil = new Acceuil();
+				acceuil.setTitle("Acceuil");
+				acceuil.setVisible(true);
 			}
 		});
 		Retour.setBounds(304, 220, 120, 30);

@@ -94,6 +94,6 @@ public class Balade implements Serializable {
 	}
 	
 	public String toString() {
-		return getNomBalade() + " " + getLieuDepart() + " " + getDateBalade() + " " + getForfait();
+		return this.getNomBalade() + " " + this.getLieuDepart() + " " + this.getDateBalade() + " " + this.getForfait();
 	}
 }

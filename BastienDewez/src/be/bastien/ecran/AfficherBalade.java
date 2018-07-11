@@ -31,11 +31,11 @@ public class AfficherBalade extends JFrame {
 		contentPane.add(lblBalade);
 		
 		//Initialisation de la comboBox avec des balades
-		JComboBox<Balade> cmBoxBalade = new JComboBox<Balade>();
+		JComboBox<String> cmBoxBalade = new JComboBox<String>();
 		DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
 		List<Balade> listeBalade = daoBalade.find();
 		for(int i = 0;i < listeBalade.size();i++) {
-			cmBoxBalade.addItem(listeBalade.get(i));
+			cmBoxBalade.addItem(listeBalade.get(i).toString());
 		}
 		cmBoxBalade.setBounds(10, 40, 350, 20);
 		contentPane.add(cmBoxBalade);

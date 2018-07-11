@@ -2,8 +2,10 @@ package be.bastien.ecran;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,6 +22,7 @@ import be.bastien.metier.Personne;
 public class AjouterBalade extends JFrame {
 	private static final long serialVersionUID = 8491766187158806612L;
 	private JPanel contentPane;
+	DAOCategorie daoCategorie = new DAOCategorie(ProjetConnection.getInstance());
 	
 	public AjouterBalade (Personne personne) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,9 +51,13 @@ public class AjouterBalade extends JFrame {
 		lblCategorie.setBounds(110, 134, 120, 14);
 		contentPane.add(lblCategorie);
 		
-		JTextField txtCategorie = new JTextField();
-		txtCategorie.setBounds(180, 131, 100, 20);
-		contentPane.add(txtCategorie);
+		JComboBox<String> comboCategorie = new JComboBox<String>();
+		List<Categorie> listeCategorie = daoCategorie.find();
+		for(int i = 0;i < listeCategorie.size();i++) {
+			comboCategorie.addItem(listeCategorie.get(i).getNomCategorie());
+		}
+		comboCategorie.setBounds(180, 131, 100, 20);
+		contentPane.add(comboCategorie);
 		
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(new ActionListener() {
@@ -60,28 +67,37 @@ public class AjouterBalade extends JFrame {
 				DAOCategorie daoCategorie = new DAOCategorie(ProjetConnection.getInstance());
 				
 				//Instanciation de la catégorie
-				Categorie categorie = daoCategorie.find(txtCategorie.getText());
-				
-				//Instanciation et initialisation des variables du membre
-				Balade balade = new Balade();
-				balade.setNomBalade(txtNom.getText());
-				balade.setLieuDepart(txtLieu.getText());
-				balade.setCategorie(categorie);
-				
-				//Vérification si les champs sont vides et ajout de la balade
-				if(!txtNom.getText().equals("") && !txtLieu.getText().equals("") && !txtCategorie.getText().equals("")) {
-					if(daoBalade.create(balade)) {
-						dispose();
-						AfficherBalade afficherBalade = new AfficherBalade(personne);
-						afficherBalade.setTitle("Afficher les balades");
-						afficherBalade.setVisible(true);
+				List<Categorie> listeCategorie = daoCategorie.find();
+				for(int i = 0;i < listeCategorie.size();i++) {
+					if(comboCategorie.getSelectedItem() == listeCategorie.get(i).getNomCategorie()) {
+						Categorie categorie = new Categorie();
+						categorie.setIdCategorie(listeCategorie.get(i).getIdCategorie());
+						categorie.setNbrMembres(listeCategorie.get(i).getNbrMembres());
+						categorie.setNomCategorie(listeCategorie.get(i).getNomCategorie());
+						categorie.setSupplement(listeCategorie.get(i).getSupplement());
+						
+						//Instanciation et initialisation des variables du membre
+						Balade balade = new Balade();
+						balade.setNomBalade(txtNom.getText());
+						balade.setLieuDepart(txtLieu.getText());
+						balade.setCategorie(categorie);
+						
+						//Vérification si les champs sont vides et ajout de la balade
+						if(!txtNom.getText().equals("") && !txtLieu.getText().equals("") && !comboCategorie.getSelectedItem().equals("")) {
+							if(daoBalade.create(balade)) {
+								dispose();
+								AfficherBalade afficherBalade = new AfficherBalade(personne);
+								afficherBalade.setTitle("Afficher les balades");
+								afficherBalade.setVisible(true);
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "Ajout raté");
+							}
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Un ou plusieurs champs sont vides");
+						}
 					}
-					else {
-						JOptionPane.showMessageDialog(null, "Ajout raté");
-					}
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Un ou plusieurs champs sont vides");
 				}
 			}
 		});

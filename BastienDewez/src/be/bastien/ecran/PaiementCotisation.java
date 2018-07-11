@@ -26,8 +26,8 @@ public class PaiementCotisation extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
-		JLabel lblCotisation = new JLabel("Nom - Prénom - Statut Cotisation");
-		lblCotisation.setBounds(95,20,200,20);
+		JLabel lblCotisation = new JLabel("Membres devant payer leur cotisation");
+		lblCotisation.setBounds(85,20,240,20);
 		contentPane.add(lblCotisation);
 		
 		//Initialisation de la comboBox
@@ -35,7 +35,9 @@ public class PaiementCotisation extends JFrame {
 		DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
 		List<Membre> listeMembre = daoMembre.find();
 		for(int i = 0;i < listeMembre.size();i++) {
-			cmBoxCotisation.addItem(listeMembre.get(i).toString());
+			if(listeMembre.get(i).getCotisation() != 0) {
+				cmBoxCotisation.addItem(listeMembre.get(i).getNom() + " " + listeMembre.get(i).getPrenom());
+			}
 		}	
 		cmBoxCotisation.setBounds(90, 40, 200, 20);
 		contentPane.add(cmBoxCotisation);

@@ -21,6 +21,7 @@ public class Connexion extends JFrame {
 	private JTextField txtPseudo;
 	private JLabel lblMotDePasse;
 	private JPasswordField passwordField;
+	private boolean trouve = false;
 	
 	public Connexion() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,6 +65,7 @@ public class Connexion extends JFrame {
 						List<Membre> listMembre = daoMembre.find();
 						for(int j = 0;j < listMembre.size(); j++) {
 							if(listPersonne.get(i).getIdPersonne() == listMembre.get(j).getIdPersonne()) {
+								trouve = true;
 								dispose();
 								AcceuilMembre acceuilMembre = new AcceuilMembre(listPersonne.get(i));
 								acceuilMembre.setTitle("Acceuil Membre");
@@ -75,6 +77,7 @@ public class Connexion extends JFrame {
 						List<Responsable> listResponsable = daoResponsable.find();
 						for(int j = 0;j < listResponsable.size(); j++) {
 							if(listPersonne.get(i).getIdPersonne() == listResponsable.get(j).getIdPersonne()) {
+								trouve = true;
 								dispose();
 								AcceuilResponsable acceuilResponsable = new AcceuilResponsable(listPersonne.get(i));
 								acceuilResponsable.setTitle("Acceuil Responsable");
@@ -86,6 +89,7 @@ public class Connexion extends JFrame {
 						List<Tresorier> listTresorier = daoTresorier.find();
 						for(int j = 0;j < listTresorier.size(); j++) {
 							if(listPersonne.get(i).getIdPersonne() == listTresorier.get(j).getIdPersonne()) {
+								trouve = true;
 								dispose();
 								AcceuilTresorier acceuilTresorier = new AcceuilTresorier(listPersonne.get(i));
 								acceuilTresorier.setTitle("Acceuil trésorier");
@@ -93,6 +97,9 @@ public class Connexion extends JFrame {
 							}
 						}
 					}
+				}
+				if(!trouve) {
+					JOptionPane.showMessageDialog(null,"Pas d'utilisateur existant avec ces identifiants");
 				}
 			}
 		});

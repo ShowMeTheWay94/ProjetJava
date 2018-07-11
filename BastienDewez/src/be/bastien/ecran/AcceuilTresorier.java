@@ -32,13 +32,13 @@ public class AcceuilTresorier extends JFrame {
 		});
 		contentPane.add(btnRemboursement);
 		
-		JButton btnCotisation = new JButton("Vérifier les paiements des cotisations");
+		JButton btnCotisation = new JButton("Cotisations à payer");
 		btnCotisation.setBounds(100, 90, 250, 30);
 		btnCotisation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
 				PaiementCotisation paiementCotisation = new PaiementCotisation(personne);
-				paiementCotisation.setTitle("Vérifier les cotisations");
+				paiementCotisation.setTitle("Cotisations à payer");
 				paiementCotisation.setVisible(true);
 			}
 		});
@@ -48,9 +48,9 @@ public class AcceuilTresorier extends JFrame {
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				Connexion connexion = new Connexion();
-				connexion.setTitle("Connexion");
-				connexion.setVisible(true);
+				Acceuil acceuil = new Acceuil();
+				acceuil.setTitle("Acceuil");
+				acceuil.setVisible(true);
 			}
 		});
 		Retour.setBounds(304, 160, 120, 30);
