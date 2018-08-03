@@ -112,4 +112,21 @@ public class DAOMembre extends DAO<Membre>{
 			return false;
 		}
 	}
+	
+	//Fonction qui retourne les categories d'un membre
+	public List<Integer> findCategorie(Personne personne){
+		List<Integer> listCategorie = new ArrayList<Integer>();
+		
+		try {
+			ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM MEMBRE_CATEGORIE WHERE IDMEMBRE = " + personne.getIdPersonne());
+			while(result.next()) {
+				listCategorie.add(result.getInt("IDCATEGORIE"));
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return listCategorie;
+	}
 }

@@ -1,7 +1,6 @@
 package be.bastien.metier;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 public class Balade implements Serializable {
@@ -11,7 +10,7 @@ public class Balade implements Serializable {
 	private int idBalade;
 	private String nomBalade;
 	private String lieuDepart;
-	private Date dateBalade;
+	private String dateBalade;
 	private double forfait;
 	private List<Vehicule> listVehicule;
 	private Categorie categorie;
@@ -44,11 +43,11 @@ public class Balade implements Serializable {
 		this.lieuDepart = lieuDepart;
 	}
 
-	public Date getDateBalade() {
+	public String getDateBalade() {
 		return dateBalade;
 	}
 
-	public void setDateBalade(Date dateBalade) {
+	public void setDateBalade(String dateBalade) {
 		this.dateBalade = dateBalade;
 	}
 

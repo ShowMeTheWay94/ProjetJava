@@ -2,6 +2,7 @@ package be.bastien.ecran;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -40,12 +41,20 @@ public class AjouterBalade extends JFrame {
 		contentPane.add(txtNom);
 		
 		JLabel lblLieu = new JLabel("Lieu :");
-		lblLieu.setBounds(110, 74, 140, 14);
+		lblLieu.setBounds(110, 54, 140, 14);
 		contentPane.add(lblLieu);
 		
 		JTextField txtLieu = new JTextField();
-		txtLieu.setBounds(180, 71, 100, 20);
+		txtLieu.setBounds(180, 51, 100, 20);
 		contentPane.add(txtLieu);
+		
+		JLabel lblDate = new JLabel("Date (jj-mm-yyyy) :");
+		lblDate.setBounds(110, 94, 140, 14);
+		contentPane.add(lblDate);
+		
+		JTextField txtDate = new JTextField();
+		txtDate.setBounds(180, 91, 100, 20);
+		contentPane.add(txtDate);
 		
 		JLabel lblCategorie = new JLabel("Categorie :");
 		lblCategorie.setBounds(110, 134, 120, 14);
@@ -76,14 +85,15 @@ public class AjouterBalade extends JFrame {
 						categorie.setNomCategorie(listeCategorie.get(i).getNomCategorie());
 						categorie.setSupplement(listeCategorie.get(i).getSupplement());
 						
-						//Instanciation et initialisation des variables du membre
-						Balade balade = new Balade();
-						balade.setNomBalade(txtNom.getText());
-						balade.setLieuDepart(txtLieu.getText());
-						balade.setCategorie(categorie);
-						
 						//Vérification si les champs sont vides et ajout de la balade
-						if(!txtNom.getText().equals("") && !txtLieu.getText().equals("") && !comboCategorie.getSelectedItem().equals("")) {
+						if(!txtNom.getText().equals("") && !txtLieu.getText().equals("") && !txtDate.getText().equals("") && !comboCategorie.getSelectedItem().equals("")) {
+							//Instanciation et initialisation des variables du membre
+							Balade balade = new Balade();
+							balade.setNomBalade(txtNom.getText());
+							balade.setLieuDepart(txtLieu.getText());
+							balade.setDateBalade(txtDate.getText());
+							balade.setCategorie(categorie);
+							
 							if(daoBalade.create(balade)) {
 								dispose();
 								AfficherBalade afficherBalade = new AfficherBalade(personne);

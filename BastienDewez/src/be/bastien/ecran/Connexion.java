@@ -67,7 +67,7 @@ public class Connexion extends JFrame {
 							if(listPersonne.get(i).getIdPersonne() == listMembre.get(j).getIdPersonne()) {
 								trouve = true;
 								dispose();
-								AcceuilMembre acceuilMembre = new AcceuilMembre(listPersonne.get(i));
+								AcceuilMembre acceuilMembre = new AcceuilMembre(listMembre.get(j));
 								acceuilMembre.setTitle("Acceuil Membre");
 								acceuilMembre.setVisible(true);
 							}

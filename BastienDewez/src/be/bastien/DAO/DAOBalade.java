@@ -18,8 +18,8 @@ public class DAOBalade extends DAO<Balade> {
 	public boolean create(Balade balade) {
 		try{
 			if(!findBalade(balade)) {
-				String strCreate = "INSERT INTO BALADE (NOMBALADE,LIEU,FORFAIT,IDCATEGORIE) VALUES ('" + balade.getNomBalade()
-				+ "','" + balade.getLieuDepart() + "'," + balade.getForfait() + "," + balade.getCategorie().getIdCategorie() + ");";
+				String strCreate = "INSERT INTO BALADE (NOMBALADE,LIEU,DATEBALADE,FORFAIT,IDCATEGORIE) VALUES ('" + balade.getNomBalade()
+				+ "','" + balade.getLieuDepart() + "','" + balade.getDateBalade() + "'," + balade.getForfait() + "," + balade.getCategorie().getIdCategorie() + ");";
 				PreparedStatement s = this.connect.prepareStatement(strCreate);
 				s.executeUpdate();
 				return true;
@@ -74,7 +74,7 @@ public class DAOBalade extends DAO<Balade> {
 				balade.setIdBalade(result.getInt("IDBALADE"));
 				balade.setNomBalade(result.getString("NOMBALADE"));
 				balade.setLieuDepart(result.getString("LIEU"));
-				balade.setDateBalade(result.getDate("DATEBALADE"));
+				balade.setDateBalade(result.getString("DATEBALADE"));
 				balade.setForfait(result.getDouble("FORFAIT"));
 				listeBalade.add(balade);
 			}

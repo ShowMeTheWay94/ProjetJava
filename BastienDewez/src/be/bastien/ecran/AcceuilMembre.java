@@ -11,13 +11,12 @@ import javax.swing.JPanel;
 import be.bastien.DAO.DAOMembre;
 import be.bastien.DAO.ProjetConnection;
 import be.bastien.metier.Membre;
-import be.bastien.metier.Personne;
 
 public class AcceuilMembre extends JFrame {
 	private static final long serialVersionUID = -3207631333749439129L;
 	private JPanel contentPane;
 	
-	public AcceuilMembre(Personne personne) {
+	public AcceuilMembre(Membre membre) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -29,7 +28,7 @@ public class AcceuilMembre extends JFrame {
 		btnInscription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
-				InscriptionCategorie inscriptionCategorie = new InscriptionCategorie(personne);
+				InscriptionCategorie inscriptionCategorie = new InscriptionCategorie(membre);
 				inscriptionCategorie.setTitle("Inscription catégorie");
 				inscriptionCategorie.setVisible(true);
 			}
@@ -41,7 +40,7 @@ public class AcceuilMembre extends JFrame {
 		btnDisponibilite.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
-				GererDisponibilites gererDisponibilites = new GererDisponibilites(personne);
+				GererDisponibilites gererDisponibilites = new GererDisponibilites(membre);
 				gererDisponibilites.setTitle("Gérer les disponibilités");
 				gererDisponibilites.setVisible(true);
 			}
@@ -53,7 +52,7 @@ public class AcceuilMembre extends JFrame {
 		btnForfait.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
-				AfficherForfait afficherForfait = new AfficherForfait(personne);
+				AfficherForfait afficherForfait = new AfficherForfait(membre);
 				afficherForfait.setTitle("Afficher forfait");
 				afficherForfait.setVisible(true);
 			}
@@ -65,45 +64,47 @@ public class AcceuilMembre extends JFrame {
 		btnSupplement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				dispose();
-				AfficherSupplement afficherSupplement = new AfficherSupplement(personne);
+				AfficherSupplement afficherSupplement = new AfficherSupplement(membre);
 				afficherSupplement.setTitle("Afficher supplément");
 				afficherSupplement.setVisible(true);
 			}
 		});
 		contentPane.add(btnSupplement);
 		
-		JButton btnCotisation = new JButton("Payer cotisation");
-		btnCotisation.setBounds(90, 180, 250, 30);
-		btnCotisation.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0){
-				//Instanciation du daoMembre
-				DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
-				
-				//Instanciation et initialisation des variables du membre
-				Membre membre = new Membre();
-				membre.setIdPersonne(personne.getIdPersonne());
-				membre.setCotisation(0);
-				membre.setStatutCotisation("Payé");
-				
-				//Mise à jour du membre
-				if(daoMembre.update(membre)) {
-					JOptionPane.showMessageDialog(null, "Cotisation payée");
-					btnCotisation.setVisible(false);
+		if(membre.getCotisation() != 0) {
+			JButton btnCotisation = new JButton("Payer cotisation");
+			btnCotisation.setBounds(90, 180, 250, 30);
+			btnCotisation.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0){
+					//Instanciation du daoMembre
+					DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
+					
+					//Instanciation et initialisation des variables du membre
+					Membre membre = new Membre();
+					membre.setIdPersonne(membre.getIdPersonne());
+					membre.setCotisation(0);
+					membre.setStatutCotisation("Payé");
+					
+					//Mise à jour du membre
+					if(daoMembre.update(membre)) {
+						JOptionPane.showMessageDialog(null, "Cotisation payée");
+						btnCotisation.setVisible(false);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Paiement cotisation ratée");
+					}
 				}
-				else {
-					JOptionPane.showMessageDialog(null, "Paiement cotisation ratée");
-				}
-			}
-		});
-		contentPane.add(btnCotisation);
+			});
+			contentPane.add(btnCotisation);
+		}
 		
 		JButton Retour = new JButton("Deconnexion");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				Connexion connexion = new Connexion();
-				connexion.setTitle("Connexion");
-				connexion.setVisible(true);
+				Acceuil acceuil = new Acceuil();
+				acceuil.setTitle("Acceuil");
+				acceuil.setVisible(true);
 			}
 		});
 		Retour.setBounds(304, 220, 120, 30);
