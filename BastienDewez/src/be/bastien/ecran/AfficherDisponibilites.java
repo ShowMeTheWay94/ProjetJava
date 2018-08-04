@@ -44,7 +44,7 @@ public class AfficherDisponibilites extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				AcceuilResponsable acceuilResponsable = new AcceuilResponsable(personne);
-				acceuilResponsable.setTitle("Acceuil Responsable");
+				acceuilResponsable.setTitle("Accueil Responsable");
 				acceuilResponsable.setVisible(true);
 			}
 		});

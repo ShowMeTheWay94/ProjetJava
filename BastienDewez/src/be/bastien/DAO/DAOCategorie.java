@@ -27,10 +27,12 @@ public class DAOCategorie extends DAO<Categorie> {
 	//Fonction pour mettre à jour une catégorie et la table membre_catégorie
 	public boolean update(Categorie categorie) {
 		try{
-			String strUpdate = "UPDATE CATEGORIE SET NBRMEMBRES = ? WHERE IDCATEGORIE = " + categorie.getIdCategorie() + ";";
-			PreparedStatement s = this.connect.prepareStatement(strUpdate);
-			s.setInt(1, categorie.getNbrMembres());
-			s.executeUpdate();
+			if(categorie.getNbrMembres() != 0) {
+				String strUpdate = "UPDATE CATEGORIE SET NBRMEMBRES = ? WHERE IDCATEGORIE = " + categorie.getIdCategorie() + ";";
+				PreparedStatement s = this.connect.prepareStatement(strUpdate);
+				s.setInt(1, categorie.getNbrMembres());
+				s.executeUpdate();
+			}
 			String strUpdate2 = "UPDATE MEMBRE_CATEGORIE SET SUPPLEMENT = ? WHERE IDCATEGORIE = " + categorie.getIdCategorie() + ";";
 			PreparedStatement s2 = this.connect.prepareStatement(strUpdate2);
 			s2.setInt(1, categorie.getSupplement());

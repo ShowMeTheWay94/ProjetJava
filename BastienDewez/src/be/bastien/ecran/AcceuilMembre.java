@@ -80,8 +80,6 @@ public class AcceuilMembre extends JFrame {
 					DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
 					
 					//Instanciation et initialisation des variables du membre
-					Membre membre = new Membre();
-					membre.setIdPersonne(membre.getIdPersonne());
 					membre.setCotisation(0);
 					membre.setStatutCotisation("Payé");
 					
@@ -103,7 +101,7 @@ public class AcceuilMembre extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				Acceuil acceuil = new Acceuil();
-				acceuil.setTitle("Acceuil");
+				acceuil.setTitle("Accueil");
 				acceuil.setVisible(true);
 			}
 		});

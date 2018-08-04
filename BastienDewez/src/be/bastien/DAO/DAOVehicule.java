@@ -91,4 +91,18 @@ public class DAOVehicule extends DAO<Vehicule> {
 		
 		return trouve;
 	}
+	
+	//Fonction pour ajouter un véhicule à une balade
+	public boolean addVehiculeBalade(String numImmatriculation, int idBalade, int idPersonne) {
+		try{
+			String strCreate = "INSERT INTO BALADE_VEHICULE VALUES ('" + numImmatriculation + "','" + idBalade + "','" + idPersonne + "');";
+				PreparedStatement s = this.connect.prepareStatement(strCreate);
+				s.executeUpdate();
+				return true;
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

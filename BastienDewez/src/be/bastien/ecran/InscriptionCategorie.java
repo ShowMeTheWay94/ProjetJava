@@ -16,7 +16,6 @@ import be.bastien.DAO.DAOMembre;
 import be.bastien.DAO.ProjetConnection;
 import be.bastien.metier.Categorie;
 import be.bastien.metier.Membre;
-import be.bastien.metier.Personne;
 
 public class InscriptionCategorie extends JFrame {
 	private static final long serialVersionUID = -3207631333749439129L;
@@ -24,7 +23,7 @@ public class InscriptionCategorie extends JFrame {
 	DAOCategorie daoCategorie = new DAOCategorie(ProjetConnection.getInstance());
 	DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
 	
-	public InscriptionCategorie(Personne personne) {
+	public InscriptionCategorie(Membre membre) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 150);
 		contentPane = new JPanel();
@@ -37,10 +36,10 @@ public class InscriptionCategorie extends JFrame {
 		
 		JComboBox<String> comboCategorie = new JComboBox<String>();
 		List<Categorie> listeCategorie = daoCategorie.find();
-		List<Integer> listeCategorieMembre = daoMembre.findCategorie(personne);
+		List<Categorie> listeCategorieMembre = daoMembre.findCategorie(membre);
 		for(int i = 0; i < listeCategorieMembre.size();i++) {
 			for(int j = 0;j < listeCategorie.size();j++) {
-				if(listeCategorieMembre.get(i) == listeCategorie.get(j).getIdCategorie()) {
+				if(listeCategorieMembre.get(i).getIdCategorie() == listeCategorie.get(j).getIdCategorie()) {
 					listeCategorie.remove(j);
 				}
 			}
@@ -67,10 +66,6 @@ public class InscriptionCategorie extends JFrame {
 				}
 				categorie.setSupplement(5);
 				
-				//Instanciation et initialisation des variables du membre
-				Membre membre = new Membre();
-				membre.setIdPersonne(personne.getIdPersonne());
-				
 				//Vérification si les champs sont vides et ajout dans la table membre_categorie
 				if(daoMembre.addCategorie(membre,categorie)) {
 					//Récupération du nombre de membre de la catégorie, incrémentation du nombre et mise à jour de la catégorie
@@ -79,7 +74,7 @@ public class InscriptionCategorie extends JFrame {
 					daoCategorie.update(categorie);
 						
 					dispose();
-					AcceuilMembre acceuilMembre = new AcceuilMembre(personne);
+					AcceuilMembre acceuilMembre = new AcceuilMembre(membre);
 					acceuilMembre.setTitle("Acceuil Membre");
 					acceuilMembre.setVisible(true);
 				}
@@ -95,7 +90,7 @@ public class InscriptionCategorie extends JFrame {
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				AcceuilMembre acceuilMembre = new AcceuilMembre(personne);
+				AcceuilMembre acceuilMembre = new AcceuilMembre(membre);
 				acceuilMembre.setTitle("Acceuil Membre");
 				acceuilMembre.setVisible(true);
 			}

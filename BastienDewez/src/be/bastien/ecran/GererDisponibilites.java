@@ -13,15 +13,14 @@ import javax.swing.JPanel;
 import be.bastien.DAO.DAOBalade;
 import be.bastien.DAO.DAOVehicule;
 import be.bastien.DAO.ProjetConnection;
-import be.bastien.metier.Balade;
-import be.bastien.metier.Personne;
+import be.bastien.metier.Membre;
 import be.bastien.metier.Vehicule;
 
 public class GererDisponibilites extends JFrame {
 	private static final long serialVersionUID = 8491766187158806612L;
 	private JPanel contentPane;
 	
-	public GererDisponibilites(Personne personne) {
+	public GererDisponibilites(Membre membre) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 250);
 		contentPane = new JPanel();
@@ -46,7 +45,7 @@ public class GererDisponibilites extends JFrame {
 		Ajouter.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				AjouterDisponibilites ajouterDisponibilites = new AjouterDisponibilites(personne);
+				AjouterDisponibilites ajouterDisponibilites = new AjouterDisponibilites(membre);
 				ajouterDisponibilites.setTitle("Ajouter Disponiblités");
 				ajouterDisponibilites.setVisible(true);
 			}
@@ -58,7 +57,6 @@ public class GererDisponibilites extends JFrame {
 		ReserverPlaceMembre.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				//Instanciation des daoBalade et daoVehicule
-				DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
 				DAOVehicule daoVehicule = new DAOVehicule(ProjetConnection.getInstance());
 				
 				//Récupération de la ligne sélectionnées dans la comboBox
@@ -68,26 +66,33 @@ public class GererDisponibilites extends JFrame {
 				
 				//Instanciation et initialisation des variables du véhicule
 				Vehicule vehicule = new Vehicule();
-				vehicule.setNumImmatriculation(disponibilites.substring(disponibilites.indexOf(" ") + 1,disponibilites.indexOf(" ") + 2));
+				vehicule.setNumImmatriculation(disponibilites.substring(disponibilites.indexOf(" ") + 1,disponibilites.indexOf(" ",disponibilites.indexOf(" ") + 1)));
 				vehicule.setPlaceLibreMembre(Integer.parseInt(placeMembre));
 				vehicule.setPlaceLibreVelo(Integer.parseInt(placeVelo));
 				
 				//Décrémenter la variable placeMembre du véhicule
-				vehicule.retirerPlaceMembre();
+				if(vehicule.getPlaceLibreMembre() != 0) {
+					vehicule.retirerPlaceMembre();
+				}
 				
 				//Instanciation et initialisation des variables de la balade
-				Balade balade = new Balade();
+				/*Balade balade = new Balade();
 				balade.setNomBalade(disponibilites.substring(0, disponibilites.indexOf(" ")));
-				balade = daoBalade.find(balade);
+				List<Balade> listeBalade = daoBalade.find();
+				for(int i = 0;i < listeBalade.size();i++) {
+					if(listeBalade.get(i).getNomBalade() == balade.getNomBalade()) {
+						balade = listeBalade.get(i);
+					}
+				}*/
 				
 				//Mise à jour du véhicule
 				daoVehicule.update(vehicule);
 				
 				//Ajout dans la table balade_vehicule
-				daoBalade.addDisponibilites(vehicule.getNumImmatriculation(),balade.getIdBalade(),personne.getIdPersonne());
+				//daoBalade.addDisponibilites(vehicule.getNumImmatriculation(),balade.getIdBalade(),membre.getIdPersonne());
 				
 				dispose();
-				GererDisponibilites gererDisponibilites = new GererDisponibilites(personne);
+				GererDisponibilites gererDisponibilites = new GererDisponibilites(membre);
 				gererDisponibilites.setTitle("Gérer les disponibilités");
 				gererDisponibilites.setVisible(true);
 			}
@@ -108,18 +113,20 @@ public class GererDisponibilites extends JFrame {
 				
 				//Instanciation et initialisation des variables du véhicule
 				Vehicule vehicule = new Vehicule();
-				vehicule.setNumImmatriculation(disponibilites.substring(disponibilites.indexOf(" ") + 1,disponibilites.indexOf(" ") + 2));
+				vehicule.setNumImmatriculation(disponibilites.substring(disponibilites.indexOf(" ") + 1,disponibilites.indexOf(" ",disponibilites.indexOf(" ") + 1)));
 				vehicule.setPlaceLibreMembre(Integer.parseInt(placeMembre));
 				vehicule.setPlaceLibreVelo(Integer.parseInt(placeVelo));
 				
 				//Décrémenter la variable placeVelo du véhicule
-				vehicule.retirerPlaceVelo();
+				if(vehicule.getPlaceLibreVelo() != 0) {
+					vehicule.retirerPlaceVelo();
+				}
 				
 				//Mise à jour du véhicule
 				daoVehicule.update(vehicule);
 				
 				dispose();
-				GererDisponibilites gererDisponibilites = new GererDisponibilites(personne);
+				GererDisponibilites gererDisponibilites = new GererDisponibilites(membre);
 				gererDisponibilites.setTitle("Gérer les disponibilités");
 				gererDisponibilites.setVisible(true);
 			}
@@ -131,8 +138,8 @@ public class GererDisponibilites extends JFrame {
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				AcceuilMembre acceuilMembre = new AcceuilMembre(personne);
-				acceuilMembre.setTitle("Acceuil Membre");
+				AcceuilMembre acceuilMembre = new AcceuilMembre(membre);
+				acceuilMembre.setTitle("Accueil Membre");
 				acceuilMembre.setVisible(true);
 			}
 		});

@@ -13,13 +13,13 @@ import javax.swing.JPanel;
 import be.bastien.DAO.DAOBalade;
 import be.bastien.DAO.ProjetConnection;
 import be.bastien.metier.Balade;
-import be.bastien.metier.Personne;
+import be.bastien.metier.Membre;
 
 public class AfficherForfait extends JFrame{
 	private static final long serialVersionUID = 8491766187158806612L;
 	private JPanel contentPane;
 	
-	public AfficherForfait(Personne personne) {
+	public AfficherForfait(Membre membre) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 200);
 		contentPane = new JPanel();
@@ -54,7 +54,7 @@ public class AfficherForfait extends JFrame{
 				daoBalade.update(balade);
 				
 				dispose();
-				AfficherForfait afficherForfait = new AfficherForfait(personne);
+				AfficherForfait afficherForfait = new AfficherForfait(membre);
 				afficherForfait.setTitle("Afficher forfait");
 				afficherForfait.setVisible(true);
 			}
@@ -66,8 +66,8 @@ public class AfficherForfait extends JFrame{
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				AcceuilMembre acceuilMembre = new AcceuilMembre(personne);
-				acceuilMembre.setTitle("Acceuil Membre");
+				AcceuilMembre acceuilMembre = new AcceuilMembre(membre);
+				acceuilMembre.setTitle("Accueil Membre");
 				acceuilMembre.setVisible(true);
 			}
 		});

@@ -61,7 +61,7 @@ public class AcceuilResponsable extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				Acceuil acceuil = new Acceuil();
-				acceuil.setTitle("Acceuil");
+				acceuil.setTitle("Accueil");
 				acceuil.setVisible(true);
 			}
 		});

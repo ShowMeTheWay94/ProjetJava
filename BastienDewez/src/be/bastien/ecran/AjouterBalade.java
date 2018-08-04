@@ -2,7 +2,6 @@ package be.bastien.ecran;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -33,31 +32,31 @@ public class AjouterBalade extends JFrame {
 		setContentPane(contentPane);
 		
 		JLabel lblNom = new JLabel("Nom :");
-		lblNom.setBounds(110, 14, 100, 14);
+		lblNom.setBounds(80, 14, 100, 14);
 		contentPane.add(lblNom);
 		
 		JTextField txtNom = new JTextField();
-		txtNom.setBounds(180, 11, 100, 20);
+		txtNom.setBounds(190, 11, 100, 20);
 		contentPane.add(txtNom);
 		
 		JLabel lblLieu = new JLabel("Lieu :");
-		lblLieu.setBounds(110, 54, 140, 14);
+		lblLieu.setBounds(80, 54, 140, 14);
 		contentPane.add(lblLieu);
 		
 		JTextField txtLieu = new JTextField();
-		txtLieu.setBounds(180, 51, 100, 20);
+		txtLieu.setBounds(190, 51, 100, 20);
 		contentPane.add(txtLieu);
 		
 		JLabel lblDate = new JLabel("Date (jj-mm-yyyy) :");
-		lblDate.setBounds(110, 94, 140, 14);
+		lblDate.setBounds(80, 94, 140, 14);
 		contentPane.add(lblDate);
 		
 		JTextField txtDate = new JTextField();
-		txtDate.setBounds(180, 91, 100, 20);
+		txtDate.setBounds(190, 91, 100, 20);
 		contentPane.add(txtDate);
 		
 		JLabel lblCategorie = new JLabel("Categorie :");
-		lblCategorie.setBounds(110, 134, 120, 14);
+		lblCategorie.setBounds(80, 134, 120, 14);
 		contentPane.add(lblCategorie);
 		
 		JComboBox<String> comboCategorie = new JComboBox<String>();
@@ -65,7 +64,7 @@ public class AjouterBalade extends JFrame {
 		for(int i = 0;i < listeCategorie.size();i++) {
 			comboCategorie.addItem(listeCategorie.get(i).getNomCategorie());
 		}
-		comboCategorie.setBounds(180, 131, 100, 20);
+		comboCategorie.setBounds(190, 131, 100, 20);
 		contentPane.add(comboCategorie);
 		
 		JButton btnAjouter = new JButton("Ajouter");

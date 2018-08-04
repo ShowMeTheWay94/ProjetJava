@@ -68,7 +68,7 @@ public class Connexion extends JFrame {
 								trouve = true;
 								dispose();
 								AcceuilMembre acceuilMembre = new AcceuilMembre(listMembre.get(j));
-								acceuilMembre.setTitle("Acceuil Membre");
+								acceuilMembre.setTitle("Accueil Membre");
 								acceuilMembre.setVisible(true);
 							}
 						}
@@ -80,7 +80,7 @@ public class Connexion extends JFrame {
 								trouve = true;
 								dispose();
 								AcceuilResponsable acceuilResponsable = new AcceuilResponsable(listPersonne.get(i));
-								acceuilResponsable.setTitle("Acceuil Responsable");
+								acceuilResponsable.setTitle("Accueil Responsable");
 								acceuilResponsable.setVisible(true);
 							}
 						}
@@ -92,7 +92,7 @@ public class Connexion extends JFrame {
 								trouve = true;
 								dispose();
 								AcceuilTresorier acceuilTresorier = new AcceuilTresorier(listPersonne.get(i));
-								acceuilTresorier.setTitle("Acceuil trésorier");
+								acceuilTresorier.setTitle("Accueil trésorier");
 								acceuilTresorier.setVisible(true);
 							}
 						}
@@ -111,7 +111,7 @@ public class Connexion extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			dispose();
 			Acceuil acceuil = new Acceuil();
-			acceuil.setTitle("Acceuil");
+			acceuil.setTitle("Accueil");
 			acceuil.setVisible(true);
 		}
 	});

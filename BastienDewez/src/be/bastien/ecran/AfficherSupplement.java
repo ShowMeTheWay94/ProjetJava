@@ -11,15 +11,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import be.bastien.DAO.DAOCategorie;
+import be.bastien.DAO.DAOMembre;
 import be.bastien.DAO.ProjetConnection;
 import be.bastien.metier.Categorie;
-import be.bastien.metier.Personne;
+import be.bastien.metier.Membre;
 
 public class AfficherSupplement extends JFrame {
 	private static final long serialVersionUID = 8491766187158806612L;
 	private JPanel contentPane;
 	
-	public AfficherSupplement(Personne personne) {
+	public AfficherSupplement(Membre membre) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 200);
 		contentPane = new JPanel();
@@ -32,10 +33,22 @@ public class AfficherSupplement extends JFrame {
 		
 		//Initialisation de la comboBox avec des catégories
 		JComboBox<Categorie> cmBoxSupplement = new JComboBox<Categorie>();
+		DAOMembre daoMembre = new DAOMembre(ProjetConnection.getInstance());
 		DAOCategorie daoCategorie = new DAOCategorie(ProjetConnection.getInstance());
-		List<Categorie> listeCategorie = daoCategorie.find(personne);
-		for(int i = 0;i < listeCategorie.size();i++) {
-			cmBoxSupplement.addItem(listeCategorie.get(i));
+		List<Categorie> listeCategorieMembre = daoMembre.findCategorie(membre);
+		List<Categorie> listeCategorie = daoCategorie.find();
+		for(int i = 0;i < listeCategorieMembre.size();i++) {
+			for(int j = 0;j < listeCategorie.size();j++) {
+				if(listeCategorieMembre.get(i).getIdCategorie() == listeCategorie.get(j).getIdCategorie()) {
+					if(listeCategorieMembre.get(i).getSupplement() != 0) {
+						Categorie categorie = new Categorie();
+						categorie.setIdCategorie(listeCategorieMembre.get(i).getIdCategorie());
+						categorie.setNomCategorie(listeCategorie.get(j).getNomCategorie());
+						categorie.setSupplement(listeCategorieMembre.get(i).getSupplement());
+						cmBoxSupplement.addItem(categorie);
+					}
+				}
+			}
 		}
 		cmBoxSupplement.setBounds(10, 40, 350, 20);
 		contentPane.add(cmBoxSupplement);
@@ -54,7 +67,7 @@ public class AfficherSupplement extends JFrame {
 				daoCategorie.update(categorie);
 				
 				dispose();
-				AfficherSupplement afficherSupplement = new AfficherSupplement(personne);
+				AfficherSupplement afficherSupplement = new AfficherSupplement(membre);
 				afficherSupplement.setTitle("Afficher supplément");
 				afficherSupplement.setVisible(true);
 			}
@@ -66,8 +79,8 @@ public class AfficherSupplement extends JFrame {
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				AcceuilMembre acceuilMembre = new AcceuilMembre(personne);
-				acceuilMembre.setTitle("Acceuil Membre");
+				AcceuilMembre acceuilMembre = new AcceuilMembre(membre);
+				acceuilMembre.setTitle("Accueil Membre");
 				acceuilMembre.setVisible(true);
 			}
 		});
