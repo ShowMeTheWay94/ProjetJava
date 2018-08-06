@@ -35,6 +35,7 @@ public class AjouterDisponibilites extends JFrame {
 		lblBalade.setBounds(70,24,100,14);
 		contentPane.add(lblBalade);
 		
+		//Initialisation combo balade
 		JComboBox<String> comboBalade = new JComboBox<String>();
 		List<Balade> listeBalade = daoBalade.find();
 		for(int i = 0; i < listeBalade.size();i++) {
@@ -67,6 +68,7 @@ public class AjouterDisponibilites extends JFrame {
 		txtPlaceVelo.setBounds(220, 111, 120, 20);
 		contentPane.add(txtPlaceVelo);
 		
+		//Bouton ajouter
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -112,9 +114,11 @@ public class AjouterDisponibilites extends JFrame {
 		btnAjouter.setBounds(10, 164, 100, 30);
 		contentPane.add(btnAjouter);
 		
+		//Bouton retour
 		JButton Retour = new JButton("Retour");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage gérer les disponibilités
 				dispose();
 				GererDisponibilites gererDisponibilites = new GererDisponibilites(membre);
 				gererDisponibilites.setTitle("Gérer les disponibilités");

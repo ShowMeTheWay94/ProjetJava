@@ -40,6 +40,7 @@ public class AfficherForfait extends JFrame{
 		cmBoxBalade.setBounds(10, 40, 350, 20);
 		contentPane.add(cmBoxBalade);
 		
+		//Bouton payer
 		JButton Payer = new JButton("Payer");
 		Payer.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
@@ -62,9 +63,11 @@ public class AfficherForfait extends JFrame{
 		Payer.setBounds(114, 114, 120, 30);
 		contentPane.add(Payer);
 		
+		//Bouton retour
 		JButton Retour = new JButton("Retour");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage accueil membre
 				dispose();
 				AcceuilMembre acceuilMembre = new AcceuilMembre(membre);
 				acceuilMembre.setTitle("Accueil Membre");

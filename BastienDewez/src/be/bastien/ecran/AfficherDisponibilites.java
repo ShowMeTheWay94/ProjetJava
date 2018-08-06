@@ -25,8 +25,8 @@ public class AfficherDisponibilites extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
-		JLabel lblDisponibilites = new JLabel("Nom Balade - Place Membre - Place Vélo");
-		lblDisponibilites.setBounds(70,20,280,20);
+		JLabel lblDisponibilites = new JLabel("Nom Balade - Immatriculation - Place Membre - Place Vélo");
+		lblDisponibilites.setBounds(20,20,350,20);
 		contentPane.add(lblDisponibilites);
 		
 		//Initialisation de la comboBox
@@ -39,9 +39,11 @@ public class AfficherDisponibilites extends JFrame {
 		cmBoxDisponibilites.setBounds(10, 40, 350, 20);
 		contentPane.add(cmBoxDisponibilites);
 		
+		//Bouton retour
 		JButton Retour = new JButton("Retour");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affcihage accueil responsable
 				dispose();
 				AcceuilResponsable acceuilResponsable = new AcceuilResponsable(personne);
 				acceuilResponsable.setTitle("Accueil Responsable");

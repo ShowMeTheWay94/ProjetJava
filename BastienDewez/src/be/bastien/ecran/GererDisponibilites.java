@@ -41,9 +41,11 @@ public class GererDisponibilites extends JFrame {
 		cmBoxDisponibilites.setBounds(10, 40, 350, 20);
 		contentPane.add(cmBoxDisponibilites);
 		
+		//Bouton ajouter disponiblités
 		JButton Ajouter = new JButton("Ajouter disponibilités");
 		Ajouter.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage ajouter disponibilités
 				dispose();
 				AjouterDisponibilites ajouterDisponibilites = new AjouterDisponibilites(membre);
 				ajouterDisponibilites.setTitle("Ajouter Disponiblités");
@@ -53,6 +55,7 @@ public class GererDisponibilites extends JFrame {
 		Ajouter.setBounds(94, 64, 180, 30);
 		contentPane.add(Ajouter);
 		
+		//Bouton réserver place membre
 		JButton ReserverPlaceMembre = new JButton("Réserver place membre");
 		ReserverPlaceMembre.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
@@ -75,22 +78,10 @@ public class GererDisponibilites extends JFrame {
 					vehicule.retirerPlaceMembre();
 				}
 				
-				//Instanciation et initialisation des variables de la balade
-				/*Balade balade = new Balade();
-				balade.setNomBalade(disponibilites.substring(0, disponibilites.indexOf(" ")));
-				List<Balade> listeBalade = daoBalade.find();
-				for(int i = 0;i < listeBalade.size();i++) {
-					if(listeBalade.get(i).getNomBalade() == balade.getNomBalade()) {
-						balade = listeBalade.get(i);
-					}
-				}*/
-				
 				//Mise à jour du véhicule
 				daoVehicule.update(vehicule);
 				
-				//Ajout dans la table balade_vehicule
-				//daoBalade.addDisponibilites(vehicule.getNumImmatriculation(),balade.getIdBalade(),membre.getIdPersonne());
-				
+				//Affichage gérer disponibilités
 				dispose();
 				GererDisponibilites gererDisponibilites = new GererDisponibilites(membre);
 				gererDisponibilites.setTitle("Gérer les disponibilités");
@@ -100,6 +91,7 @@ public class GererDisponibilites extends JFrame {
 		ReserverPlaceMembre.setBounds(94, 94, 180, 30);
 		contentPane.add(ReserverPlaceMembre);
 		
+		//Bouton réserver place vélo
 		JButton ReserverPlaceVelo = new JButton("Réserver place vélo");
 		ReserverPlaceVelo.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
@@ -125,6 +117,7 @@ public class GererDisponibilites extends JFrame {
 				//Mise à jour du véhicule
 				daoVehicule.update(vehicule);
 				
+				//Affichage gérer les disponibilités
 				dispose();
 				GererDisponibilites gererDisponibilites = new GererDisponibilites(membre);
 				gererDisponibilites.setTitle("Gérer les disponibilités");
@@ -134,9 +127,11 @@ public class GererDisponibilites extends JFrame {
 		ReserverPlaceVelo.setBounds(94, 124, 180, 30);
 		contentPane.add(ReserverPlaceVelo);
 		
+		//Bouton retour
 		JButton Retour = new JButton("Retour");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage accueil membre
 				dispose();
 				AcceuilMembre acceuilMembre = new AcceuilMembre(membre);
 				acceuilMembre.setTitle("Accueil Membre");

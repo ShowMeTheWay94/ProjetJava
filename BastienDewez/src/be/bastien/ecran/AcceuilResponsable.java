@@ -20,10 +20,12 @@ public class AcceuilResponsable extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
+		//Bouton afficher le calendrier des balades
 		JButton btnBalade = new JButton("Afficher le calendrier des balades");
 		btnBalade.setBounds(100, 40, 250, 30);
 		btnBalade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
+				//Affichage afficher les balades
 				dispose();
 				AfficherBalade afficherBalade = new AfficherBalade(personne);
 				afficherBalade.setTitle("Afficher les balades");
@@ -32,10 +34,12 @@ public class AcceuilResponsable extends JFrame {
 		});
 		contentPane.add(btnBalade);
 		
+		//Bouton vérifier disponiblités
 		JButton btnDisponibilites = new JButton("Vérifier les disponibilités");
 		btnDisponibilites.setBounds(100, 90, 250, 30);
 		btnDisponibilites.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
+				//Affichage afficher les disponibilités
 				dispose();
 				AfficherDisponibilites afficherDisponibilites = new AfficherDisponibilites(personne);
 				afficherDisponibilites.setTitle("Afficher les disponibilités");
@@ -44,10 +48,12 @@ public class AcceuilResponsable extends JFrame {
 		});
 		contentPane.add(btnDisponibilites);
 		
+		//Bouton calculer le forfait
 		JButton btnForfait = new JButton("Calculer le forfait pour une balade");
 		btnForfait.setBounds(100,140,250,30);
 		btnForfait.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage calculer forfait
 				dispose();
 				CalculerForfait calculerForfait = new CalculerForfait(personne);
 				calculerForfait.setTitle("Calculer forfait");
@@ -56,9 +62,11 @@ public class AcceuilResponsable extends JFrame {
 		});
 		contentPane.add(btnForfait);
 		
+		//Bouton deconnexion
 		JButton Retour = new JButton("Deconnexion");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage accueil
 				dispose();
 				Acceuil acceuil = new Acceuil();
 				acceuil.setTitle("Accueil");

@@ -59,6 +59,7 @@ public class AjouterBalade extends JFrame {
 		lblCategorie.setBounds(80, 134, 120, 14);
 		contentPane.add(lblCategorie);
 		
+		//Initialisation combo catégorie
 		JComboBox<String> comboCategorie = new JComboBox<String>();
 		List<Categorie> listeCategorie = daoCategorie.find();
 		for(int i = 0;i < listeCategorie.size();i++) {
@@ -67,6 +68,7 @@ public class AjouterBalade extends JFrame {
 		comboCategorie.setBounds(190, 131, 100, 20);
 		contentPane.add(comboCategorie);
 		
+		//Bouton ajouter
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -113,9 +115,11 @@ public class AjouterBalade extends JFrame {
 		btnAjouter.setBounds(10, 164, 100, 30);
 		contentPane.add(btnAjouter);
 		
+		//Bouton retour
 		JButton Retour = new JButton("Retour");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage afficher les balades
 				dispose();
 				AfficherBalade afficherBalade = new AfficherBalade(personne);
 				afficherBalade.setTitle("Afficher les balades");

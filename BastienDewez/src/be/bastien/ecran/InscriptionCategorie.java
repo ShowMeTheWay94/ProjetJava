@@ -34,6 +34,7 @@ public class InscriptionCategorie extends JFrame {
 		lblCategorie.setBounds(110,24,100,14);
 		contentPane.add(lblCategorie);
 		
+		//Initialisation combo catégorie
 		JComboBox<String> comboCategorie = new JComboBox<String>();
 		List<Categorie> listeCategorie = daoCategorie.find();
 		List<Categorie> listeCategorieMembre = daoMembre.findCategorie(membre);
@@ -50,6 +51,7 @@ public class InscriptionCategorie extends JFrame {
 		comboCategorie.setBounds(190, 21, 100, 20);
 		contentPane.add(comboCategorie);
 		
+		//Bouton inscription
 		JButton Inscription = new JButton("Inscription");
 		Inscription.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
@@ -86,12 +88,14 @@ public class InscriptionCategorie extends JFrame {
 		Inscription.setBounds(20, 64, 120, 30);
 		contentPane.add(Inscription);
 		
+		//Bouton retour
 		JButton Retour = new JButton("Annuler");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage accueil membre
 				dispose();
 				AcceuilMembre acceuilMembre = new AcceuilMembre(membre);
-				acceuilMembre.setTitle("Acceuil Membre");
+				acceuilMembre.setTitle("Accueil Membre");
 				acceuilMembre.setVisible(true);
 			}
 		});

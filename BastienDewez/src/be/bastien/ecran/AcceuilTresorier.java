@@ -20,10 +20,12 @@ public class AcceuilTresorier extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
+		//Bouton remboursement chauffeur
 		JButton btnRemboursement = new JButton("Remboursement des chauffeurs");
 		btnRemboursement.setBounds(100, 40, 250, 30);
 		btnRemboursement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
+				//Affichage remboursement chauffeur
 				dispose();
 				RemboursementChauffeur remboursementChauffeur = new RemboursementChauffeur(personne);
 				remboursementChauffeur.setTitle("Remboursement chauffeur");
@@ -32,10 +34,12 @@ public class AcceuilTresorier extends JFrame {
 		});
 		contentPane.add(btnRemboursement);
 		
+		//Bouton cotisation
 		JButton btnCotisation = new JButton("Cotisations à payer");
 		btnCotisation.setBounds(100, 90, 250, 30);
 		btnCotisation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
+				//Affichage cotisations à payer
 				dispose();
 				PaiementCotisation paiementCotisation = new PaiementCotisation(personne);
 				paiementCotisation.setTitle("Cotisations à payer");
@@ -44,9 +48,11 @@ public class AcceuilTresorier extends JFrame {
 		});
 		contentPane.add(btnCotisation);
 		
+		//Bouton retour
 		JButton Retour = new JButton("Deconnexion");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage accueil
 				dispose();
 				Acceuil acceuil = new Acceuil();
 				acceuil.setTitle("Accueil");

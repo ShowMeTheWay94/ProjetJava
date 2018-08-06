@@ -42,12 +42,14 @@ public class PaiementCotisation extends JFrame {
 		cmBoxCotisation.setBounds(90, 40, 200, 20);
 		contentPane.add(cmBoxCotisation);
 		
+		//Bouton retour
 		JButton Retour = new JButton("Retour");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage accueil trésorier
 				dispose();
 				AcceuilTresorier acceuilTresorier = new AcceuilTresorier(personne);
-				acceuilTresorier.setTitle("Acceuil Tresorier");
+				acceuilTresorier.setTitle("Accueil Tresorier");
 				acceuilTresorier.setVisible(true);
 			}
 		});

@@ -23,10 +23,12 @@ public class AcceuilMembre extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
+		//Bouton inscription catégorie
 		JButton btnInscription = new JButton("Inscription à une catégorie");
 		btnInscription.setBounds(90, 20, 250, 30);
 		btnInscription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
+				//Affichage inscription catégorie
 				dispose();
 				InscriptionCategorie inscriptionCategorie = new InscriptionCategorie(membre);
 				inscriptionCategorie.setTitle("Inscription catégorie");
@@ -35,10 +37,12 @@ public class AcceuilMembre extends JFrame {
 		});
 		contentPane.add(btnInscription);
 		
+		//Bouton gérer les disponibilités
 		JButton btnDisponibilite = new JButton("Gérer les disponibilités");
 		btnDisponibilite.setBounds(90, 60, 250, 30);
 		btnDisponibilite.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
+				//Affichage gérer les disponibilités
 				dispose();
 				GererDisponibilites gererDisponibilites = new GererDisponibilites(membre);
 				gererDisponibilites.setTitle("Gérer les disponibilités");
@@ -47,10 +51,12 @@ public class AcceuilMembre extends JFrame {
 		});
 		contentPane.add(btnDisponibilite);
 		
+		//Bouton afficher les forfaits
 		JButton btnForfait = new JButton("Afficher les forfaits");
 		btnForfait.setBounds(90, 100, 250, 30);
 		btnForfait.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
+				//Affichage afficher les forfaits
 				dispose();
 				AfficherForfait afficherForfait = new AfficherForfait(membre);
 				afficherForfait.setTitle("Afficher forfait");
@@ -59,10 +65,12 @@ public class AcceuilMembre extends JFrame {
 		});
 		contentPane.add(btnForfait);
 		
+		//Bouton afficher les suppléments
 		JButton btnSupplement = new JButton("Afficher les suppléments");
 		btnSupplement.setBounds(90, 140, 250, 30);
 		btnSupplement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
+				//Affichage afficher les suppléments
 				dispose();
 				AfficherSupplement afficherSupplement = new AfficherSupplement(membre);
 				afficherSupplement.setTitle("Afficher supplément");
@@ -72,6 +80,7 @@ public class AcceuilMembre extends JFrame {
 		contentPane.add(btnSupplement);
 		
 		if(membre.getCotisation() != 0) {
+			//Bouton payer cotisation
 			JButton btnCotisation = new JButton("Payer cotisation");
 			btnCotisation.setBounds(90, 180, 250, 30);
 			btnCotisation.addActionListener(new ActionListener() {
@@ -96,9 +105,11 @@ public class AcceuilMembre extends JFrame {
 			contentPane.add(btnCotisation);
 		}
 		
+		//Bouton retour
 		JButton Retour = new JButton("Deconnexion");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage accueil
 				dispose();
 				Acceuil acceuil = new Acceuil();
 				acceuil.setTitle("Accueil");

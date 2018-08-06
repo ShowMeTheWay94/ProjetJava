@@ -16,8 +16,9 @@ public class Acceuil extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					//Affichage page accueil
 					Acceuil acceuil = new Acceuil();
-					acceuil.setTitle("Acceuil");
+					acceuil.setTitle("Accueil");
 					acceuil.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,6 +34,7 @@ public class Acceuil extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
+		//Bouton connexion
 		JButton btnConnexion = new JButton("Connexion");
 		btnConnexion.setBounds(120, 115, 100, 30);
 		btnConnexion.addActionListener(new ActionListener() {
@@ -45,6 +47,7 @@ public class Acceuil extends JFrame {
 		});
 		contentPane.add(btnConnexion);
 		
+		//Bouton inscription
 		JButton btnInscription = new JButton("Inscription");
 		btnInscription.setBounds(230, 115, 100, 30);
 		btnInscription.addActionListener(new ActionListener() {
@@ -57,6 +60,7 @@ public class Acceuil extends JFrame {
 		});
 		contentPane.add(btnInscription);
 		
+		//Bouton quitter
 		JButton btnQuitter = new JButton("Quitter");
 		btnQuitter.setBounds(324, 220, 100, 30);
 		btnQuitter.addActionListener(new ActionListener() {

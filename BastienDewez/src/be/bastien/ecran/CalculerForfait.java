@@ -50,6 +50,7 @@ public class CalculerForfait extends JFrame {
 		txtKilometre.setBounds(170,70,100,20);
 		contentPane.add(txtKilometre);
 		
+		//Bouton calculer forfait
 		JButton Calculer = new JButton("Calculer");
 		Calculer.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
@@ -65,6 +66,7 @@ public class CalculerForfait extends JFrame {
 					//Mise à jour de la balade
 					daoBalade.update(balade);
 					
+					//Affichage calculer forfait
 					dispose();
 					CalculerForfait calculerForfait = new CalculerForfait(personne);
 					calculerForfait.setTitle("Calculer forfait");
@@ -78,12 +80,14 @@ public class CalculerForfait extends JFrame {
 		Calculer.setBounds(124, 114, 120, 30);
 		contentPane.add(Calculer);
 		
+		//Bouton retour
 		JButton Retour = new JButton("Retour");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage accueil responsable
 				dispose();
 				AcceuilResponsable acceuilResponsable = new AcceuilResponsable(personne);
-				acceuilResponsable.setTitle("Acceuil Responsable");
+				acceuilResponsable.setTitle("Accueil Responsable");
 				acceuilResponsable.setVisible(true);
 			}
 		});

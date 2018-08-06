@@ -40,9 +40,11 @@ public class AfficherBalade extends JFrame {
 		cmBoxBalade.setBounds(10, 40, 350, 20);
 		contentPane.add(cmBoxBalade);
 		
+		//Bouton ajouter
 		JButton Ajouter = new JButton("Ajouter");
 		Ajouter.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage ajouter balade
 				dispose();
 				AjouterBalade ajouterBalade = new AjouterBalade(personne);
 				ajouterBalade.setTitle("Ajouter balade");
@@ -52,6 +54,7 @@ public class AfficherBalade extends JFrame {
 		Ajouter.setBounds(10, 114, 120, 30);
 		contentPane.add(Ajouter);
 		
+		//Bouton supprimer
 		JButton Supprimer = new JButton("Supprimer");
 		Supprimer.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
@@ -73,9 +76,11 @@ public class AfficherBalade extends JFrame {
 		Supprimer.setBounds(130, 114, 120, 30);
 		contentPane.add(Supprimer);
 		
+		//Bouton retour
 		JButton Retour = new JButton("Retour");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage accueil responsable
 				dispose();
 				AcceuilResponsable acceuilResponsable = new AcceuilResponsable(personne);
 				acceuilResponsable.setTitle("Accueil Responsable");

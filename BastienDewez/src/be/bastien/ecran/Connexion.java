@@ -47,7 +47,7 @@ public class Connexion extends JFrame {
 		passwordField.setBounds(230, 67, 86, 20);
 		contentPane.add(passwordField);
 		
-		//Connexion
+		//Bouton connexion
 		JButton Connect = new JButton("Connexion");
 		Connect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -106,9 +106,11 @@ public class Connexion extends JFrame {
 		Connect.setBounds(120, 110, 100, 30);
 		contentPane.add(Connect);
 	
+	//Bouton retour
 	JButton Retour = new JButton("Retour");
 	Retour.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0) {
+			//Affichage accueil
 			dispose();
 			Acceuil acceuil = new Acceuil();
 			acceuil.setTitle("Accueil");

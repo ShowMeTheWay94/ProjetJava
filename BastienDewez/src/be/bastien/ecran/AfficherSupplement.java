@@ -66,6 +66,7 @@ public class AfficherSupplement extends JFrame {
 				//Mise à jour de la catégorie
 				daoCategorie.update(categorie);
 				
+				//Affichage afficher supplément
 				dispose();
 				AfficherSupplement afficherSupplement = new AfficherSupplement(membre);
 				afficherSupplement.setTitle("Afficher supplément");
@@ -75,9 +76,11 @@ public class AfficherSupplement extends JFrame {
 		Payer.setBounds(114, 114, 120, 30);
 		contentPane.add(Payer);
 		
+		//Bouton retour
 		JButton Retour = new JButton("Retour");
 		Retour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				//Affichage accueil membre
 				dispose();
 				AcceuilMembre acceuilMembre = new AcceuilMembre(membre);
 				acceuilMembre.setTitle("Accueil Membre");
