@@ -131,7 +131,7 @@ public class DAOBalade extends DAO<Balade> {
 					+ "ON B.IDBALADE = BV.IDBALADE INNER JOIN VEHICULE V ON BV.NUMIMMATRICULATION = V.NUMIMMATRICULATION INNER JOIN"
 					+ " PERSONNE P ON V.IDMEMBRE = P.IDPERSONNE");
 			while(result.next()){
-				String disponibilites = result.getString("NOM") + " " + result.getString("PRENOM") + " " + result.getString("NOMBALADE") + " " + result.getString("LIEU") + " " + result.getDate("DATEBALADE") + " " + result.getInt("FORFAIT");
+				String disponibilites = result.getString("NOM") + " " + result.getString("PRENOM") + " " + result.getString("NOMBALADE") + " " + result.getString("LIEU") + " " + result.getString("DATEBALADE") + " " + result.getInt("FORFAIT");
 				listeRemboursement.add(disponibilites);
 			}
 		}
