@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import be.bastien.DAO.DAOBalade;
@@ -77,6 +78,9 @@ public class GererDisponibilites extends JFrame {
 				if(vehicule.getPlaceLibreMembre() != 0) {
 					vehicule.retirerPlaceMembre();
 				}
+				else {
+					JOptionPane.showMessageDialog(null, "Plus de place libre pour les membres");
+				}
 				
 				//Mise à jour du véhicule
 				daoVehicule.update(vehicule);
@@ -112,6 +116,9 @@ public class GererDisponibilites extends JFrame {
 				//Décrémenter la variable placeVelo du véhicule
 				if(vehicule.getPlaceLibreVelo() != 0) {
 					vehicule.retirerPlaceVelo();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Plus de place libre pour les vélos");
 				}
 				
 				//Mise à jour du véhicule

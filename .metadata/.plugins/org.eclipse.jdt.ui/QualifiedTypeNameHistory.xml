@@ -47,9 +47,9 @@
 <fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="be.bastien.metier.Membre"/>
 <fullyQualifiedTypeName name="be.bastien.DAO.DAOMembre"/>
-<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="javax.swing.JComboBox"/>
 <fullyQualifiedTypeName name="be.bastien.metier.Balade"/>
 <fullyQualifiedTypeName name="be.bastien.DAO.DAOBalade"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 </qualifiedTypeNameHistroy>

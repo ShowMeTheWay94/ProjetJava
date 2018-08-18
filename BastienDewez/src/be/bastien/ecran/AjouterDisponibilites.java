@@ -72,28 +72,30 @@ public class AjouterDisponibilites extends JFrame {
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Instanciation du daoVehicule et daoBalade
-				DAOVehicule daoVehicule = new DAOVehicule(ProjetConnection.getInstance());
-				DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
-				
-				//Instanciation et initialisation des variables du vehicule
-				Vehicule vehicule = new Vehicule();
-				vehicule.setNumImmatriculation(txtImmatriculation.getText());
-				vehicule.setPlaceLibreMembre(Integer.parseInt(txtPlaceMembre.getText()));
-				vehicule.setPlaceLibreVelo(Integer.parseInt(txtPlaceVelo.getText()));
-				vehicule.setConducteur(membre);
-				
-				//Instanciation et initialisation des variables de la balade
-				Balade balade = new Balade();
-				List<Balade> listeBalade = daoBalade.find();
-				for(int i = 0; i < listeBalade.size();i++) {
-					if(listeBalade.get(i).getNomBalade() == comboBalade.getSelectedItem()) {
-						balade.setIdBalade(listeBalade.get(i).getIdBalade());
-					}
-				}
-				
 				//Vérification si les champs sont vides et ajout du véhicule
 				if(!txtImmatriculation.getText().equals("") && !txtPlaceMembre.getText().equals("") && !txtPlaceVelo.getText().equals("")) {
+					//Instanciation du daoVehicule et daoBalade
+					DAOVehicule daoVehicule = new DAOVehicule(ProjetConnection.getInstance());
+					DAOBalade daoBalade = new DAOBalade(ProjetConnection.getInstance());
+					
+					//Instanciation et initialisation des variables du vehicule
+					Vehicule vehicule = new Vehicule();
+					vehicule.setNumImmatriculation(txtImmatriculation.getText());
+					if(!txtPlaceMembre.getText().equals("") && !txtPlaceVelo.getText().equals("")) {
+						vehicule.setPlaceLibreMembre(Integer.parseInt(txtPlaceMembre.getText()));
+						vehicule.setPlaceLibreVelo(Integer.parseInt(txtPlaceVelo.getText()));
+					}
+					vehicule.setConducteur(membre);
+					
+					//Instanciation et initialisation des variables de la balade
+					Balade balade = new Balade();
+					List<Balade> listeBalade = daoBalade.find();
+					for(int i = 0; i < listeBalade.size();i++) {
+						if(listeBalade.get(i).getNomBalade() == comboBalade.getSelectedItem()) {
+							balade.setIdBalade(listeBalade.get(i).getIdBalade());
+						}
+					}
+					
 					if(daoVehicule.create(vehicule)) {
 						if(daoVehicule.addVehiculeBalade(txtImmatriculation.getText(), balade.getIdBalade(), membre.getIdPersonne())) {
 							dispose();
